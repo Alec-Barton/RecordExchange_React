@@ -6,16 +6,13 @@ import TrackItem from './trackItem'
 import axios from 'axios';
 import appleLogo from './apple.png'
 
-class PlaylistPage extends React.Component {
+class TrackPage extends React.Component {
   constructor(props) {
     super(props);
 
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
       let tracks = playlistData.tracks
-      console.log(tracks)
-
-      console.log('123')
 
       let listItems = tracks.map((track) =>
       <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
@@ -95,9 +92,6 @@ class PlaylistPage extends React.Component {
           <input type="image" src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png" className = {style.spotifyButton}/>
           <input type="image" src={appleLogo} className = {style.appleButton}/>
           <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
-          {/* <button className = {style.spotifyButton}/>
-          <button className = {style.appleButton}/>
-          <button className = {style.shrButton}/> */}
         </div>
 
         <ul className={style.myUl} > {this.state.listItems} </ul>
@@ -105,23 +99,5 @@ class PlaylistPage extends React.Component {
     );
   }
 }
-
-// class Playlist {
-//   constructor(name, description, coverImage, tracks) {
-//     this.name = name
-//     this.description = description
-//     this.coverImage = coverImage
-//     this.tracks = tracks
-//   }
-// }
-
-// class Track {
-//   constructor(name, artist, album, coverImage) {
-//     this.name = name
-//     this.artist = artist
-//     this.album = album
-//     this.coverImage = coverImage
-//   }
-// }
 
 export default PlaylistPage;

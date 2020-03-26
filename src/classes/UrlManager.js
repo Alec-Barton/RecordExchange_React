@@ -41,6 +41,8 @@ function parseUrl(url) {
             return (parsedUrl)
         }
     }
+
+    //https://music.apple.com/us/album/talon-of-the-hawk/645402438
     else if (url.search('music.apple.com') != -1) {
         if (url.search('album/') != -1) {
             if (url.search('i=') != -1) {
@@ -50,9 +52,11 @@ function parseUrl(url) {
                 let parsedUrl = new ParsedUrl(ServiceType.apple, ObjectType.track, id)
                 return (parsedUrl)
             } else {
-                let startIndex = url.search('album/')
-                let endIndex = startIndex + 10
-                let id = url.substring(startIndex, endIndex)
+                let albumStartIndex = url.search('album/')
+                let albumSubstring = url.substring(albumStartIndex + 6)
+                let idStartIndex = albumSubstring.search('/') + 1
+                let idEndIndex = idStartIndex + 10
+                let id = albumSubstring.substring(idStartIndex, idEndIndex)
                 let parsedUrl = new ParsedUrl(ServiceType.apple, ObjectType.album, id)
                 return (parsedUrl)
             }

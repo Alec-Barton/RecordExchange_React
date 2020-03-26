@@ -19,10 +19,9 @@ class TrackItem extends React.Component {
                 <li className = {style.trackItem}>
                     <img src = {this.state.coverImage} className ={style.trackImage}></img>
                     <span className = {style.trackInfo}>
-                        <h3>{this.state.name}</h3>
-                        <h4>{this.state.artist}</h4>
+                        <h3 className={style.trackName}>{this.state.name}</h3>
+                        <h4 className={style.trackAttributes}>{this.state.artist}</h4>
                     </span>
-                    
                 </li>
             </div>
         )

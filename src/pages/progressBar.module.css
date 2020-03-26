@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+
+.progressBar {
+    /* position: relative; */
+    /* height: 30px;
+    width: 100%; */
+    /* border-radius: 15px;
+    border: 1px solid #333; */
+
+    /* margin:0 auto 20px auto;
+    padding:0px; */
+    
+    /* background:#cfcfcf;
+    border-width:1px;
+    border-style:solid;
+    border-color: #aaa #bbb #fff #bbb;    
+    box-shadow:inset 0px 2px 3px #bbb;  */
+    
+    width:600px;
+    height:18px;
+    margin:0 auto 20px auto;
+    padding:0px;
+    
+    background:#cfcfcf;
+    border-width:1px;
+    border-style:solid;
+    border-color: #aaa #bbb rgb(202, 202, 202) #bbb;    
+    box-shadow:inset 0px 2px 3px #bbb;  
+    
+    border-radius:4px;
+
+    visibility: inherit;
+    /* -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    -o-border-radius:10px; */
+
+}
+
+.filler {
+    visibility: inherit;
+    border-radius:4px;
+    /* -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    -o-border-radius:10px; */
+    height: inherit;
+    margin-left: 1px;
+    /* border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    -o-border-radius:4px; */
+
+    /* background: red; */
+    /* margin-top: 1px;
+    margin-left: 1px; */
+    /* height: 30px; */
+    /* height:95%; */
+    /* border-radius:inherit; */
+    transition: width .2s ease-in;
+    /* overflow: hidden; */
+
+    background-size:18px 18px;
+    background-color: #78c5ef;   
+    /* background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+                        transparent 75%, transparent); */
+    /* background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+                        transparent 75%, transparent);
+    background-image: -ms-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+                        transparent 75%, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+                        transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+                        transparent 75%, transparent); */
+    
+    box-shadow:inset 0px 2px 8px rgba(255, 255, 255, .5), inset -1px -1px 0px rgba(0, 0, 0, .2);
+}
+
+.progressLabel{
+    width: inherit;
+    text-align: center;
+    /* padding-top: 6px; */
+    /* background-color: hotpink; */
+    font-size: 10pt;
+    margin:auto;
+    color:white;
+    margin-left: 5px;
+    font-family: Lato;
+}
+
