@@ -15,7 +15,6 @@ class PlaylistPage extends React.Component {
       let tracks = playlistData.tracks
       console.log(tracks)
 
-      console.log('123')
 
       let listItems = tracks.map((track) =>
       <TrackItem key = {track.spotifyId} props = {track}></TrackItem>

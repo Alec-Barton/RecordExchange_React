@@ -6,13 +6,13 @@ import TrackItem from './trackItem'
 import axios from 'axios';
 import appleLogo from './apple.png'
 
-class TrackPage extends React.Component {
+class AlbumPage extends React.Component {
   constructor(props) {
     super(props);
 
     if (props.location.state != undefined) {
-      let trackData = props.location.state.object
-      console.log(trackData)
+      let albumData = props.location.state.object
+      console.log(albumData)
 
     //   let listItems = tracks.map((track) =>
     //   <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
@@ -20,9 +20,9 @@ class TrackPage extends React.Component {
 
       this.state = {
         imageState: 'show', 
-        imageUrl: trackData.coverImage,
-        title: trackData.name,
-        subtitle: trackData.artist.concat(' ● ', trackData.album),
+        imageUrl: albumData.coverImage,
+        title: albumData.name,
+        subtitle: albumData.artist.concat(' ● ', albumData.album),
         // listItems: listItems
       }
 
@@ -46,17 +46,17 @@ class TrackPage extends React.Component {
 
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchTrack', headerData)
       .then((response) => {
-        let trackData = response.data
-        console.log(trackData)
+        let albumData = response.data
+        console.log(albumData)
         // let listItems = tracks.map((track) =>
         // <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
         // );
         
         this.setState({
-          title: trackData.name,
-          subtitle: trackData.artist.concat(' ● ', trackData.album),
-          imageUrl: trackData.coverImage,
-          track: trackData,
+          title: albumData.name,
+          subtitle: albumData.artist.concat(' ● ', albumData.album),
+          imageUrl: albumData.coverImage,
+          album: albumData,
           imageState: 'show',
         //   listItems: listItems
 
@@ -99,4 +99,4 @@ class TrackPage extends React.Component {
   }
 }
 
-export default TrackPage;
+export default AlbumPage;

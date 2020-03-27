@@ -168,13 +168,17 @@ class HomePage extends React.Component {
       else if (this.state.objectType == 'track') {
         path = '/track/'.concat(response.data.id)
       }
+      else if (this.state.objectType == 'album') {
+        path = '/album/'.concat(response.data.id)
+      }
+      
       
       this.stop()
       setTimeout(()=>{
         history.push({
           pathname: path,
           state: { 
-            playlist: response.data
+            object: response.data
           }
         })
         window.location.reload(false)
