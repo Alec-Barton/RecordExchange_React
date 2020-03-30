@@ -2,7 +2,7 @@ import React from 'react';
 import { db } from '../firebase.js';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import style from './style.module.css'
-import TrackItem from './trackItem'
+import AlbumTrack from './AlbumTrack.js'
 import axios from 'axios';
 import appleLogo from './apple.png'
 
@@ -12,18 +12,20 @@ class AlbumPage extends React.Component {
 
     if (props.location.state != undefined) {
       let albumData = props.location.state.object
-      console.log(albumData)
+      let tracks = albumData.tracks
 
-    //   let listItems = tracks.map((track) =>
-    //   <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
-    //   );
+      console.log(tracks)
+
+      let listItems = tracks.map((track) =>
+      <AlbumTrack key = {track.spotifyId} props = {track}></AlbumTrack>
+      );
 
       this.state = {
         imageState: 'show', 
         imageUrl: albumData.coverImage,
         title: albumData.name,
-        subtitle: albumData.artist.concat(' ● ', albumData.album),
-        // listItems: listItems
+        subtitle: albumData.artist,
+        listItems: listItems
       }
 
       
@@ -48,13 +50,14 @@ class AlbumPage extends React.Component {
       .then((response) => {
         let albumData = response.data
         console.log(albumData)
-        // let listItems = tracks.map((track) =>
-        // <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
-        // );
+        let tracks = albumData.tracks
+        let listItems = tracks.map((track) =>
+        <AlbumTrack key = {track.spotifyId} props = {track}></AlbumTrack>
+        );
         
         this.setState({
           title: albumData.name,
-          subtitle: albumData.artist.concat(' ● ', albumData.album),
+          subtitle: albumData.artist,
           imageUrl: albumData.coverImage,
           album: albumData,
           imageState: 'show',
@@ -93,7 +96,7 @@ class AlbumPage extends React.Component {
           <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
         </div>
 
-        {/* <ul className={style.myUl} > {this.state.listItems} </ul> */}
+        <ul className={style.myUl} > {this.state.listItems} </ul>
       </div>
     );
   }

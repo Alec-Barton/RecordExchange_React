@@ -254,7 +254,7 @@ class HomePage extends React.Component {
           else if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'album'){
             this.setState({
               title: response.data.name,
-              subtitle: response.data.artists[0],
+              subtitle: response.data.artist,
               imageUrl: response.data.coverImage,
               playlist: response.data,
               imageState: 'visible',

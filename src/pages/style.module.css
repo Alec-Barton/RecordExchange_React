@@ -251,6 +251,42 @@ img {
     display: inline-block;
 }
 
+
+
+.albumTrackName {
+    padding-top: 8px;
+    margin-top: 0px;
+    color: #A2A0A0;
+    font-family: Lato;
+    text-align: left;
+    font-weight: lighter;
+    font-size: 16pt;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.albumTrackItem {
+    /* background-color: blueviolet; */
+    border-bottom: 0.5px solid #E4E4E4;
+    list-style: none;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.albumTrackInfo {
+    /* background-color: aquamarine; */
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    box-sizing: border-box;
+
+    height: 40px;
+    display: inline-block;
+}
+
 ul {
     overflow-y: scroll;
     overflow-x: hidden;
