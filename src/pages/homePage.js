@@ -9,6 +9,8 @@ import history from '../classes/history'
 // import './bootstrap.min.css';
 
 import ProgressBarItem from './ProgessBar.js'
+import AudioBarContainer from './AudioBar.js'
+
 
 const firebase = require("firebase");
 require("firebase/functions");
@@ -106,7 +108,9 @@ class HomePage extends React.Component {
       objectType: '',
       objectId: '',
 
-      progress: 0
+      progress: 0,
+      progress2: 0
+
     };
   }
 
@@ -137,6 +141,35 @@ class HomePage extends React.Component {
       }, (delay));
     }
   }
+
+  beginProgress2(items, timePerItem){
+    this.setState({
+      // inputValue: url,
+      progress: 0
+    });
+  }
+
+  begin2 (){
+    console.log('ok')
+    // this.isInProgress = true
+    // this.isComplete = false
+    // let totalTime = itemCount * itemDelay + delay
+    // let percentageTime = totalTime/100
+    var progress2 = 0
+    // var self = this
+    for (let i = 1; i < 100; i++){
+      let delay = i*100
+      setTimeout(()=>{
+        progress2 += 1
+        this.setState({
+          progress2: progress2
+        })
+        console.log(this.state.progress2)
+        
+      }, (delay));
+    }
+  }
+
 
   stop(){
     this.loadingComplete = true
@@ -204,7 +237,8 @@ class HomePage extends React.Component {
     // this.setState({
       
     // })
-    
+    this.begin2()
+
     if (url == ''){
       this.setState({
         title: 'Search by url',
@@ -220,6 +254,7 @@ class HomePage extends React.Component {
       console.log(parsedUrl)
       
       if (parsedUrl.serviceType != 'invalid'){
+
         this.setState({
           imageState: 'loading',
           imageUrl: 'https://cdn.lowgif.com/small/ee5eaba393614b5e-pehliseedhi-suitable-candidate-suitable-job.gif',
@@ -380,6 +415,7 @@ class HomePage extends React.Component {
 
         <button className={shareButtonStyle} onClick = {this.shareBtnTapped}>Share</button>
         <ProgressBarItem percentage={this.state.progress}  visibility = {this.state.loadingBarState}/>
+        {/* <AudioBarContainer percentage={this.state.progress2}/> */}
         {/* <ProgressBar animated now={this.state.progress} label={`${this.state.progress}%`} /> */}
         
       </div>

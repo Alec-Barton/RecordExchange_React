@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
+html {
+    height: 100%;
+
+}
+
 body {
     background: #F4F4F4;
-    /* background: rgb(234,234,234);
-    background: linear-gradient(0deg, rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%); */
+    overflow: hidden;
+    background: rgb(234,234,234);
+    background: linear-gradient(0deg, rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
 }
 
 .headerTitle{

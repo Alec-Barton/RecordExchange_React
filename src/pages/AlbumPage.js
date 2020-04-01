@@ -46,7 +46,7 @@ class AlbumPage extends React.Component {
         id: objectId
       }
 
-      axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchTrack', headerData)
+      axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchAlbum', headerData)
       .then((response) => {
         let albumData = response.data
         console.log(albumData)
@@ -61,7 +61,7 @@ class AlbumPage extends React.Component {
           imageUrl: albumData.coverImage,
           album: albumData,
           imageState: 'show',
-        //   listItems: listItems
+          listItems: listItems
 
         })
       })

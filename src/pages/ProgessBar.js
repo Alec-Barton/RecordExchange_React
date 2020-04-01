@@ -10,13 +10,13 @@ class ProgressBarItem extends React.Component {
       percentage: 0
     }
     
-    this.nextStep = this.nextStep.bind(this)
+    // this.nextStep = this.nextStep.bind(this)
   }
   
-  nextStep() {
-    if(this.state.percentage === 100) return 
-    this.setState(prevState => ({ percentage: prevState.percentage + 20 }))
-  }
+  // nextStep() {
+  //   if(this.state.percentage === 100) return 
+  //   this.setState(prevState => ({ percentage: prevState.percentage + 20 }))
+  // }
   
   render() {
     return (
@@ -56,13 +56,3 @@ const Filler = (props) => {
 // )
 
 export default ProgressBar
-
-// Other React Stuff
-
-// Check out my free youtube video on how to build a thumbnail gallery in react
-// https://www.youtube.com/watch?v=GZ4d3HEn9zg
-
-// https://medium.com/@ItsMeDannyZ/build-an-image-slider-with-react-es6-264368de68e4
-
-// Follow me on Github!
-// https://github.com/DZuz14
