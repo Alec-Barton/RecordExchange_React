@@ -7,6 +7,7 @@ import HomePage from './pages/homePage.js';
 import TrackPage from './pages/TrackPage.js';
 import AlbumPage from './pages/AlbumPage.js';
 import PlaylistPage from './pages/playlistPage.js';
+import SpotifyCallback from './pages/spotifyCallback.js';
 
 
 import style from './pages/style.module.css'
@@ -27,9 +28,10 @@ function App() {
         <Route path="/playlist" exact component = {PlaylistPage}/>
 
         <Route path="/playlist/:id" component = {PlaylistPage}/>
-
         <Route path="/track/:id" component = {TrackPage}/>
         <Route path="/album/:id" component = {AlbumPage}/>
+
+        <Route path="/spotifyCallback" component = {SpotifyCallback}/>
       </Switch>
     </Router>
   </div>

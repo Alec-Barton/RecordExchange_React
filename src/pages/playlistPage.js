@@ -10,6 +10,8 @@ class PlaylistPage extends React.Component {
   constructor(props) {
     super(props);
 
+    this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
+
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
       let tracks = playlistData.tracks
@@ -76,6 +78,41 @@ class PlaylistPage extends React.Component {
     }
   }
 
+  spotifyBtnTapped(){
+    console.log("OK")
+
+    axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/test1')
+      .then((response) => {
+        console.log(response)
+        window.location = response.data
+        // let playlistData = response.data
+        // let tracks = playlistData.tracks
+
+        // let listItems = tracks.map((track) =>
+        // <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
+        // );
+        
+        // this.setState({
+        //   title: playlistData.name,
+        //   subtitle: playlistData.description,
+        //   imageUrl: playlistData.coverImage,
+        //   playlist: playlistData,
+        //   imageState: 'show',
+        //   listItems: listItems
+
+        // })
+      })
+      .catch ((error) => {
+        console.log(error)
+        // https://accounts.spotify.com/authorize?response_type=token&client_id=a46438b4ef724143bd34928fee96a742&scope=user-read-private%20user-read-email&redirect_uri=localhost%3A3000&state=abcdefg
+        // this.setState({
+        //   title: 'ERROR',
+        //   subtitle: 'something went wrong',
+        //   imageState: 'hidden',
+        // })
+      })
+  }
+
   render() {
     var imageStyle = style.hidden
     if (this.state.imageState == 'loading') {
@@ -91,7 +128,7 @@ class PlaylistPage extends React.Component {
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
         <div className = {style.btnContainer}>
-          <input type="image" src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png" className = {style.spotifyButton}/>
+          <input type="image" onClick = {this.spotifyBtnTapped} src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png" className = {style.spotifyButton}/>
           <input type="image" src={appleLogo} className = {style.appleButton}/>
           <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
           {/* <button className = {style.spotifyButton}/>
