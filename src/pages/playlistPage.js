@@ -1,12 +1,19 @@
 import React from 'react';
 import { db } from '../firebase.js';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import MusicKitManager from './musickitManager.js'
 import style from './style.module.css'
 import TrackItem from './trackItem'
 import axios from 'axios';
 import appleLogo from './apple.png'
 
 class PlaylistPage extends React.Component {
+
+  // document.addEventListener('musickitloaded', function() {
+  //   // MusicKit global is now defined
+    
+  // });
+
   constructor(props) {
     super(props);
 
@@ -27,7 +34,8 @@ class PlaylistPage extends React.Component {
         imageUrl: playlistData.coverImage,
         title: playlistData.name,
         subtitle: playlistData.description,
-        listItems: listItems
+        listItems: listItems,
+        playlistData: playlistData
       }
 
       
@@ -75,16 +83,30 @@ class PlaylistPage extends React.Component {
           imageState: 'hidden',
         })
       })
+
+      window.addEventListener('musickitloaded', () => {
+        console.log("OKEYD OKEY")
+      })
+
     }
   }
 
   spotifyBtnTapped(){
     console.log("OK")
 
-    axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/test1')
+    const stateKey = 'playlistData';
+    const state = JSON.stringify(this.state.playlistData);
+    console.log(state)
+    localStorage.setItem(stateKey, state);
+
+    console.log(localStorage.getItem('playlistData'))
+    axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
       .then((response) => {
         console.log(response)
         window.location = response.data
+
+        
+
         // let playlistData = response.data
         // let tracks = playlistData.tracks
 
@@ -113,6 +135,23 @@ class PlaylistPage extends React.Component {
       })
   }
 
+  appleBtnTapped(){
+
+    let musicProvider = MusicKitManager.provider();
+    musicProvider.configure();
+    let musicInstance = musicProvider.getMusicInstance();
+    // musicInstance.authorize
+    // console.log(musicInstance)
+    // let musicProvider = MusicProvider.sharedProvider();
+    // musicProvider.configure();
+    // let musicInstance = musicProvider.getMusicInstance();
+    musicInstance.authorize()
+    .then(musicUserToken => {
+      console.log(`Authorized, music-user-token: ${musicUserToken}`);
+    });
+
+  }
+
   render() {
     var imageStyle = style.hidden
     if (this.state.imageState == 'loading') {
@@ -129,7 +168,7 @@ class PlaylistPage extends React.Component {
 
         <div className = {style.btnContainer}>
           <input type="image" onClick = {this.spotifyBtnTapped} src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png" className = {style.spotifyButton}/>
-          <input type="image" src={appleLogo} className = {style.appleButton}/>
+          <input type="image" onClick = {this.appleBtnTapped} src={appleLogo} className = {style.appleButton}/>
           <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
           {/* <button className = {style.spotifyButton}/>
           <button className = {style.appleButton}/>
