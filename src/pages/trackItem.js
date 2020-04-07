@@ -5,7 +5,7 @@ import style from './style.module.css'
 class TrackItem extends React.Component {
     constructor(props) {
         super(props);
-        console.log('prop', props)
+        // console.log('prop', props)
         this.state = {
             name: props.props.name, 
             artist: props.props.artist,

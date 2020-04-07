@@ -18,11 +18,12 @@ class PlaylistPage extends React.Component {
     super(props);
 
     this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
+    this.appleBtnTapped = this.appleBtnTapped.bind(this);
 
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
       let tracks = playlistData.tracks
-      console.log(tracks)
+      // console.log(tracks)
 
 
       let listItems = tracks.map((track) =>
@@ -58,7 +59,9 @@ class PlaylistPage extends React.Component {
 
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchPlaylist', headerData)
       .then((response) => {
+
         let playlistData = response.data
+        console.log("data", playlistData)
         let tracks = playlistData.tracks
 
         let listItems = tracks.map((track) =>
@@ -70,6 +73,7 @@ class PlaylistPage extends React.Component {
           subtitle: playlistData.description,
           imageUrl: playlistData.coverImage,
           playlist: playlistData,
+          playlistData: playlistData,
           imageState: 'show',
           listItems: listItems
 
@@ -85,24 +89,24 @@ class PlaylistPage extends React.Component {
       })
 
       window.addEventListener('musickitloaded', () => {
-        console.log("OKEYD OKEY")
+        // console.log("OKEYD OKEY")
       })
 
     }
   }
 
   spotifyBtnTapped(){
-    console.log("OK")
+    // console.log("OK")
 
     const stateKey = 'playlistData';
     const state = JSON.stringify(this.state.playlistData);
-    console.log(state)
+    // console.log(state)
     localStorage.setItem(stateKey, state);
 
-    console.log(localStorage.getItem('playlistData'))
-    axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
+    // console.log(localStorage.getItem('playlistData'))
+      axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         window.location = response.data
 
         
@@ -137,6 +141,8 @@ class PlaylistPage extends React.Component {
 
   appleBtnTapped(){
 
+    
+
     let musicProvider = MusicKitManager.provider();
     musicProvider.configure();
     let musicInstance = musicProvider.getMusicInstance();
@@ -145,9 +151,29 @@ class PlaylistPage extends React.Component {
     // let musicProvider = MusicProvider.sharedProvider();
     // musicProvider.configure();
     // let musicInstance = musicProvider.getMusicInstance();
+    // let playlistData = 
+    console.log(this.state.playlistData)
     musicInstance.authorize()
     .then(musicUserToken => {
+      console.log(this.state.playlistData)
+      let headerData = {
+        userToken: musicUserToken,
+        playlistData: this.state.playlistData
+      }
+
       console.log(`Authorized, music-user-token: ${musicUserToken}`);
+
+
+      axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/addPlaylistToApple', headerData)
+      .then((response) => {
+        console.log(response)
+        console.log(response.data)
+
+
+      })
+      .catch ((error) => {
+        console.log(error)
+      })
     });
 
   }

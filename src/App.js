@@ -20,8 +20,6 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("but hole")
-    console.log(props)
 
     // console.log(this.musicInstance)
 
