@@ -188,6 +188,12 @@ class PlaylistPage extends React.Component {
 
     return (
       <div className={style.main}>
+
+        {/* <audio controls>
+          <source src="https://p.scdn.co/mp3-preview/2bf625d5deccb26455ce3d20121dc4aa9f3cd500?cid=a46438b4ef724143bd34928fee96a742" type="audio/mpeg"/>
+          Your browser does not support the audio tag.
+        </audio> */}
+
         <img src={this.state.imageUrl} className={imageStyle} />
         <h1 className={style.title}>{this.state.title}</h1>
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>

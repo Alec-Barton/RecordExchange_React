@@ -142,33 +142,33 @@ class HomePage extends React.Component {
     }
   }
 
-  beginProgress2(items, timePerItem){
-    this.setState({
-      // inputValue: url,
-      progress: 0
-    });
-  }
+  // beginProgress2(items, timePerItem){
+  //   this.setState({
+  //     // inputValue: url,
+  //     progress: 0
+  //   });
+  // }
 
-  begin2 (){
-    console.log('ok')
-    // this.isInProgress = true
-    // this.isComplete = false
-    // let totalTime = itemCount * itemDelay + delay
-    // let percentageTime = totalTime/100
-    var progress2 = 0
-    // var self = this
-    for (let i = 1; i < 100; i++){
-      let delay = i*100
-      setTimeout(()=>{
-        progress2 += 1
-        this.setState({
-          progress2: progress2
-        })
-        console.log(this.state.progress2)
+  // begin2 (){
+  //   console.log('ok')
+  //   // this.isInProgress = true
+  //   // this.isComplete = false
+  //   // let totalTime = itemCount * itemDelay + delay
+  //   // let percentageTime = totalTime/100
+  //   var progress2 = 0
+  //   // var self = this
+  //   for (let i = 1; i < 100; i++){
+  //     let delay = i*100
+  //     setTimeout(()=>{
+  //       progress2 += 1
+  //       this.setState({
+  //         progress2: progress2
+  //       })
+  //       console.log(this.state.progress2)
         
-      }, (delay));
-    }
-  }
+  //     }, (delay));
+  //   }
+  // }
 
 
   stop(){
@@ -237,7 +237,7 @@ class HomePage extends React.Component {
     // this.setState({
       
     // })
-    this.begin2()
+    // this.begin2()
 
     if (url == ''){
       this.setState({
@@ -251,7 +251,7 @@ class HomePage extends React.Component {
     }
     else{
       let parsedUrl = parseUrl(url)
-      console.log(parsedUrl)
+      console.log("aaaa", parsedUrl)
       
       if (parsedUrl.serviceType != 'invalid'){
 
@@ -335,7 +335,9 @@ class HomePage extends React.Component {
               
             })
           }
-          else if (parsedUrl.serviceType == 'apple' &&  parsedUrl.objectType == 'playlist'){
+          else if (parsedUrl.serviceType == 'apple' &&  (parsedUrl.objectType == 'playlist' || parsedUrl.objectType == 'catalogPlaylist')){
+            console.log("ok")
+            console.log(response.data)
             this.setState({
               title: response.data.name,
               subtitle: response.data.description,

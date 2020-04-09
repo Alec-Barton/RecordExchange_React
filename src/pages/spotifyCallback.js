@@ -26,12 +26,17 @@ class PlaylistPage extends React.Component {
     let headerData = {
         // content
         authorizationCode: accessToken,
-        playlistData: playlistData
+        playlistData: playlistData,
+        'Content-Type': 'application/json',
+        // 'Accept': 'application/json'
     }
-
-    axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/addPlaylistToLibrarySpotify', headerData)
+    console.log("elggog")
+    axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/test', headerData)
     .then((response) => {
         console.log(response.data)
+    })
+    .catch(error =>{
+      console.log(error)
     })
   }
 
