@@ -297,5 +297,5 @@ ul {
     overflow-y: scroll;
     overflow-x: hidden;
     height: 300px;
-    box-shadow:inset 1px 2px 4px rgba(0, 0, 0, .5);
+    /* box-shadow:inset 1px 2px 4px rgba(0, 0, 0, .5); */
 }
