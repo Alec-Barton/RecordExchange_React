@@ -62,23 +62,16 @@ function parseUrl(url) {
             }
         } else if (url.search('playlist/') != -1) {
             let substringStartIndex = url.search('playlist/') + 9
-            console.log("start", substringStartIndex)
             let substring = url.substring(substringStartIndex)
-            console.log(substring)
             let subSubstringStartIndex = substring.search('/')
-            console.log(subSubstringStartIndex)
             let subSubstring = substring.substring(subSubstringStartIndex)
-            console.log("um", subSubstring)
             if (subSubstring.search('pl.u-') != -1) {
                 let startIndex = subSubstring.search('pl.u-') 
-                // let endIndex = startIndex + 17
                 let id = subSubstring.substring(startIndex)
                 let parsedUrl = new ParsedUrl(ServiceType.apple, ObjectType.playlist, id)
                 return (parsedUrl)
             } else if (subSubstring.search('pl.') != -1) {
-                console.log("emmmmm", subSubstring)
                 let startIndex = subSubstring.search('pl.')
-                // let endIndex = startIndex + 32
                 let id = subSubstring.substring(startIndex)
                 let parsedUrl = new ParsedUrl(ServiceType.apple, ObjectType.playlist, id)
                 return (parsedUrl)
@@ -87,7 +80,6 @@ function parseUrl(url) {
         }
 
     }
-    console.log('ewwww')
     let parsedUrl = new ParsedUrl(ServiceType.invalid)
     return (parsedUrl)
 }

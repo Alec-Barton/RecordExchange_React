@@ -1,19 +1,40 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
+
+
 html {
     height: 100%;
 
 }
 
 body {
+    /* background-color: brown; */
     background: #F4F4F4;
-    overflow: hidden;
-    background: rgb(234,234,234);
-    background: linear-gradient(0deg, rgba(234,234,234,1) 0%, rgba(255,255,255,1) 100%);
+    /* overflow: hidden; */
+    /* background: rgb(234,234,234); */
+    /* background: linear-gradient(0deg, rgba(180,180,180,1) 0%, rgba(210,210,210,1) 30% rgba(255,255,255,1) 100%); */
+    /* background: linear-gradient(0deg, rgba(245, 149, 66, 0.4) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%); */
+
+    /* background: linear-gradient(0deg, rgba(245, 149, 66, 0.4) 0%,rgba(245, 149, 66, 0.1) 100%); */
+
+
+
+    /* animation: fadeInAnimation ease 3s; 
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards;  */
 }
 
+@keyframes fadeInAnimation { 
+    0% { 
+        opacity: 0; 
+    } 
+    100% { 
+        opacity: 1; 
+     } 
+} 
+
 .headerTitle{
-    width: 50%;
+    width: 40%;
     margin: auto;
     color: #A2A0A0;
     font-family: Lato;
@@ -25,10 +46,17 @@ body {
     border-bottom: 0.5px solid #AFAFAF;
 }
 
-.main {
+.main{
+    width: 40%;
+    margin: auto;
+    /* background-color: royalblue; */
+}
+
+/* .contentContainer {
     width: 40%;
     margin:auto;
-}
+    background-color: red;
+} */
 
 img {
     display: block;
@@ -68,12 +96,12 @@ img {
     font-family: Lato;
     text-align: center;
     font-weight:lighter;
-    font-size: 20pt;
-    height: 50px;
-    width: 80%;
+    font-size: 18pt;
+    height: 100%;
+    width: 50%;
     margin:auto;
     margin-bottom: 10px;
-    /* background-color: slategrey; */
+    max-height: 120px;
 }
 
 .homeForm {
@@ -114,6 +142,7 @@ img {
 }
 
 .btnContainer {
+    padding-top: 10px;
     width:100%;
     text-align:center;
     /* background-color: sandybrown; */
@@ -294,8 +323,101 @@ img {
 }
 
 ul {
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow:auto;
+    /* overflow-y: auto;
+    overflow-x: hidden; */
     height: 300px;
     /* box-shadow:inset 1px 2px 4px rgba(0, 0, 0, .5); */
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+/* background: #f1f1f1; */
+    visibility: hidden;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    
+    background: rgba(0,0,0,0.1);
+    /* color: red; */
+    border-radius: 10px;
+    opacity: 0.5;
+}
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+background: #555;
+} */
+@media (max-width: 1500px) {
+
+    .headerTitle{
+        width: 40%;
+    }
+
+    .main{
+        width: 45%;
+        /* margin: auto; */
+    }
+}
+
+@media (max-width: 1400px) {
+    .headerTitle{
+        width: 55%;
+    }
+    .main{
+        width: 55%;
+        /* margin: auto; */
+    }
+    
+}
+
+@media (max-width: 1200px) {
+    .headerTitle{
+        width: 60%;
+    }
+    .main{
+        width: 60%;
+        /* margin: auto; */
+    }
+    .subtitle {
+        width: 60%;
+        /* margin:auto; */
+    }
+}
+
+@media (max-width: 1000px) {
+    .headerTitle{
+        width: 75%;
+    }
+    .main{
+        width: 75%;
+        /* margin: auto; */
+    }
+    .subtitle {
+        width: 75%;
+        /* margin:auto; */
+    }
+}
+
+@media (max-width: 800px) {
+    .headerTitle{
+        width: 90%;
+    }
+    .main{
+        width: 90%;
+        /* margin: auto; */
+        /* background-color: royalblue; */
+    }
+
+    .subtitle {
+        width: 90%;
+        /* margin:auto; */
+    }
+}
+

@@ -187,28 +187,33 @@ class PlaylistPage extends React.Component {
     }
 
     return (
-      <div className={style.main}>
-
-        {/* <audio controls>
-          <source src="https://p.scdn.co/mp3-preview/2bf625d5deccb26455ce3d20121dc4aa9f3cd500?cid=a46438b4ef724143bd34928fee96a742" type="audio/mpeg"/>
-          Your browser does not support the audio tag.
-        </audio> */}
-
+      <div>
         <img src={this.state.imageUrl} className={imageStyle} />
         <h1 className={style.title}>{this.state.title}</h1>
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+        <div className={style.main}>
 
-        <div className = {style.btnContainer}>
-          <input type="image" onClick = {this.spotifyBtnTapped} src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png" className = {style.spotifyButton}/>
-          <input type="image" onClick = {this.appleBtnTapped} src={appleLogo} className = {style.appleButton}/>
-          <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
-          {/* <button className = {style.spotifyButton}/>
-          <button className = {style.appleButton}/>
-          <button className = {style.shrButton}/> */}
+          {/* <audio controls>
+            <source src="https://p.scdn.co/mp3-preview/2bf625d5deccb26455ce3d20121dc4aa9f3cd500?cid=a46438b4ef724143bd34928fee96a742" type="audio/mpeg"/>
+            Your browser does not support the audio tag.
+          </audio> */}
+
+          
+          
+
+          <div className = {style.btnContainer}>
+            <input type="image" onClick = {this.spotifyBtnTapped} src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png" className = {style.spotifyButton}/>
+            <input type="image" onClick = {this.appleBtnTapped} src={appleLogo} className = {style.appleButton}/>
+            <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
+            {/* <button className = {style.spotifyButton}/>
+            <button className = {style.appleButton}/>
+            <button className = {style.shrButton}/> */}
+          </div>
+
+          <ul className={style.myUl} > {this.state.listItems} </ul>
         </div>
-
-        <ul className={style.myUl} > {this.state.listItems} </ul>
       </div>
+
     );
   }
 }

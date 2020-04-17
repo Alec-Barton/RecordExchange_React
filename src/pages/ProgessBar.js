@@ -10,21 +10,12 @@ class ProgressBarItem extends React.Component {
       percentage: 0
     }
     
-    // this.nextStep = this.nextStep.bind(this)
   }
-  
-  // nextStep() {
-  //   if(this.state.percentage === 100) return 
-  //   this.setState(prevState => ({ percentage: prevState.percentage + 20 }))
-  // }
   
   render() {
     return (
       <div>
-        
-       
         <ProgressBar percentage={this.state.percentage} />
-
       </div>
     )
   }  
@@ -33,15 +24,14 @@ class ProgressBarItem extends React.Component {
 const ProgressBar = (props) => {
   return (
       <div className={progressBar.progressBar} style ={{visibility: `${props.visibility}`}}>
-        {/* <label>{props.percentage}</label> */}
-        <Filler percentage={props.percentage} />
+        <Filler percentage={props.percentage} color = {props.color}/>
       </div>
     )
 }
 
 const Filler = (props) => {
   return (
-        <div className={progressBar.filler} style={{ width: `${props.percentage}%` }} >
+        <div className={progressBar.filler} style={{ width: `${props.percentage}%`, backgroundColor: `${props.color}` }} >
             <h5 className={progressBar.progressLabel} style={{ width: `${props.percentage}%` }}>
                 {props.percentage}%
 
