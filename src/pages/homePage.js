@@ -287,11 +287,12 @@ class HomePage extends React.Component {
 
     return (
       <div>
-        <img src={this.state.imageUrl} className={imageStyle} />
-        <h1 className={style.title}>{this.state.title}</h1>
-        <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+        
         <span className={style.main}>
 
+          <img src={this.state.imageUrl} className={imageStyle} />
+          <h1 className={style.title}>{this.state.title}</h1>
+          <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
           <form className={inputBarStyle} onSubmit={this.handleSubmit}>
             <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />
