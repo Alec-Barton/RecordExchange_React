@@ -2,8 +2,7 @@ import React from 'react';
 import style from './style.module.css'
 import playIcon from './play.png'
 import pauseIcon from './pause.png'
-import PlaybackIcon from './playlistPlayIcon'
-
+import playingIcon from './playing.png'
 
 class TrackItem extends React.Component {
     // audio
@@ -61,28 +60,34 @@ class TrackItem extends React.Component {
 
     hoverBegan(){
         this.setState({
-            isHovered: true
+            isHovered: true,
+            playbackStyle: style.plPlaybackImageHover,
+            playbackVisibility: 'visible',
         })
-        if (this.state.audio.paused){
+        if (!this.state.audio.paused){
             this.setState({
-                itemClass: style.albumTrackItemHover,
-                playbackVisibility: 'visible',
-                playbackStyle: style.plPlaybackImageHover,
+                playbackIcon: pauseIcon,
+                
             })
         }
     }
 
     hoverEnded(){
         this.setState({
-            isHovered: false
+            isHovered: false,
+            playbackStyle: style.plPlaybackImage,
         })
         if (this.state.audio.paused){
             this.setState({
                 itemClass: style.albumTrackItem,
                 playbackVisibility: 'hidden',
-                playbackStyle: style.plPlaybackImage,
+                
             })
-        } 
+        } else {
+            this.setState({
+                playbackIcon: playingIcon,
+            })
+        }
     }
     
     // tapped(){
