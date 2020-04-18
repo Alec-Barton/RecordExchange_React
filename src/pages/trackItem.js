@@ -1,5 +1,7 @@
 import React from 'react';
 import style from './style.module.css'
+import playIcon from './play.png'
+import pauseIcon from './pause.png'
 
 
 class TrackItem extends React.Component {
@@ -16,33 +18,83 @@ class TrackItem extends React.Component {
             audio: new Audio(this.props.props.preview)
         };
         this.tapped = this.tapped.bind(this);
+        this.hoverBegan = this.hoverBegan.bind(this);
+        this.hoverEnded = this.hoverEnded.bind(this);
+        this.playbackEnded = this.playbackEnded.bind(this);
+        this.state.audio.onended = this.playbackEnded
     }
-    
+
+    playbackEnded (){
+        this.setState({ 
+            playing: false,
+            playbackIcon: playIcon,
+            playbackVisibility: 'hidden',
+        })
+        console.log("edned")
+    }
+
     tapped(){
         if (!this.state.playing){
             this.state.audio.play()
-            this.setState({ playing: true})
+            this.setState({ 
+                playing: true,
+                playbackIcon: pauseIcon,
+                playbackVisibility: 'visible',
+            })
+            
         } else {
             this.state.audio.pause()
             this.state.audio.currentTime = 0;
-            this.setState({ playing: false})
+            this.setState({ 
+                playing: false,
+                playbackIcon: playIcon,
+            })
         }
     }
 
-    clearPlayback (){
-        this.state.audio.pause = 0;
-        this.state.audio.currentTime = 0;
+    hoverBegan(){
+        if (this.state.audio.paused){
+            this.setState({
+                itemClass: style.albumTrackItemHover,
+                playbackVisibility: 'visible',
+            })
+        }
     }
+
+    hoverEnded(){
+        if (this.state.audio.paused){
+            this.setState({
+                itemClass: style.albumTrackItem,
+                playbackVisibility: 'hidden',
+            })
+        } 
+    }
+    
+    // tapped(){
+    //     if (!this.state.playing){
+    //         this.state.audio.play()
+    //         this.setState({ playing: true})
+    //     } else {
+    //         this.state.audio.pause()
+    //         this.state.audio.currentTime = 0;
+    //         this.setState({ playing: false})
+    //     }
+    // }
+
+    // clearPlayback (){
+    //     this.state.audio.pause = 0;
+    //     this.state.audio.currentTime = 0;
+    // }
 
     render(){
         return (
             <div>
-                <audio controls>
+                {/* <audio controls>
                     <source src="https://p.scdn.co/mp3-preview/2bf625d5deccb26455ce3d20121dc4aa9f3cd500?cid=a46438b4ef724143bd34928fee96a742" type="audio/mpeg"/>
-                </audio>
+                </audio> */}
 
-                <li className = {style.trackItem}>
-                    <img src = {this.state.coverImage} className ={style.trackImage} onClick = {this.tapped} ></img>
+                <li className = {style.trackItem} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
+                    <img src = {this.state.coverImage} className ={style.trackImage} ></img>
                     <span className = {style.trackInfo}>
                         <h3 className={style.trackName}>{this.state.name}</h3>
                         <h4 className={style.trackAttributes}>{this.state.artist}</h4>

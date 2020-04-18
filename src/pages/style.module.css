@@ -380,6 +380,7 @@ img {
     height: 40px;
     width: 40px;
     display: inline-block;
+    opacity: 0.5;
 }
 
 ul {

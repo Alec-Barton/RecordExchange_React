@@ -32,6 +32,7 @@ class AlbumTrack extends React.Component {
             playbackIcon: playIcon,
             playbackVisibility: 'hidden',
         })
+        console.log("edned")
     }
 
     tapped(){
@@ -49,20 +50,17 @@ class AlbumTrack extends React.Component {
             this.setState({ 
                 playing: false,
                 playbackIcon: playIcon,
-                playbackVisibility: 'hidden',
             })
         }
     }
 
     hoverBegan(){
-        // console.log("hover", this.state.name)
         if (this.state.audio.paused){
             this.setState({
                 itemClass: style.albumTrackItemHover,
                 playbackVisibility: 'visible',
             })
         }
-        
     }
 
     hoverEnded(){
@@ -71,9 +69,7 @@ class AlbumTrack extends React.Component {
                 itemClass: style.albumTrackItem,
                 playbackVisibility: 'hidden',
             })
-        } else {
-            console.log("playing")
-        }
+        } 
     }
 
     render(){
