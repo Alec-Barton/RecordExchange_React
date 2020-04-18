@@ -49,7 +49,7 @@ class TrackItem extends React.Component {
             
         } else {
             this.state.audio.pause()
-            this.state.audio.currentTime = 0;
+            // this.state.audio.currentTime = 0;
             this.setState({ 
                 playing: false,
                 playbackIcon: playIcon,
@@ -117,9 +117,9 @@ class TrackItem extends React.Component {
                 <li className = {style.trackItem} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
                     {/* <img src = {this.state.coverImage} className ={style.trackImage} ></img> */}
                     {/* <PlaybackIcon coverImage = {this.state.coverImage}  isHovered= { this.state.isHovered} visibility = {this.state.playbackVisibility}></PlaybackIcon> */}
-                    <span className ={style.plPlaybackContainer} >
+                    <span className ={style.playbackContainer} >
                         <img src = {this.state.coverImage} className ={this.state.playbackStyle} ></img>
-                        <img src = {this.state.playbackIcon} className ={style.plPlaybackIcon} style = {{visibility: this.state.playbackVisibility}} ></img>
+                        <img src = {this.state.playbackIcon} className ={style.playbackIcon} style = {{visibility: this.state.playbackVisibility}} ></img>
                     </span>
                    
                     <span className = {style.trackInfo}>

@@ -2,12 +2,14 @@ import React from 'react';
 import style from './style.module.css'
 import playIcon from './play.png'
 import pauseIcon from './pause.png'
+import playingIcon from './playing.png'
 
 
 class AlbumTrack extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            index: props.props.index + 1,
             name: props.props.name, 
             artist: props.props.artist,
             coverImage: props.props.coverImage,
@@ -15,6 +17,7 @@ class AlbumTrack extends React.Component {
             playing: false,
             playbackIcon: playIcon,
             playbackVisibility: 'hidden',
+            indexVisibility: 'visible',
             audio: new Audio(this.props.props.preview),
             itemClass: style.albumTrackItem,
             
@@ -31,25 +34,26 @@ class AlbumTrack extends React.Component {
             playing: false,
             playbackIcon: playIcon,
             playbackVisibility: 'hidden',
+            indexVisibility: 'visible',
         })
-        console.log("edned")
     }
 
     tapped(){
-        if (!this.state.playing){
+        if (this.state.audio.paused){
             this.state.audio.play()
             this.setState({ 
                 playing: true,
                 playbackIcon: pauseIcon,
                 playbackVisibility: 'visible',
+                indexVisibility: 'hidden',
             })
             
         } else {
             this.state.audio.pause()
-            this.state.audio.currentTime = 0;
+            // this.state.audio.currentTime = 0;
             this.setState({ 
                 playing: false,
-                playbackIcon: playIcon,
+                playbackIcon: playingIcon,
             })
         }
     }
@@ -58,7 +62,16 @@ class AlbumTrack extends React.Component {
         if (this.state.audio.paused){
             this.setState({
                 itemClass: style.albumTrackItemHover,
+                playbackIcon: playIcon,
                 playbackVisibility: 'visible',
+                indexVisibility: 'hidden',
+            })
+        } else {
+            this.setState({
+                itemClass: style.albumTrackItemHover,
+                playbackIcon: pauseIcon,
+                playbackVisibility: 'visible',
+                indexVisibility: 'hidden',
             })
         }
     }
@@ -68,8 +81,16 @@ class AlbumTrack extends React.Component {
             this.setState({
                 itemClass: style.albumTrackItem,
                 playbackVisibility: 'hidden',
+                indexVisibility: 'visible',
             })
-        } 
+        } else {
+            this.setState({
+                itemClass: style.albumTrackItem,
+                playbackVisibility: 'visible',
+                indexVisibility: 'hidden',
+                playbackIcon: playingIcon,
+            })
+        }
     }
 
     render(){
@@ -77,7 +98,14 @@ class AlbumTrack extends React.Component {
             <div>
                 <li className = {this.state.itemClass} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
                     {/* <img src = {this.state.coverImage} className ={style.trackImage}></img> */}
-                    <img src = {this.state.playbackIcon} className ={style.playbackIcon} style ={{visibility: this.state.playbackVisibility}}></img>
+                    {/* <img src = {this.state.playbackIcon} className ={style.playbackIcon} style ={{visibility: this.state.playbackVisibility}}></img> */}
+
+                    <span className ={style.playbackContainer} >
+                        <h3 className={style.abPlaybackIndex} style = {{visibility: this.state.indexVisibility}} >{this.state.index}</h3>
+                        <img src = {this.state.playbackIcon} className ={style.abPlaybackIcon} style = {{visibility: this.state.playbackVisibility}} ></img>
+                    </span>
+
+
                     <span className = {style.albumTrackInfo}>
                         <h3 className={style.albumTrackName}>{this.state.name}</h3>
                         {/* <h4 className={style.trackAttributes}>{this.state.artist}</h4> */}

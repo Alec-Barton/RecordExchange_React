@@ -14,11 +14,12 @@ class AlbumPage extends React.Component {
       let albumData = props.location.state.object
       let tracks = albumData.tracks
 
-      console.log(tracks)
+      // console.log(tracks)
 
-      let listItems = tracks.map((track) =>
-      <AlbumTrack key = {track.spotifyId} props = {track}></AlbumTrack>
-      );
+      let listItems = tracks.map((track, index) => {
+        track["index"] = index
+        return (<AlbumTrack key = {index} props = {track} ></AlbumTrack>)
+      });
 
       this.state = {
         imageState: 'show', 
@@ -49,12 +50,11 @@ class AlbumPage extends React.Component {
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchAlbum', headerData)
       .then((response) => {
         let albumData = response.data
-        console.log(albumData)
         let tracks = albumData.tracks
-        console.log("aaaaa", tracks)
-        let listItems = tracks.map((track) =>
-        <AlbumTrack key = {track.spotifyId} props = {track}></AlbumTrack>
-        );
+        let listItems = tracks.map((track, index) => {
+          track["index"] = index
+          return (<AlbumTrack key = {index} props = {track} ></AlbumTrack>)
+        });
         
         this.setState({
           title: albumData.name,
