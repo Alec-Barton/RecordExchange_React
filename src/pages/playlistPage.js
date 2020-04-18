@@ -109,62 +109,25 @@ class PlaylistPage extends React.Component {
       .then((response) => {
         // console.log(response)
         window.location = response.data
-
-        
-
-        // let playlistData = response.data
-        // let tracks = playlistData.tracks
-
-        // let listItems = tracks.map((track) =>
-        // <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
-        // );
-        
-        // this.setState({
-        //   title: playlistData.name,
-        //   subtitle: playlistData.description,
-        //   imageUrl: playlistData.coverImage,
-        //   playlist: playlistData,
-        //   imageState: 'show',
-        //   listItems: listItems
-
-        // })
       })
       .catch ((error) => {
         console.log(error)
-        // https://accounts.spotify.com/authorize?response_type=token&client_id=a46438b4ef724143bd34928fee96a742&scope=user-read-private%20user-read-email&redirect_uri=localhost%3A3000&state=abcdefg
-        // this.setState({
-        //   title: 'ERROR',
-        //   subtitle: 'something went wrong',
-        //   imageState: 'hidden',
-        // })
       })
   }
 
   appleBtnTapped(){
-
-    
-
     let musicProvider = MusicKitManager.provider();
     musicProvider.configure();
     let musicInstance = musicProvider.getMusicInstance();
-    // musicInstance.authorize
-    // console.log(musicInstance)
-    // let musicProvider = MusicProvider.sharedProvider();
-    // musicProvider.configure();
-    // let musicInstance = musicProvider.getMusicInstance();
-    // let playlistData = 
     console.log(this.state.playlistData)
     musicInstance.authorize()
     .then(musicUserToken => {
-      console.log(this.state.playlistData)
+      // console.log(this.state.playlistData)
       let headerData = {
         userToken: musicUserToken,
         playlistData: this.state.playlistData
       }
-
-      console.log(`Authorized, music-user-token: ${musicUserToken}`);
-
-
+      // console.log(`Authorized, music-user-token: ${musicUserToken}`);
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/addPlaylistToApple', headerData)
       .then((response) => {
         console.log(response)

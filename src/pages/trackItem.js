@@ -2,6 +2,7 @@ import React from 'react';
 import style from './style.module.css'
 import playIcon from './play.png'
 import pauseIcon from './pause.png'
+import PlaybackIcon from './playlistPlayIcon'
 
 
 class TrackItem extends React.Component {
@@ -9,13 +10,18 @@ class TrackItem extends React.Component {
 
     constructor(props) {
         super(props);
+        // console.log("props", props)
         this.state = {
             name: props.props.name, 
             artist: props.props.artist,
             coverImage: props.props.coverImage,
             duration: props.props.duration,
             playing: false,
-            audio: new Audio(this.props.props.preview)
+            playbackIcon: playIcon,
+            audio: new Audio(this.props.props.preview),
+            // isHovered: false,
+            playbackVisibility: 'hidden',
+            playbackStyle: style.plPlaybackImage,
         };
         this.tapped = this.tapped.bind(this);
         this.hoverBegan = this.hoverBegan.bind(this);
@@ -30,7 +36,6 @@ class TrackItem extends React.Component {
             playbackIcon: playIcon,
             playbackVisibility: 'hidden',
         })
-        console.log("edned")
     }
 
     tapped(){
@@ -40,6 +45,7 @@ class TrackItem extends React.Component {
                 playing: true,
                 playbackIcon: pauseIcon,
                 playbackVisibility: 'visible',
+                playbackStyle: style.plPlaybackImageHover,
             })
             
         } else {
@@ -48,24 +54,33 @@ class TrackItem extends React.Component {
             this.setState({ 
                 playing: false,
                 playbackIcon: playIcon,
+                playbackStyle: style.plPlaybackImage,
             })
         }
     }
 
     hoverBegan(){
+        this.setState({
+            isHovered: true
+        })
         if (this.state.audio.paused){
             this.setState({
                 itemClass: style.albumTrackItemHover,
                 playbackVisibility: 'visible',
+                playbackStyle: style.plPlaybackImageHover,
             })
         }
     }
 
     hoverEnded(){
+        this.setState({
+            isHovered: false
+        })
         if (this.state.audio.paused){
             this.setState({
                 itemClass: style.albumTrackItem,
                 playbackVisibility: 'hidden',
+                playbackStyle: style.plPlaybackImage,
             })
         } 
     }
@@ -87,6 +102,7 @@ class TrackItem extends React.Component {
     // }
 
     render(){
+        // console.log(this.state.isHovered)
         return (
             <div>
                 {/* <audio controls>
@@ -94,7 +110,13 @@ class TrackItem extends React.Component {
                 </audio> */}
 
                 <li className = {style.trackItem} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
-                    <img src = {this.state.coverImage} className ={style.trackImage} ></img>
+                    {/* <img src = {this.state.coverImage} className ={style.trackImage} ></img> */}
+                    {/* <PlaybackIcon coverImage = {this.state.coverImage}  isHovered= { this.state.isHovered} visibility = {this.state.playbackVisibility}></PlaybackIcon> */}
+                    <span className ={style.plPlaybackContainer} >
+                        <img src = {this.state.coverImage} className ={this.state.playbackStyle} ></img>
+                        <img src = {this.state.playbackIcon} className ={style.plPlaybackIcon} style = {{visibility: this.state.playbackVisibility}} ></img>
+                    </span>
+                   
                     <span className = {style.trackInfo}>
                         <h3 className={style.trackName}>{this.state.name}</h3>
                         <h4 className={style.trackAttributes}>{this.state.artist}</h4>

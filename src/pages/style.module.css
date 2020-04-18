@@ -284,12 +284,11 @@ img {
     display: inline-block;
 }
 
-.trackImage:hover {
-    -webkit-filter: blur(2px); /* Chrome, Safari, Opera */
+/* .trackImage:hover {
+    -webkit-filter: blur(2px);
     filter: blur(2px);
     opacity: 0.75;
-    /* background-color: dodgerblue; */
-}
+} */
 
 .trackInfo {
     padding-top: -5px;
@@ -380,7 +379,72 @@ img {
     height: 40px;
     width: 40px;
     display: inline-block;
-    opacity: 0.5;
+    opacity: 0.75;
+}
+
+.plPlaybackContainer {
+    position: relative;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    border-style: none;
+}
+
+.plPlaybackImage {
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    position: absolute;
+    top:0;  
+    left:0;
+}
+
+.plPlaybackImageHover {
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    position: absolute;
+    top:0;  
+    left:0;
+    -webkit-filter: blur(1px);
+    filter: blur(1px);
+    /* opacity: 0.5; */
+    
+
+}
+
+.plPlaybackIcon {
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    opacity: 0.75;
+    position: absolute;
+    top:0;  
+    left:0;
+    background-color: lightgray;
+    /* border-style: none; */
+
 }
 
 ul {
