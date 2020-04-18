@@ -1,5 +1,5 @@
 import React from 'react';
-import progressBar from './progressBar.module.css'
+import progressBar from '../css/progressBar.module.css'
 
 
 class ProgressBarItem extends React.Component {

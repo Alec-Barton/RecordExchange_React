@@ -1,13 +1,9 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import style from './style.module.css'
-import { ParsedUrl, parseUrl } from '../classes/UrlManager.js'
-import history from '../classes/history'
-
-import ProgressBarItem from './ProgessBar.js'
-// import AudioBarContainer from './AudioBar.js'
-
+import style from './css/style.module.css'
+import { parseUrl } from '../managers/UrlManager.js'
+import history from '../managers/historyManager.js'
+import ProgressBarItem from './components/ProgessBar.js'
 
 const firebase = require("firebase");
 require("firebase/functions");
@@ -280,34 +276,21 @@ class HomePage extends React.Component {
       inputBarStyle = style.hidden
     }
 
-    // var loadingBarStyle = style.hidden
-    // if (this.state.loadingBarState == 'hidden'){
-    //   loadingBarStyle = style.hidden
-    // }
-
     return (
-      <div>
-        
-        <span className={style.main}>
 
-          <img src={this.state.imageUrl} className={imageStyle} />
-          <h1 className={style.title}>{this.state.title}</h1>
-          <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+      <div className={style.main}>
+        <img src={this.state.imageUrl} className={imageStyle} />
+        <h1 className={style.title}>{this.state.title}</h1>
+        <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
-          <form className={inputBarStyle} onSubmit={this.handleSubmit}>
-            <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />
-          </form>
+        <form className={inputBarStyle} onSubmit={this.handleSubmit}>
+          <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />
+        </form>
 
-          <button className={shareButtonStyle} onClick={this.shareBtnTapped}>Share</button>
-          <ProgressBarItem percentage={this.state.progress} color={'#fc0330'} visibility={this.state.loadingBarState} />
-          {/* <AudioBarContainer percentage={this.state.progress2}/> */}
-          {/* <ProgressBar animated now={this.state.progress} label={`${this.state.progress}%`} /> */}
-          {/* </span> */}
-        </span>
+        <button className={shareButtonStyle} onClick={this.shareBtnTapped}>Share</button>
+        <ProgressBarItem percentage={this.state.progress} color={'#fc0330'} visibility={this.state.loadingBarState} />
       </div>
-
     )
-
   }
 }
 

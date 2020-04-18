@@ -1,10 +1,9 @@
 import React from 'react';
-import { db } from '../firebase.js';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import style from './style.module.css'
-import TrackItem from './trackItem'
+import style from './css/style.module.css'
 import axios from 'axios';
-import appleLogo from './apple.png'
+import appleLogo from './assets/apple.png'
+import spotifyLogo from './assets/spotify.png'
+
 
 class TrackPage extends React.Component {
   constructor(props) {
@@ -12,21 +11,13 @@ class TrackPage extends React.Component {
 
     if (props.location.state != undefined) {
       let trackData = props.location.state.object
-      console.log(trackData)
-
-    //   let listItems = tracks.map((track) =>
-    //   <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
-    //   );
 
       this.state = {
         imageState: 'show', 
         imageUrl: trackData.coverImage,
         title: trackData.name,
         subtitle: trackData.artist.concat(' ● ', trackData.album),
-        // listItems: listItems
       }
-
-      
 
     } else {
       let splitPath = window.location.pathname.split('/')
@@ -47,10 +38,6 @@ class TrackPage extends React.Component {
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchTrack', headerData)
       .then((response) => {
         let trackData = response.data
-        console.log(trackData)
-        // let listItems = tracks.map((track) =>
-        // <TrackItem key = {track.spotifyId} props = {track}></TrackItem>
-        // );
         
         this.setState({
           title: trackData.name,
@@ -58,8 +45,6 @@ class TrackPage extends React.Component {
           imageUrl: trackData.coverImage,
           track: trackData,
           imageState: 'show',
-        //   listItems: listItems
-
         })
       })
       .catch ((error) => {
@@ -88,12 +73,11 @@ class TrackPage extends React.Component {
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
         <div className = {style.btnContainer}>
-          <input type="image" src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png" className = {style.spotifyButton}/>
+          <input type="image" src={spotifyLogo} className = {style.spotifyButton}/>
           <input type="image" src={appleLogo} className = {style.appleButton}/>
           <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
         </div>
 
-        {/* <ul className={style.myUl} > {this.state.listItems} </ul> */}
       </div>
     );
   }

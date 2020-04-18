@@ -1,10 +1,9 @@
 import React from 'react';
-import { db } from '../firebase.js';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import style from './style.module.css'
-import AlbumTrack from './AlbumTrack.js'
+import style from './css/style.module.css'
+import AlbumTrack from './components/AlbumTrack.js'
 import axios from 'axios';
-import appleLogo from './apple.png'
+import appleLogo from './assets/apple.png'
+import spotifyLogo from './assets/spotify.png'
 
 class AlbumPage extends React.Component {
   constructor(props) {
@@ -13,23 +12,20 @@ class AlbumPage extends React.Component {
     if (props.location.state != undefined) {
       let albumData = props.location.state.object
       let tracks = albumData.tracks
-
-      // console.log(tracks)
-
       let listItems = tracks.map((track, index) => {
         track["index"] = index
-        return (<AlbumTrack key = {index} props = {track} ></AlbumTrack>)
+        return (<AlbumTrack key={index} props={track} ></AlbumTrack>)
       });
 
       this.state = {
-        imageState: 'show', 
+        imageState: 'show',
         imageUrl: albumData.coverImage,
         title: albumData.name,
         subtitle: albumData.artist,
         listItems: listItems
       }
 
-      
+
 
     } else {
       let splitPath = window.location.pathname.split('/')
@@ -37,7 +33,7 @@ class AlbumPage extends React.Component {
       let objectId = splitPath[2]
 
       this.state = {
-        imageState: 'loading', 
+        imageState: 'loading',
         imageUrl: 'https://cdn.lowgif.com/small/ee5eaba393614b5e-pehliseedhi-suitable-candidate-suitable-job.gif',
         title: 'Loading',
         subtitle: '',
@@ -48,32 +44,32 @@ class AlbumPage extends React.Component {
       }
 
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchAlbum', headerData)
-      .then((response) => {
-        let albumData = response.data
-        let tracks = albumData.tracks
-        let listItems = tracks.map((track, index) => {
-          track["index"] = index
-          return (<AlbumTrack key = {index} props = {track} ></AlbumTrack>)
-        });
-        
-        this.setState({
-          title: albumData.name,
-          subtitle: albumData.artist,
-          imageUrl: albumData.coverImage,
-          album: albumData,
-          imageState: 'show',
-          listItems: listItems
+        .then((response) => {
+          let albumData = response.data
+          let tracks = albumData.tracks
+          let listItems = tracks.map((track, index) => {
+            track["index"] = index
+            return (<AlbumTrack key={index} props={track} ></AlbumTrack>)
+          });
 
+          this.setState({
+            title: albumData.name,
+            subtitle: albumData.artist,
+            imageUrl: albumData.coverImage,
+            album: albumData,
+            imageState: 'show',
+            listItems: listItems
+
+          })
         })
-      })
-      .catch ((error) => {
-        console.log(error)
-        this.setState({
-          title: 'ERROR',
-          subtitle: 'something went wrong',
-          imageState: 'hidden',
+        .catch((error) => {
+          console.log(error)
+          this.setState({
+            title: 'ERROR',
+            subtitle: 'something went wrong',
+            imageState: 'hidden',
+          })
         })
-      })
     }
   }
 
@@ -91,10 +87,10 @@ class AlbumPage extends React.Component {
         <h1 className={style.title}>{this.state.title}</h1>
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
-        <div className = {style.btnContainer}>
-          <input type="image" src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-icon-marilyn-scott-0.png" className = {style.spotifyButton}/>
-          <input type="image" src={appleLogo} className = {style.appleButton}/>
-          <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
+        <div className={style.btnContainer}>
+          <input type="image" src={spotifyLogo} className={style.spotifyButton} />
+          <input type="image" src={appleLogo} className={style.appleButton} />
+          <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className={style.shrButton} />
         </div>
 
         <ul className={style.myUl} > {this.state.listItems} </ul>

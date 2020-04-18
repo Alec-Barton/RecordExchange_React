@@ -1,9 +1,8 @@
 import React from 'react';
-import style from './style.module.css'
-import playIcon from './play.png'
-import pauseIcon from './pause.png'
-import playingIcon from './playing.png'
-
+import style from '../css/style.module.css'
+import playIcon from '../assets/play.png'
+import pauseIcon from '../assets/pause.png'
+import playingIcon from '../assets/playing.png'
 
 class AlbumTrack extends React.Component {
     constructor(props) {
@@ -50,7 +49,6 @@ class AlbumTrack extends React.Component {
             
         } else {
             this.state.audio.pause()
-            // this.state.audio.currentTime = 0;
             this.setState({ 
                 playing: false,
                 playbackIcon: playingIcon,
@@ -97,18 +95,12 @@ class AlbumTrack extends React.Component {
         return (
             <div>
                 <li className = {this.state.itemClass} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
-                    {/* <img src = {this.state.coverImage} className ={style.trackImage}></img> */}
-                    {/* <img src = {this.state.playbackIcon} className ={style.playbackIcon} style ={{visibility: this.state.playbackVisibility}}></img> */}
-
                     <span className ={style.playbackContainer} >
                         <h3 className={style.abPlaybackIndex} style = {{visibility: this.state.indexVisibility}} >{this.state.index}</h3>
                         <img src = {this.state.playbackIcon} className ={style.abPlaybackIcon} style = {{visibility: this.state.playbackVisibility}} ></img>
                     </span>
-
-
                     <span className = {style.albumTrackInfo}>
                         <h3 className={style.albumTrackName}>{this.state.name}</h3>
-                        {/* <h4 className={style.trackAttributes}>{this.state.artist}</h4> */}
                     </span>
                     <span className = {style.trackDurationInfo}>
                         <h3 className={style.trackDuration}> {this.state.duration} </h3>
