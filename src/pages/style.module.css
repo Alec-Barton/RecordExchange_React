@@ -107,6 +107,8 @@ img {
     margin:auto;
     margin-bottom: 10px;
     max-height: 120px;
+    /* -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;   */
 }
 
 .homeForm {
@@ -279,7 +281,6 @@ img {
     box-sizing: border-box;
     height: 40px;
     width: 40px;
-    background-color: darkgoldenrod;
     display: inline-block;
 }
 
@@ -347,13 +348,37 @@ img {
     margin-bottom: 0px;
 }
 
+.albumTrackItemHover {
+    border-bottom: 0.5px solid #E4E4E4;
+    list-style: none;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 .albumTrackInfo {
-    padding-top: 0px;
+    padding-top: -5px;
     margin-top: 0px;
     margin-bottom: 0px;
     padding-left: 10px;
     box-sizing: border-box;
+    vertical-align: top;
     height: 40px;
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: "...";
+    display: inline-block;
+}
+
+.playbackIcon {
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
     display: inline-block;
 }
 
