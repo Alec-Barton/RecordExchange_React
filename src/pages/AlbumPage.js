@@ -51,6 +51,7 @@ class AlbumPage extends React.Component {
         let albumData = response.data
         console.log(albumData)
         let tracks = albumData.tracks
+        console.log("aaaaa", tracks)
         let listItems = tracks.map((track) =>
         <AlbumTrack key = {track.spotifyId} props = {track}></AlbumTrack>
         );
