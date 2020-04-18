@@ -15,6 +15,7 @@ class TrackItem extends React.Component {
             duration: props.props.duration,
             playing: false,
             audio: new Audio(this.props.props.preview)
+            // audio: new Audio("https://music.apple.com/us/album/constant-headache/646605934?i=646606135")
         };
         // audio = new Audio("https://p.scdn.co/mp3-preview/2bf625d5deccb26455ce3d20121dc4aa9f3cd500?cid=a46438b4ef724143bd34928fee96a742")
         this.tapped = this.tapped.bind(this);

@@ -279,8 +279,15 @@ img {
     box-sizing: border-box;
     height: 40px;
     width: 40px;
-    /* background-color: darkgoldenrod; */
+    background-color: darkgoldenrod;
     display: inline-block;
+}
+
+.trackImage:hover {
+    -webkit-filter: blur(2px); /* Chrome, Safari, Opera */
+    filter: blur(2px);
+    opacity: 0.75;
+    /* background-color: dodgerblue; */
 }
 
 .trackInfo {
