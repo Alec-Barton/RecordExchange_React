@@ -3,7 +3,7 @@ import style from './css/style.module.css'
 import axios from 'axios';
 import appleLogo from './assets/apple.png'
 import spotifyLogo from './assets/spotify.png'
-
+import shareLogo from './assets/shareLogo.png'
 
 class TrackPage extends React.Component {
   constructor(props) {
@@ -75,7 +75,7 @@ class TrackPage extends React.Component {
         <div className = {style.btnContainer}>
           <input type="image" src={spotifyLogo} className = {style.spotifyButton}/>
           <input type="image" src={appleLogo} className = {style.appleButton}/>
-          <input type="image" src="https://cdn1.iconfinder.com/data/icons/black-round-web-icons/100/round-web-icons-black-29-512.png" className = {style.shrButton} />
+          <input type="image" src={shareLogo} className = {style.shrButton} />
         </div>
 
       </div>

@@ -5,6 +5,7 @@ import { parseUrl } from '../managers/UrlManager.js'
 import history from '../managers/historyManager.js'
 import ProgressBarItem from './components/ProgessBar.js'
 
+
 const firebase = require("firebase");
 require("firebase/functions");
 
