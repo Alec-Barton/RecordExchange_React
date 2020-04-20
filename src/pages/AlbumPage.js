@@ -23,7 +23,9 @@ class AlbumPage extends React.Component {
         imageUrl: albumData.coverImage,
         title: albumData.name,
         subtitle: albumData.artist,
-        listItems: listItems
+        listItems: listItems,
+        spotifyId: albumData.spotifyId,
+        appleId: albumData.appleId,
       }
 
 
@@ -72,6 +74,23 @@ class AlbumPage extends React.Component {
           })
         })
     }
+    this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
+    this.appleBtnTapped = this.appleBtnTapped.bind(this);
+    this.shareBtnTapped = this.shareBtnTapped.bind(this);
+  }
+
+  spotifyBtnTapped(){
+    const url = 'https://open.spotify.com/album/'.concat(this.state.spotifyId)
+    window.open(url, '_blank');
+  }
+
+  appleBtnTapped(){
+    const url = 'https://music.apple.com/us/album/'.concat(this.state.appleId)
+    window.open(url, '_blank');
+  }
+
+  shareBtnTapped(){
+
   }
 
   render() {
@@ -89,9 +108,9 @@ class AlbumPage extends React.Component {
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
         <div className={style.btnContainer}>
-          <input type="image" src={spotifyLogo} className={style.spotifyButton} />
-          <input type="image" src={appleLogo} className={style.appleButton} />
-          <input type="image" src={shareLogo} className={style.shrButton} />
+          <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped}/>
+          <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped}/>
+          <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped}/>
         </div>
 
         <ul className={style.myUl} > {this.state.listItems} </ul>

@@ -51,7 +51,7 @@ class AlbumTrack extends React.Component {
             this.state.audio.pause()
             this.setState({ 
                 playing: false,
-                playbackIcon: playingIcon,
+                playbackIcon: playIcon,
             })
         }
     }

@@ -23,6 +23,8 @@ class TrackPage extends React.Component {
         playbackVisibility: "hidden",
         playbackIcon: playIcon,
         audio: new Audio(trackData.preview),
+        spotifyId: trackData.spotifyId,
+        appleId: trackData.appleId
       }
 
     } else {
@@ -62,10 +64,12 @@ class TrackPage extends React.Component {
           })
         })
     }
-    this.tapped = this.tapped.bind(this);
+    this.playbackTapped = this.playbackTapped.bind(this);
     this.hoverBegan = this.hoverBegan.bind(this);
     this.hoverEnded = this.hoverEnded.bind(this);
     this.playbackEnded = this.playbackEnded.bind(this);
+    this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
+    this.appleBtnTapped = this.appleBtnTapped.bind(this)
   }
 
   playbackEnded (){
@@ -77,7 +81,7 @@ class TrackPage extends React.Component {
     })
 }
 
-  tapped(){
+  playbackTapped(){
     console.log('ok')
     if (this.state.audio.paused){
       this.state.audio.play()
@@ -131,6 +135,15 @@ class TrackPage extends React.Component {
     }
   }
 
+  spotifyBtnTapped(){
+    const url = 'https://open.spotify.com/track/'.concat(this.state.spotifyId)
+    window.open(url, '_blank');
+  }
+
+  appleBtnTapped(){
+
+  }
+
   render() {
     var imageStyle = style.hidden
     if (this.state.imageState == 'loading') {
@@ -152,8 +165,8 @@ class TrackPage extends React.Component {
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
         <div className={style.btnContainer}>
-          <input type="image" src={spotifyLogo} className={style.spotifyButton} />
-          <input type="image" src={appleLogo} className={style.appleButton} />
+          <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
+          <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped}/>
           <input type="image" src={shareLogo} className={style.shrButton} />
         </div>
 
