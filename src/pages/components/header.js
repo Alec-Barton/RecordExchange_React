@@ -12,7 +12,6 @@ class Header extends React.Component {
     }
 
     tapped(){
-        console.log("piss")
         history.push({
             pathname: '/'
         })

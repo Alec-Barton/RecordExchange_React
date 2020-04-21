@@ -22,21 +22,19 @@ class App extends React.Component {
     
       <div >
         <Header/>
-        {/* <div className={style.headerTitle}>
-          Record Exchange
-        </div> */}
        
         <Router history = {history}>
           <Switch>
-            <Route path="/" exact component = {HomePage}/>
+            {/* <Route path="/" exact component = {HomePage}/> */}
             
-            <Route path="/playlist" exact component = {PlaylistPage}/>
+            {/* <Route path="/playlist" exact component = {PlaylistPage}/> */}
     
             <Route path="/playlist/:id" component = {PlaylistPage}/>
             <Route path="/track/:id" component = {TrackPage}/>
             <Route path="/album/:id" component = {AlbumPage}/>
     
             <Route path="/spotifyCallback" component = {SpotifyCallbackPage}/>
+            <Route path="/" component = {HomePage}/>
           </Switch>
         </Router>
       </div>

@@ -68,8 +68,8 @@ class AlbumPage extends React.Component {
         .catch((error) => {
           console.log(error)
           this.setState({
-            title: 'ERROR',
-            subtitle: 'something went wrong',
+            title: 'Album not Found',
+            subtitle: '',
             imageState: 'hidden',
           })
         })
@@ -94,11 +94,14 @@ class AlbumPage extends React.Component {
   }
 
   render() {
-    var imageStyle = style.hidden
+    var imageStyle = style.imgHidden
+    var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
       imageStyle = style.loading
+      
     } else if (this.state.imageState == 'show') {
       imageStyle = style.visible
+      containerStyle = style.btnContainer
     }
 
     return (
@@ -107,7 +110,7 @@ class AlbumPage extends React.Component {
         <h1 className={style.title}>{this.state.title}</h1>
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
-        <div className={style.btnContainer}>
+        <div className={containerStyle}>
           <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped}/>
           <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped}/>
           <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped}/>

@@ -11,7 +11,6 @@ import playingIcon from './assets/playing.png'
 class TrackPage extends React.Component {
   constructor(props) {
     super(props);
-    console.log("o", props)
     if (props.location.state != undefined) {
       let trackData = props.location.state.object
 
@@ -19,7 +18,7 @@ class TrackPage extends React.Component {
         imageState: 'show',
         imageUrl: trackData.coverImage,
         title: trackData.name,
-        subtitle: trackData.artist.concat(' ● ', trackData.album),
+        subtitle: trackData.artist.concat('  ●  ', trackData.album),
         playbackVisibility: "hidden",
         playbackIcon: playIcon,
         audio: new Audio(trackData.preview),
@@ -37,6 +36,7 @@ class TrackPage extends React.Component {
         imageUrl: 'https://cdn.lowgif.com/small/ee5eaba393614b5e-pehliseedhi-suitable-candidate-suitable-job.gif',
         title: 'Loading',
         subtitle: '',
+        playbackVisibility: "hidden",
       }
 
       let headerData = {
@@ -49,17 +49,22 @@ class TrackPage extends React.Component {
 
           this.setState({
             title: trackData.name,
-            subtitle: trackData.artist.concat(' ● ', trackData.album),
+            subtitle: trackData.artist.concat('  ●  ', trackData.album),
             imageUrl: trackData.coverImage,
             track: trackData,
             imageState: 'show',
+            playbackVisibility: "hidden",
+            playbackIcon: playIcon,
+            audio: new Audio(trackData.preview),
+            spotifyId: trackData.spotifyId,
+            appleLink: trackData.appleLink
           })
         })
         .catch((error) => {
           console.log(error)
           this.setState({
-            title: 'ERROR',
-            subtitle: 'something went wrong',
+            title: 'Song not Found',
+            subtitle: '',
             imageState: 'hidden',
           })
         })
@@ -72,101 +77,106 @@ class TrackPage extends React.Component {
     this.appleBtnTapped = this.appleBtnTapped.bind(this)
   }
 
-  playbackEnded (){
-    this.setState({ 
-        playing: false,
-        playbackIcon: playIcon,
-        playbackVisibility: 'hidden',
-        indexVisibility: 'visible',
+  playbackEnded() {
+    this.setState({
+      playing: false,
+      playbackIcon: playIcon,
+      playbackVisibility: 'hidden',
+      indexVisibility: 'visible',
     })
-}
+  }
 
-  playbackTapped(){
-    console.log('ok')
-    if (this.state.audio.paused){
-      this.state.audio.play()
-      this.setState({ 
+  playbackTapped() {
+    if (this.state.imageState == 'show') {
+      if (this.state.audio.paused) {
+        this.state.audio.play()
+        this.setState({
           playing: true,
           playbackIcon: pauseIcon,
           playbackVisibility: 'visible',
           indexVisibility: 'hidden',
-      })
-    } else {
-        this.state.audio.pause()
-        this.setState({ 
-            playing: false,
-            playbackIcon: playIcon,
         })
+      } else {
+        this.state.audio.pause()
+        this.setState({
+          playing: false,
+          playbackIcon: playIcon,
+        })
+      }
     }
   }
 
   hoverBegan() {
-    if (this.state.audio.paused){
+    if (this.state.imageState == 'show') {
+      if (this.state.audio.paused) {
         this.setState({
-            itemClass: style.trackCoverHover,
-            playbackIcon: playIcon,
-            playbackVisibility: 'visible',
-            indexVisibility: 'hidden',
+          itemClass: style.trackCoverHover,
+          playbackIcon: playIcon,
+          playbackVisibility: 'visible',
+          indexVisibility: 'hidden',
         })
-    } else {
+      } else {
         this.setState({
-            itemClass: style.trackCoverHover,
-            playbackIcon: pauseIcon,
-            playbackVisibility: 'visible',
-            indexVisibility: 'hidden',
+          itemClass: style.trackCoverHover,
+          playbackIcon: pauseIcon,
+          playbackVisibility: 'visible',
+          indexVisibility: 'hidden',
         })
+      }
     }
   }
 
   hoverEnded() {
-    if (this.state.audio.paused){
+    if (this.state.imageState == 'show') {
+      if (this.state.audio.paused) {
         this.setState({
-            itemClass: style.trackCover,
-            playbackVisibility: 'hidden',
-            indexVisibility: 'visible',
+          itemClass: style.trackCover,
+          playbackVisibility: 'hidden',
+          indexVisibility: 'visible',
         })
-    } else {
+      } else {
         this.setState({
-            itemClass: style.trackCover,
-            playbackVisibility: 'visible',
-            indexVisibility: 'hidden',
-            playbackIcon: playingIcon,
+          itemClass: style.trackCover,
+          playbackVisibility: 'visible',
+          indexVisibility: 'hidden',
+          playbackIcon: playingIcon,
         })
+      }
     }
   }
 
-  spotifyBtnTapped(){
+  spotifyBtnTapped() {
     const url = 'https://open.spotify.com/track/'.concat(this.state.spotifyId)
     window.open(url, '_blank');
   }
 
-  appleBtnTapped(){
+  appleBtnTapped() {
     window.open(this.state.appleLink, '_blank');
   }
 
   render() {
-    var imageStyle = style.hidden
+    var imageStyle = style.imgHidden
+    var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
       imageStyle = style.loading
     } else if (this.state.imageState == 'show') {
-      imageStyle = style.visible
+      imageStyle = style.trackCover
+      containerStyle = style.btnContainer
     }
 
     return (
       <div className={style.main}>
 
-        <span className={style.trackCoverContainer} onClick = {this.playbackTapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
-          <img src={this.state.imageUrl} className={style.trackCover} ></img>
-          <img src={this.state.playbackIcon} className={style.trackCoverIcon} style = {{visibility: this.state.playbackVisibility}} ></img>
+        <span className={style.trackCoverContainer} onClick={this.playbackTapped} onMouseEnter={this.hoverBegan} onMouseLeave={this.hoverEnded}>
+          <img src={this.state.imageUrl} className={imageStyle} ></img>
+          <img src={this.state.playbackIcon} className={style.trackCoverIcon} style={{ visibility: this.state.playbackVisibility }} ></img>
         </span>
-
-        {/* <img src={this.state.imageUrl} className={imageStyle} onMouseEnter={this.hoverBegan} onMouseLeave={this.hoverEnded} /> */}
         <h1 className={style.title}>{this.state.title}</h1>
-        <h2 className={style.subtitlePadded}>{this.state.subtitle}</h2>
+        <pre><h2 className={style.subtitlePadded}>{this.state.subtitle}</h2></pre>
 
-        <div className={style.btnContainer}>
+        <div className={containerStyle}>
           <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
-          <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped}/>
+          <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
           <input type="image" src={shareLogo} className={style.shrButton} />
         </div>
 

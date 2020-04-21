@@ -47,19 +47,23 @@ audio {
     margin-top: 15px;
     padding-bottom: 15px;
     border-bottom: 0.5px solid #AFAFAF;
+    opacity: 1.0;
+    color: #707070;
     /* background-color: rebeccapurple; */
 }
 
 .headerContainer:hover {
-    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, .5); */
-    -webkit-filter: drop-shadow(1px 2px 1.5px rgba(0,0,0,0.25));
-    /* box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5); */
+    /* color: red; */
+    opacity: 0.80;
+    
+    /* -webkit-filter: drop-shadow(1px 2px 1.5px rgba(0,0,0,0.5)); */
 }
 
 .headerTitle{
     /* width: 75%; */
+    opacity: inherit;
     margin: auto;
-    color: #707070;
+    color: inherit;
     font-family:  "Arial-Narrow", Arial, sans-serif;
     text-align: center;
     margin-left: 35px;
@@ -77,6 +81,7 @@ audio {
 .headerLogo {
     /* text-shadow: 2px 2px; */
     /* -webkit-filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5)); */
+    opacity: inherit;
     width: 40px;
     height: 40px;
     margin-top: 15px;
@@ -119,6 +124,7 @@ img {
 }
 
 .loading {
+    box-shadow: none;
     /* animation: fadeInAnimation ease 100ms; 
     animation-iteration-count: 0.25; 
     animation-fill-mode: forwards;  */
@@ -215,10 +221,19 @@ img {
     margin-top: 25px;
 }
 
+.shareButton:hover {
+    -webkit-filter: brightness(80%);
+}
+
+.btnContainerHidden {
+    visibility: hidden;
+}
+
 .btnContainer {
     padding-top: 10px;
     width:100%;
     text-align:center;
+    opacity: 0;
     animation: fadeInAnimation ease 750ms; 
     /* animation-delay: 250ms; */
     animation-iteration-count: 1; 
@@ -242,7 +257,10 @@ img {
     margin:0 auto;
     padding-right: 10px;
     margin-bottom: 10px;
+}
 
+.spotifyButton:hover {
+    -webkit-filter: brightness(80%);
 }
 
 .appleButton {
@@ -266,6 +284,10 @@ img {
 
 }
 
+.appleButton:hover{
+ -webkit-filter: brightness(80%);
+}
+
 .shrButton {
     padding-left: 10px;
     display: inline-block;
@@ -283,6 +305,10 @@ img {
     margin:0 auto;
     margin-bottom: 10px;
 
+}
+
+.shrButton:hover{
+    -webkit-filter: brightness(80%);
 }
 
 /* #container {
@@ -551,7 +577,7 @@ img {
     height: 200px;
     margin-top: 60px;
     position: relative;
-    box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
+    
 }
 
 .trackCover {
@@ -561,6 +587,7 @@ img {
     width: 200px;
     height: 200px;
     margin-top: 60px;
+    box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
 }
 
 .trackCoverHover {

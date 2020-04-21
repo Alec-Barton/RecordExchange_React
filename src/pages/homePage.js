@@ -30,8 +30,8 @@ class HomePage extends React.Component {
     }
 
     this.state = {
-      title: 'Search by url',
-      subtitle: 'copy and paste url of a playlist, album or song',
+      title: 'Search by URL',
+      subtitle: 'Input the Spotify or Apple Music link to a Song, Album or Playlist',
       imageUrl: '',
       inputValue: '',
       imageState: 'hidden',
@@ -199,7 +199,7 @@ class HomePage extends React.Component {
             }
 
             else if (parsedUrl.serviceType == 'apple' && parsedUrl.objectType == 'track') {
-              let subtitle = response.data.artist.concat(' ● ', response.data.album)
+              let subtitle = response.data.artist.concat('  ●  ', response.data.album)
               this.setState({
 
                 title: response.data.name,
@@ -244,8 +244,8 @@ class HomePage extends React.Component {
 
       } else {
         this.setState({
-          title: 'Invalid Url',
-          subtitle: 'Something is wrong with the url, try again',
+          title: 'Invalid Link',
+          subtitle: 'something is wrong with this url - try again',
           imageState: 'hidden',
           shareButtonState: 'hidden'
         })

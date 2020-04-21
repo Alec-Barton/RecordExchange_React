@@ -72,8 +72,8 @@ class PlaylistPage extends React.Component {
         .catch((error) => {
           console.log(error)
           this.setState({
-            title: 'ERROR',
-            subtitle: 'something went wrong',
+            title: 'Playlist Not Found',
+            subtitle: '',
             imageState: 'hidden',
           })
         })
@@ -115,11 +115,13 @@ class PlaylistPage extends React.Component {
   }
 
   render() {
-    var imageStyle = style.hidden
+    var imageStyle = style.imgHidden
+    var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
       imageStyle = style.loading
     } else if (this.state.imageState == 'show') {
       imageStyle = style.visible
+      containerStyle = style.btnContainer
     }
 
     return (
@@ -132,7 +134,7 @@ class PlaylistPage extends React.Component {
           <h2 className={style.subtitle}>{this.state.subtitle}</h2>
 
 
-          <div className={style.btnContainer}>
+          <div className={containerStyle}>
             <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
             <input type="image" onClick={this.appleBtnTapped} src={appleLogo} className={style.appleButton} />
             <input type="image" src={shareLogo} className={style.shrButton} />
