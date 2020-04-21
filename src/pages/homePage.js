@@ -119,6 +119,12 @@ class HomePage extends React.Component {
       }, 1000)
 
     }).catch((error) => {
+      this.setState({
+        loadingBarState: 'Unable to convert Music',
+        inputBarState: 'something went wrong and your music could not be converted',
+        shareButtonState: 'hidden'
+  
+      })
       this.stop()
       console.log(error)
     })
@@ -235,8 +241,8 @@ class HomePage extends React.Component {
           })
           .catch((error) => {
             this.setState({
-              title: 'ERROR',
-              subtitle: 'something went wrong',
+              title: 'Could not find Music',
+              subtitle: 'your music could not be found',
               imageState: 'hidden',
               shareButtonState: 'hidden'
             })
@@ -255,7 +261,7 @@ class HomePage extends React.Component {
   }
 
   handleSubmit(event) {
-    this.setState({ title: event.target.value })
+    event.preventDefault();
   }
 
 
@@ -281,11 +287,11 @@ class HomePage extends React.Component {
 
       <div className={style.main}>
         <img src={this.state.imageUrl} className={imageStyle} />
-        <h1 className={style.title}>{this.state.title}</h1>
+        <pre><h1 className={style.title}>{this.state.title}</h1></pre>
         <pre><h2 className={style.subtitlePadded}>{this.state.subtitle}</h2></pre>
 
         <form className={inputBarStyle} onSubmit={this.handleSubmit}>
-          <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />
+          <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange}/>
         </form>
 
         <button className={shareButtonStyle} onClick={this.shareBtnTapped}>Share</button>
