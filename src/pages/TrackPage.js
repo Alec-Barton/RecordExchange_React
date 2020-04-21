@@ -24,7 +24,7 @@ class TrackPage extends React.Component {
         playbackIcon: playIcon,
         audio: new Audio(trackData.preview),
         spotifyId: trackData.spotifyId,
-        appleId: trackData.appleId
+        appleLink: trackData.appleLink
       }
 
     } else {
@@ -141,7 +141,7 @@ class TrackPage extends React.Component {
   }
 
   appleBtnTapped(){
-
+    window.open(this.state.appleLink, '_blank');
   }
 
   render() {
@@ -155,14 +155,14 @@ class TrackPage extends React.Component {
     return (
       <div className={style.main}>
 
-        <span className={style.trackCoverContainer} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
+        <span className={style.trackCoverContainer} onClick = {this.playbackTapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
           <img src={this.state.imageUrl} className={style.trackCover} ></img>
           <img src={this.state.playbackIcon} className={style.trackCoverIcon} style = {{visibility: this.state.playbackVisibility}} ></img>
         </span>
 
         {/* <img src={this.state.imageUrl} className={imageStyle} onMouseEnter={this.hoverBegan} onMouseLeave={this.hoverEnded} /> */}
         <h1 className={style.title}>{this.state.title}</h1>
-        <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+        <h2 className={style.subtitlePadded}>{this.state.subtitle}</h2>
 
         <div className={style.btnContainer}>
           <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />

@@ -148,7 +148,7 @@ class HomePage extends React.Component {
           imageState: 'loading',
           imageUrl: 'https://cdn.lowgif.com/small/ee5eaba393614b5e-pehliseedhi-suitable-candidate-suitable-job.gif',
           title: 'Fetching Music...',
-          subtitle: '',
+          subtitle: ' ',
 
           serviceType: parsedUrl.serviceType,
           objectType: parsedUrl.objectType,
@@ -164,13 +164,13 @@ class HomePage extends React.Component {
         axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getPreview', headerData)
           .then((response) => {
             if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'track') {
-              let subtitle = response.data.artist.concat(' ● ', response.data.album)
+              let subtitle = response.data.artist.concat('  ●  ', response.data.album)
               this.setState({
                 title: response.data.name,
                 subtitle: subtitle,
                 imageUrl: response.data.coverImage,
                 track: response.data,
-                imageState: 'visible',
+                imageState: 'visibleHome',
                 shareButtonState: 'visible'
 
               })
@@ -181,7 +181,7 @@ class HomePage extends React.Component {
                 subtitle: response.data.artist,
                 imageUrl: response.data.coverImage,
                 playlist: response.data,
-                imageState: 'visible',
+                imageState: 'visibleHome',
                 shareButtonState: 'visible'
 
               })
@@ -192,7 +192,7 @@ class HomePage extends React.Component {
                 subtitle: response.data.description,
                 imageUrl: response.data.coverImage,
                 playlist: response.data,
-                imageState: 'visible',
+                imageState: 'visibleHome',
                 shareButtonState: 'visible'
 
               })
@@ -206,7 +206,7 @@ class HomePage extends React.Component {
                 subtitle: subtitle,
                 imageUrl: response.data.coverImage,
                 track: response.data,
-                imageState: 'visible',
+                imageState: 'visibleHome',
                 shareButtonState: 'visible'
 
               })
@@ -217,7 +217,7 @@ class HomePage extends React.Component {
                 subtitle: response.data.artist,
                 imageUrl: response.data.coverImage,
                 playlist: response.data,
-                imageState: 'visible',
+                imageState: 'visibleHome',
                 shareButtonState: 'visible'
 
               })
@@ -228,7 +228,7 @@ class HomePage extends React.Component {
                 subtitle: response.data.description,
                 imageUrl: response.data.coverImage,
                 playlist: response.data,
-                imageState: 'visible',
+                imageState: 'visibleHome',
                 shareButtonState: 'visible'
               })
             }
@@ -263,8 +263,8 @@ class HomePage extends React.Component {
     var imageStyle = style.imgHidden
     if (this.state.imageState == 'loading') {
       imageStyle = style.loading
-    } else if (this.state.imageState == 'visible') {
-      imageStyle = style.visible
+    } else if (this.state.imageState == 'visibleHome') {
+      imageStyle = style.visibleHome
     }
 
     var shareButtonStyle = style.shareButton
@@ -282,7 +282,7 @@ class HomePage extends React.Component {
       <div className={style.main}>
         <img src={this.state.imageUrl} className={imageStyle} />
         <h1 className={style.title}>{this.state.title}</h1>
-        <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+        <pre><h2 className={style.subtitlePadded}>{this.state.subtitle}</h2></pre>
 
         <form className={inputBarStyle} onSubmit={this.handleSubmit}>
           <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />

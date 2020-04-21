@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import Header from './pages/components/header.js'
 import HomePage from './pages/homePage.js';
 import TrackPage from './pages/TrackPage.js';
 import AlbumPage from './pages/AlbumPage.js';
@@ -20,9 +21,10 @@ class App extends React.Component {
     return (
     
       <div >
-        <div className={style.headerTitle}>
+        <Header/>
+        {/* <div className={style.headerTitle}>
           Record Exchange
-        </div>
+        </div> */}
        
         <Router history = {history}>
           <Switch>
