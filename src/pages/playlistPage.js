@@ -6,6 +6,7 @@ import axios from 'axios';
 import appleLogo from './assets/apple.png'
 import spotifyLogo from './assets/spotify.png'
 import shareLogo from './assets/shareLogo.png'
+import loadingGif from './assets/loading.gif'
 
 class PlaylistPage extends React.Component {
 
@@ -39,7 +40,7 @@ class PlaylistPage extends React.Component {
 
       this.state = {
         imageState: 'loading',
-        imageUrl: 'https://cdn.lowgif.com/small/ee5eaba393614b5e-pehliseedhi-suitable-candidate-suitable-job.gif',
+        imageUrl: loadingGif,
         title: 'Loading',
         subtitle: '',
       }

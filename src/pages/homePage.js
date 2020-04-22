@@ -44,7 +44,6 @@ class HomePage extends React.Component {
       objectId: '',
 
       progress: 0,
-      progress2: 0
 
     };
   }

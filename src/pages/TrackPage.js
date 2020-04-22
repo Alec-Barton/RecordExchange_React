@@ -7,6 +7,7 @@ import shareLogo from './assets/shareLogo.png'
 import playIcon from './assets/play.png'
 import pauseIcon from './assets/pause.png'
 import playingIcon from './assets/playing.png'
+import loadingGif from './assets/loading.gif'
 
 class TrackPage extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class TrackPage extends React.Component {
 
       this.state = {
         imageState: 'loading',
-        imageUrl: 'https://cdn.lowgif.com/small/ee5eaba393614b5e-pehliseedhi-suitable-candidate-suitable-job.gif',
+        imageUrl: loadingGif,
         title: 'Loading',
         subtitle: '',
         playbackVisibility: "hidden",
