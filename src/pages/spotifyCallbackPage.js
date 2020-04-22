@@ -30,7 +30,10 @@ class SpotifyCallbackPage extends React.Component {
       })
       .then(()=>{
         history.push({
-          pathname: '/playlist/'.concat(playlistObj.id)
+          pathname: '/playlist/'.concat(playlistObj.id),
+          state: {
+            object: playlistObj
+          }
         })
         window.location.reload(false)
       })
