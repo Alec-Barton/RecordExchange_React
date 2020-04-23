@@ -162,7 +162,8 @@ img {
     text-align: center;
     font-weight:lighter;
     font-size: 18pt;
-    height: 1em;
+    min-height: 1em;
+    
     /* padding-bottom: 50px; */
     margin:auto;
     margin-bottom: 15px;
@@ -175,11 +176,14 @@ img {
     text-align: center;
     font-weight:lighter;
     font-size: 18pt;
-    height: 1em;
+    min-height: 1em;
+    width: 100%;
+    overflow-wrap: break-word;
     padding-bottom: 50px;
     margin:auto;
     margin-bottom: 10px;
     max-height: 120px;
+    /* background-color: lightcoral; */
 }
 
 .homeForm {

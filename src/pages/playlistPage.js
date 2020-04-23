@@ -84,6 +84,7 @@ class PlaylistPage extends React.Component {
   spotifyBtnTapped() {
     const stateKey = 'playlistData';
     const state = JSON.stringify(this.state.playlistData);
+    console.log(state)
     localStorage.setItem(stateKey, state);
     axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
       .then((response) => {
