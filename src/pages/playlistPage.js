@@ -17,8 +17,9 @@ class PlaylistPage extends React.Component {
     this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
-    this.popupHoverBegan = this.popupHoverBegan.bind(this);
-    this.popupHoverEnded = this.popupHoverEnded.bind(this)
+    this.popupClose = this.popupClose.bind(this)
+    // this.popupHoverBegan = this.popupHoverBegan.bind(this);
+    // this.popupHoverEnded = this.popupHoverEnded.bind(this)
 
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
@@ -121,30 +122,39 @@ class PlaylistPage extends React.Component {
   }
 
   shareBtnTapped(){
-    if (this.state.popupDisplay == 'none'){
-      this.setState({
-        popupDisplay: 'block'
-      })
-    } else {
-      this.setState({
-        popupDisplay: 'none'
-      })
-    } 
+    this.setState({
+      popupDisplay: 'block'
+    })
+    // if (this.state.popupDisplay == 'none'){
+    //   this.setState({
+    //     popupDisplay: 'block'
+    //   })
+    // } else {
+    //   this.setState({
+    //     popupDisplay: 'none'
+    //   })
+    // } 
   }
 
-  popupHoverBegan(){
+  // popupHoverBegan(){
 
-  }
+  // }
 
-  popupHoverEnded(){
-    console.log("lelel")
+  // popupHoverEnded(){
+  //   console.log("lelel")
+  //   this.setState({
+  //     popupDisplay: 'none'
+  //   })
+  // }
+
+  popupClose(){
     this.setState({
       popupDisplay: 'none'
     })
   }
 
   render() {
-    console.log('rende')
+    console.log('rende', this.state.popupDisplay)
     var imageStyle = style.imgHidden
     var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
@@ -163,7 +173,7 @@ class PlaylistPage extends React.Component {
           <h1 className={style.title}>{this.state.title}</h1>
           <h2 className={style.subtitle}>{this.state.subtitle}</h2>
           {/* <span onMouseEnter={this.popupHoverBegan} onMouseLeave={this.popupHoverEnded}>  */}
-            <SharePopup url ={"recordexchange.app/playlist"} display = {popupDisplay} />
+            <SharePopup url ={"recordexchange.app/playlist"} display = {popupDisplay} closeFunction = {this.popupClose}/>
           {/* </span> */}
          
 
