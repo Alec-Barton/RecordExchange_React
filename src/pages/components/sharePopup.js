@@ -15,23 +15,12 @@ class SharePopup extends React.Component {
     componentDidMount() {
         window.addEventListener("click", this.handleMouseClick);
     }
+    
     componentWillUnmount() {
         window.removeEventListener("click", this.handleMouseClick);
     }
 
-
     popupCopyButton() {
-
-        // this.setState({
-        //     close: true
-        // }, ()=>{
-
-        //     setTimeout(()=>{ 
-        //         this.setState({
-        //             close: false
-        //         })
-        //     }, 500);
-        // })
         navigator.clipboard.writeText(this.props.url)
         this.setState({
             copied: true
@@ -42,38 +31,13 @@ class SharePopup extends React.Component {
                 copied: false
             })
         }, 2500);
-
-
-        // alert("Copied the text: ");
-
     }
 
     popupCloseButton() {
-
-        // this.setState({
-        //     close: true,
-        //     display: 'none'
-        // }, ()=>{
-
-        // setTimeout(()=>{ 
-        //     this.setState({
-        //         close: false
-        //     })
-        // }, 2000);
-        // })
         this.props.closeFunction()
     }
 
     render() {
-        // console.log("aaa", this.props.display)
-        // var display = this.props.display
-        // if (this.state.close){
-        //     display = 'none'
-        //     // this.props.display = 'none'
-        // }
-        // } else {
-        //     var display = this.state.display
-        // }
         var popStyle = style.popup
         var infoDipsplay = 'block'
         var textDipsplay = 'none'

@@ -42,7 +42,6 @@ function parseUrl(url) {
         }
     }
 
-    //https://music.apple.com/us/album/talon-of-the-hawk/645402438
     else if (url.search('music.apple.com') != -1) {
         if (url.search('album/') != -1) {
             if (url.search('i=') != -1) {

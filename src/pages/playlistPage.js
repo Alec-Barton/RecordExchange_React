@@ -19,15 +19,11 @@ class PlaylistPage extends React.Component {
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
     this.popupClose = this.popupClose.bind(this)
-    // this.popupHoverBegan = this.popupHoverBegan.bind(this);
-    // this.popupHoverEnded = this.popupHoverEnded.bind(this)
 
     let splitPath = window.location.pathname.split('/')
     let serviceType = splitPath[1]
     let objectId = splitPath[2]
-    // this.setstate = ({
-    //   popupDisplay: 'none'
-    // })
+
     console.log(objectId)
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
@@ -49,11 +45,6 @@ class PlaylistPage extends React.Component {
       }
 
     } else {
-      // console.log("NOTHING NOTHIGN HTING GOTNOGNTING ")
-      // let splitPath = window.location.pathname.split('/')
-      // let serviceType = splitPath[1]
-      // let objectId = splitPath[2]
-
       this.state = {
         imageState: 'loading',
         imageUrl: loadingGif,
@@ -92,7 +83,6 @@ class PlaylistPage extends React.Component {
 
           })
           history.push({
-            // pathname: path,
             state: {
               object: response.data
             }
@@ -135,7 +125,6 @@ class PlaylistPage extends React.Component {
         }
         axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/addPlaylistToApple', headerData)
           .then((response) => {
-
           })
           .catch((error) => {
             console.log(error)
@@ -147,9 +136,7 @@ class PlaylistPage extends React.Component {
     this.setState({
       popupDisplay: 'block'
     })
-
   }
-
 
   popupClose(){
     this.setState({
@@ -158,7 +145,6 @@ class PlaylistPage extends React.Component {
   }
 
   render() {
-    // console.log('rende', this.state.popupDisplay)
     var imageStyle = style.imgHidden
     var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
@@ -167,32 +153,21 @@ class PlaylistPage extends React.Component {
       imageStyle = style.visible
       containerStyle = style.btnContainer
     }
-    // const popupDisplay = this.state.popupDisplay
-    // var shareUrl = "localhost:3000/playlist/".concat(this.state.playlistId)
     return (
       <div>
-
         <div className={style.main}>
-
           <img src={this.state.imageUrl} className={imageStyle} />
           <h1 className={style.title}>{this.state.title}</h1>
           <h2 className={style.subtitle}>{this.state.subtitle}</h2>
-          {/* <span onMouseEnter={this.popupHoverBegan} onMouseLeave={this.popupHoverEnded}>  */}
-            <SharePopup url ={"localhost:3000/playlist/".concat(this.state.playlistId)} display = {this.state.popupDisplay} closeFunction = {this.popupClose}/>
-          {/* </span> */}
-         
-
+            <SharePopup url ={"www.recordexchange.app/playlist/".concat(this.state.playlistId)} display = {this.state.popupDisplay} closeFunction = {this.popupClose}/>
           <div className={containerStyle}>
             <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
             <input type="image" onClick={this.appleBtnTapped} src={appleLogo} className={style.appleButton} />
-            <input type="image" onClick={this.shareBtnTapped} src={shareLogo} className={style.shrButton}/>
-            
+            <input type="image" onClick={this.shareBtnTapped} src={shareLogo} className={style.shrButton}/>    
           </div>
-          
           <ul className={style.myUl}> {this.state.listItems} </ul>
         </div>
       </div>
-
     );
   }
 }

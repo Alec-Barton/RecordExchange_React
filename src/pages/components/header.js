@@ -3,7 +3,6 @@ import Logo from '../assets/logo.png';
 import style from '../css/style.module.css'
 import history from '../../managers/historyManager.js';
 
-
 class Header extends React.Component {
 
     constructor(props) {
@@ -29,7 +28,6 @@ class Header extends React.Component {
                     <span style = {{fontSize:"25pt"}}>XCHANGE</span>
                 </span>
             </div>
-
         )
     }
 }

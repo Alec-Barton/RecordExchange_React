@@ -25,9 +25,6 @@ class App extends React.Component {
        
         <Router history = {history}>
           <Switch>
-            {/* <Route path="/" exact component = {HomePage}/> */}
-            
-            {/* <Route path="/playlist" exact component = {PlaylistPage}/> */}
     
             <Route path="/playlist/:id" component = {PlaylistPage}/>
             <Route path="/track/:id" component = {TrackPage}/>
@@ -35,13 +32,12 @@ class App extends React.Component {
     
             <Route path="/spotifyCallback" component = {SpotifyCallbackPage}/>
             <Route path="/" component = {HomePage}/>
+
           </Switch>
         </Router>
       </div>
     );
   }
-  
 }
-
 
 export default App;
