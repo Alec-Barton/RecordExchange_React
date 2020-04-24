@@ -8,6 +8,7 @@ import appleLogo from './assets/apple.png'
 import spotifyLogo from './assets/spotify.png'
 import shareLogo from './assets/shareLogo.png'
 import loadingGif from './assets/loading.gif'
+import history from '../managers/historyManager.js'
 
 class PlaylistPage extends React.Component {
 
@@ -21,6 +22,13 @@ class PlaylistPage extends React.Component {
     // this.popupHoverBegan = this.popupHoverBegan.bind(this);
     // this.popupHoverEnded = this.popupHoverEnded.bind(this)
 
+    let splitPath = window.location.pathname.split('/')
+    let serviceType = splitPath[1]
+    let objectId = splitPath[2]
+    // this.setstate = ({
+    //   popupDisplay: 'none'
+    // })
+    console.log(objectId)
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
       let tracks = playlistData.tracks
@@ -28,7 +36,7 @@ class PlaylistPage extends React.Component {
       let listItems = tracks.map((track) =>
         <PlaylistTrack key={track.spotifyId} props={track}></PlaylistTrack>
       );
-      console.log('ok')
+      console.log('playlistData')
       this.state = {
         imageState: 'show',
         imageUrl: playlistData.coverImage,
@@ -36,23 +44,28 @@ class PlaylistPage extends React.Component {
         subtitle: playlistData.description,
         listItems: listItems,
         playlistData: playlistData,
-        popupDisplay: 'none'
+        popupDisplay: 'none',
+        playlistId: objectId
       }
 
     } else {
-      let splitPath = window.location.pathname.split('/')
-      let serviceType = splitPath[1]
-      let objectId = splitPath[2]
+      // console.log("NOTHING NOTHIGN HTING GOTNOGNTING ")
+      // let splitPath = window.location.pathname.split('/')
+      // let serviceType = splitPath[1]
+      // let objectId = splitPath[2]
 
       this.state = {
         imageState: 'loading',
         imageUrl: loadingGif,
         title: 'Loading',
         subtitle: '',
+        popupDisplay: 'none',
+        playlistId: objectId
       }
 
       let headerData = {
         id: objectId
+        
       }
 
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchPlaylist', headerData)
@@ -65,6 +78,7 @@ class PlaylistPage extends React.Component {
             <PlaylistTrack key={track.spotifyId} props={track}></PlaylistTrack>
           );
 
+          console.log(objectId)
           this.setState({
             title: playlistData.name,
             subtitle: playlistData.description,
@@ -72,8 +86,16 @@ class PlaylistPage extends React.Component {
             playlist: playlistData,
             playlistData: playlistData,
             imageState: 'show',
-            listItems: listItems
+            listItems: listItems,
+            popupDisplay: 'none',
+            playlistId: objectId
 
+          })
+          history.push({
+            // pathname: path,
+            state: {
+              object: response.data
+            }
           })
         })
         .catch((error) => {
@@ -125,27 +147,9 @@ class PlaylistPage extends React.Component {
     this.setState({
       popupDisplay: 'block'
     })
-    // if (this.state.popupDisplay == 'none'){
-    //   this.setState({
-    //     popupDisplay: 'block'
-    //   })
-    // } else {
-    //   this.setState({
-    //     popupDisplay: 'none'
-    //   })
-    // } 
+
   }
 
-  // popupHoverBegan(){
-
-  // }
-
-  // popupHoverEnded(){
-  //   console.log("lelel")
-  //   this.setState({
-  //     popupDisplay: 'none'
-  //   })
-  // }
 
   popupClose(){
     this.setState({
@@ -154,7 +158,7 @@ class PlaylistPage extends React.Component {
   }
 
   render() {
-    console.log('rende', this.state.popupDisplay)
+    // console.log('rende', this.state.popupDisplay)
     var imageStyle = style.imgHidden
     var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
@@ -163,7 +167,8 @@ class PlaylistPage extends React.Component {
       imageStyle = style.visible
       containerStyle = style.btnContainer
     }
-    const popupDisplay = this.state.popupDisplay
+    // const popupDisplay = this.state.popupDisplay
+    // var shareUrl = "localhost:3000/playlist/".concat(this.state.playlistId)
     return (
       <div>
 
@@ -173,7 +178,7 @@ class PlaylistPage extends React.Component {
           <h1 className={style.title}>{this.state.title}</h1>
           <h2 className={style.subtitle}>{this.state.subtitle}</h2>
           {/* <span onMouseEnter={this.popupHoverBegan} onMouseLeave={this.popupHoverEnded}>  */}
-            <SharePopup url ={"recordexchange.app/playlist"} display = {popupDisplay} closeFunction = {this.popupClose}/>
+            <SharePopup url ={"localhost:3000/playlist/".concat(this.state.playlistId)} display = {this.state.popupDisplay} closeFunction = {this.popupClose}/>
           {/* </span> */}
          
 

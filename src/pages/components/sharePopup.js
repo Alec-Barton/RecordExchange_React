@@ -20,7 +20,7 @@ class SharePopup extends React.Component {
     }
 
 
-    popupCopyButton(){
+    popupCopyButton() {
 
         // this.setState({
         //     close: true
@@ -32,20 +32,34 @@ class SharePopup extends React.Component {
         //         })
         //     }, 500);
         // })
+        navigator.clipboard.writeText(this.props.url)
+        this.setState({
+            copied: true
+        })
+        setTimeout(() => {
+            this.props.closeFunction()
+            this.setState({
+                copied: false
+            })
+        }, 2500);
+
+
+        // alert("Copied the text: ");
+
     }
 
-    popupCloseButton(){
+    popupCloseButton() {
 
         // this.setState({
         //     close: true,
         //     display: 'none'
         // }, ()=>{
 
-            // setTimeout(()=>{ 
-            //     this.setState({
-            //         close: false
-            //     })
-            // }, 2000);
+        // setTimeout(()=>{ 
+        //     this.setState({
+        //         close: false
+        //     })
+        // }, 2000);
         // })
         this.props.closeFunction()
     }
@@ -60,16 +74,25 @@ class SharePopup extends React.Component {
         // } else {
         //     var display = this.state.display
         // }
+        var popStyle = style.popup
+        var infoDipsplay = 'block'
+        var textDipsplay = 'none'
+        if (this.state.copied) {
+            popStyle = style.popupFadeOut
+            var infoDipsplay = 'none'
+            var textDipsplay = 'block'
+        }
         return (
-            <div className = {style.popup} style ={{display:this.props.display}}>
-                <button className={ style.popupCloseButton} onClick={this.popupCloseButton}>X</button>
-                <h1 className = {style.popupTitle}> Copy & Share Link</h1>
+            <div className={popStyle} style={{ display: this.props.display }}>
+                <button className={style.popupCloseButton} onClick={this.popupCloseButton} style ={{display:infoDipsplay}} >X</button>
+                <h1 className={style.popupTitle } style={{display:infoDipsplay}}> Copy & Share Link</h1>
 
-                <textarea disabled className = {style.popupTextArea}>
-                {this.props.url}
+                <textarea disabled className={style.popupTextArea} rows="1" style ={{display:infoDipsplay}}>
+                    {this.props.url}
                 </textarea>
-                <button className={ style.popupCopyButton} onClick={this.popupCopyButton}>Copy</button>
-            </div>  
+                <button className={style.popupCopyButton} onClick={this.popupCopyButton} style ={{display:infoDipsplay}}>Copy Link</button>
+                <h1 className = {style.popupCopied} style ={{display:textDipsplay}}> Copied </h1>
+            </div>
         )
     }
 }
