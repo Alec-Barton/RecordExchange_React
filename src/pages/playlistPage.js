@@ -16,6 +16,9 @@ class PlaylistPage extends React.Component {
 
     this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
+    this.shareBtnTapped = this.shareBtnTapped.bind(this);
+    this.popupHoverBegan = this.popupHoverBegan.bind(this);
+    this.popupHoverEnded = this.popupHoverEnded.bind(this)
 
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
@@ -24,14 +27,15 @@ class PlaylistPage extends React.Component {
       let listItems = tracks.map((track) =>
         <PlaylistTrack key={track.spotifyId} props={track}></PlaylistTrack>
       );
-
+      console.log('ok')
       this.state = {
         imageState: 'show',
         imageUrl: playlistData.coverImage,
         title: playlistData.name,
         subtitle: playlistData.description,
         listItems: listItems,
-        playlistData: playlistData
+        playlistData: playlistData,
+        popupDisplay: 'none'
       }
 
     } else {
@@ -114,10 +118,33 @@ class PlaylistPage extends React.Component {
             console.log(error)
           })
       });
+  }
+
+  shareBtnTapped(){
+    if (this.state.popupDisplay == 'none'){
+      this.setState({
+        popupDisplay: 'block'
+      })
+    } else {
+      this.setState({
+        popupDisplay: 'none'
+      })
+    } 
+  }
+
+  popupHoverBegan(){
 
   }
 
+  popupHoverEnded(){
+    console.log("lelel")
+    this.setState({
+      popupDisplay: 'none'
+    })
+  }
+
   render() {
+    console.log('rende')
     var imageStyle = style.imgHidden
     var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
@@ -126,7 +153,7 @@ class PlaylistPage extends React.Component {
       imageStyle = style.visible
       containerStyle = style.btnContainer
     }
-
+    const popupDisplay = this.state.popupDisplay
     return (
       <div>
 
@@ -135,16 +162,19 @@ class PlaylistPage extends React.Component {
           <img src={this.state.imageUrl} className={imageStyle} />
           <h1 className={style.title}>{this.state.title}</h1>
           <h2 className={style.subtitle}>{this.state.subtitle}</h2>
-
+          {/* <span onMouseEnter={this.popupHoverBegan} onMouseLeave={this.popupHoverEnded}>  */}
+            <SharePopup url ={"recordexchange.app/playlist"} display = {popupDisplay} />
+          {/* </span> */}
+         
 
           <div className={containerStyle}>
             <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
             <input type="image" onClick={this.appleBtnTapped} src={appleLogo} className={style.appleButton} />
-            <input type="image" src={shareLogo} className={style.shrButton}/>
-            <SharePopup/>
+            <input type="image" onClick={this.shareBtnTapped} src={shareLogo} className={style.shrButton}/>
+            
           </div>
-
-          <ul className={style.myUl} > {this.state.listItems} </ul>
+          
+          <ul className={style.myUl}> {this.state.listItems} </ul>
         </div>
       </div>
 
