@@ -12,14 +12,6 @@ class SharePopup extends React.Component {
         this.popupCloseButton = this.popupCloseButton.bind(this)
     }
 
-    componentDidMount() {
-        window.addEventListener("click", this.handleMouseClick);
-    }
-    
-    componentWillUnmount() {
-        window.removeEventListener("click", this.handleMouseClick);
-    }
-
     popupCopyButton() {
         navigator.clipboard.writeText(this.props.url)
         this.setState({
@@ -30,7 +22,7 @@ class SharePopup extends React.Component {
             this.setState({
                 copied: false
             })
-        }, 2500);
+        }, 2000);
     }
 
     popupCloseButton() {

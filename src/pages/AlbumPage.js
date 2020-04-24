@@ -5,11 +5,17 @@ import axios from 'axios';
 import appleLogo from './assets/apple.png'
 import spotifyLogo from './assets/spotify.png'
 import shareLogo from './assets/shareLogo.png'
+import SharePopup from './components/sharePopup'
 import loadingGif from './assets/loading.gif'
+import history from '../managers/historyManager.js'
 
 class AlbumPage extends React.Component {
   constructor(props) {
     super(props);
+
+    let splitPath = window.location.pathname.split('/')
+    let serviceType = splitPath[1]
+    let objectId = splitPath[2]
 
     if (props.location.state != undefined) {
       let albumData = props.location.state.object
@@ -27,20 +33,21 @@ class AlbumPage extends React.Component {
         listItems: listItems,
         spotifyId: albumData.spotifyId,
         appleId: albumData.appleId,
+        albumId: objectId,
+        popupDisplay: 'none',
       }
 
 
 
     } else {
-      let splitPath = window.location.pathname.split('/')
-      let serviceType = splitPath[1]
-      let objectId = splitPath[2]
 
       this.state = {
         imageState: 'loading',
         imageUrl: loadingGif,
         title: 'Loading',
         subtitle: '',
+        albumId: objectId,
+        popupDisplay: 'none',
       }
 
       let headerData = {
@@ -65,6 +72,11 @@ class AlbumPage extends React.Component {
             listItems: listItems
 
           })
+          history.push({
+            state: {
+              object: response.data
+            }
+          })
         })
         .catch((error) => {
           console.log(error)
@@ -78,6 +90,7 @@ class AlbumPage extends React.Component {
     this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
+    this.popupClose = this.popupClose.bind(this)
   }
 
   spotifyBtnTapped(){
@@ -91,7 +104,15 @@ class AlbumPage extends React.Component {
   }
 
   shareBtnTapped(){
+    this.setState({
+      popupDisplay: 'block'
+    })
+  }
 
+  popupClose(){
+    this.setState({
+      popupDisplay: 'none'
+    })
   }
 
   render() {
@@ -110,7 +131,7 @@ class AlbumPage extends React.Component {
         <img src={this.state.imageUrl} className={imageStyle} />
         <h1 className={style.title}>{this.state.title}</h1>
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
-
+        <SharePopup url ={"www.recordexchange.app/album/".concat(this.state.albumId)} display = {this.state.popupDisplay} closeFunction = {this.popupClose}/>
         <div className={containerStyle}>
           <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped}/>
           <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped}/>

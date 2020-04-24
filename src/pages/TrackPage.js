@@ -8,10 +8,19 @@ import playIcon from './assets/play.png'
 import pauseIcon from './assets/pause.png'
 import playingIcon from './assets/playing.png'
 import loadingGif from './assets/loading.gif'
+import SharePopup from './components/sharePopup'
+import history from '../managers/historyManager.js'
+
 
 class TrackPage extends React.Component {
   constructor(props) {
     super(props);
+
+    let splitPath = window.location.pathname.split('/')
+    let serviceType = splitPath[1]
+    let objectId = splitPath[2]
+
+
     if (props.location.state != undefined) {
       let trackData = props.location.state.object
 
@@ -24,13 +33,12 @@ class TrackPage extends React.Component {
         playbackIcon: playIcon,
         audio: new Audio(trackData.preview),
         spotifyId: trackData.spotifyId,
-        appleLink: trackData.appleLink
+        appleLink: trackData.appleLink,
+        trackId: objectId,
+        popupDisplay: 'none',
       }
 
     } else {
-      let splitPath = window.location.pathname.split('/')
-      let serviceType = splitPath[1]
-      let objectId = splitPath[2]
 
       this.state = {
         imageState: 'loading',
@@ -38,6 +46,8 @@ class TrackPage extends React.Component {
         title: 'Loading',
         subtitle: '',
         playbackVisibility: "hidden",
+        trackId: objectId,
+        popupDisplay: 'none',
       }
 
       let headerData = {
@@ -60,6 +70,11 @@ class TrackPage extends React.Component {
             spotifyId: trackData.spotifyId,
             appleLink: trackData.appleLink
           })
+          history.push({
+            state: {
+              object: response.data
+            }
+          })
         })
         .catch((error) => {
           console.log(error)
@@ -75,7 +90,9 @@ class TrackPage extends React.Component {
     this.hoverEnded = this.hoverEnded.bind(this);
     this.playbackEnded = this.playbackEnded.bind(this);
     this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
-    this.appleBtnTapped = this.appleBtnTapped.bind(this)
+    this.appleBtnTapped = this.appleBtnTapped.bind(this);
+    this.shareBtnTapped = this.shareBtnTapped.bind(this);
+    this.popupClose = this.popupClose.bind(this)
   }
 
   playbackEnded() {
@@ -152,7 +169,20 @@ class TrackPage extends React.Component {
   }
 
   appleBtnTapped() {
+    console.log(this.state.appleLink)
     window.open(this.state.appleLink, '_blank');
+  }
+
+  shareBtnTapped() {
+    this.setState({
+      popupDisplay: 'block'
+    })
+  }
+
+  popupClose() {
+    this.setState({
+      popupDisplay: 'none'
+    })
   }
 
   render() {
@@ -174,11 +204,11 @@ class TrackPage extends React.Component {
         </span>
         <h1 className={style.title}>{this.state.title}</h1>
         <pre><h2 className={style.subtitlePadded}>{this.state.subtitle}</h2></pre>
-
+        <SharePopup url={"www.recordexchange.app/track/".concat(this.state.trackId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
         <div className={containerStyle}>
           <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
           <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
-          <input type="image" src={shareLogo} className={style.shrButton} />
+          <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped}/>
         </div>
 
       </div>

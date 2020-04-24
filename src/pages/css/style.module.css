@@ -695,7 +695,7 @@ img {
     padding-right: -20%;
     box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
     backdrop-filter: blur(5px);
-    animation: fadeOutAnimation ease 2500ms; 
+    animation: fadeOutAnimation ease 2000ms; 
     /* animation-delay: 1000ms; */
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
@@ -748,7 +748,7 @@ img {
     height: 35px;
     width: 150px;
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background-color: white;
     color: black;
     border: 1px solid #707070;
@@ -756,7 +756,7 @@ img {
     font-size: 16pt;
     font-family: Lato;
     color: #878787;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .popupCopyButton:hover{
