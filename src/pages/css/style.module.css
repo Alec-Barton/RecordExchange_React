@@ -626,6 +626,18 @@ img {
     background-color: lightgray;
 }
 
+.popup{
+    background-color: lightcoral;
+    height: 100px;
+    width: 50px;
+    position: absolute;  
+    left: 25%;  
+    right: 25%;  
+    top: 25%;  
+    bottom: 25%;  
+    margin: auto;  
+}
+
 ul {
     overflow:auto;
     height: 300px;

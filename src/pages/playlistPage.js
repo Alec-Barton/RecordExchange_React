@@ -2,6 +2,7 @@ import React from 'react';
 import MusicKitManager from '../managers/musickitManager.js'
 import style from './css/style.module.css'
 import PlaylistTrack from './components/playlistTrack'
+import SharePopup from './components/sharePopup'
 import axios from 'axios';
 import appleLogo from './assets/apple.png'
 import spotifyLogo from './assets/spotify.png'
@@ -139,7 +140,8 @@ class PlaylistPage extends React.Component {
           <div className={containerStyle}>
             <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
             <input type="image" onClick={this.appleBtnTapped} src={appleLogo} className={style.appleButton} />
-            <input type="image" src={shareLogo} className={style.shrButton} />
+            <input type="image" src={shareLogo} className={style.shrButton}/>
+            <SharePopup/>
           </div>
 
           <ul className={style.myUl} > {this.state.listItems} </ul>
