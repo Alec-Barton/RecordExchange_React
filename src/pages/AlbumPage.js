@@ -120,7 +120,6 @@ class AlbumPage extends React.Component {
   }
 
   stopAllPlayback(aa){
-    console.log(aa)
     let a = new Audio(aa)
     a.play()
     // this.setState({

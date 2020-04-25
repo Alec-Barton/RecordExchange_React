@@ -18,8 +18,7 @@ class AlbumTrack extends React.Component {
             playbackVisibility: 'hidden',
             indexVisibility: 'visible',
             audio: new Audio(this.props.props.preview),
-            itemClass: style.albumTrackItem,
-            
+            itemClass: style.albumTrackItem,            
         };
         this.tapped = this.tapped.bind(this);
         this.hoverBegan = this.hoverBegan.bind(this);
