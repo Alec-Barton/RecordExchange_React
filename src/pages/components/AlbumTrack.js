@@ -29,7 +29,6 @@ class AlbumTrack extends React.Component {
         // this.state.audio.onended = this.playbackEnded
         this.stopPlayback = this.stopPlayback.bind(this)
         this.startPlayback = this.startPlayback.bind(this)
-        console.log("created")
         // if (props.props.playbackState == "stopped"){
         //     this.setState
         // }
@@ -60,37 +59,45 @@ class AlbumTrack extends React.Component {
     }
 
     startPlayback(){
-        if (!this.state.playing) {
-            setTimeout(()=>{ 
-                this.setState({
-                    playing:true
-                })
-            }, 50);
+        // if (!this.state.playing) {
+        //     setTimeout(()=>{ 
+        //         this.setState({
+        //             playing:true
+        //         })
+        //     }, 50);
             
-        }
+        // }
     }
 
     tapped(){
-        // console.log(aa)
         
         // this.props.playbackFunction(this.props.props.preview)
         if (!this.state.playing){
+            console.log('21')
+            // if (this.state.playbackIcon == playingIcon)
+
             this.props.action("play", this.props.props.preview)
             // this.state.audio.play()
             this.setState({ 
                 playing: true,
                 playbackIcon: pauseIcon,
-                playbackVisibility: 'visible',
-                indexVisibility: 'hidden',
+                // playbackVisibility: 'visible',
+                // indexVisibility: 'hidden',
             })
             
         } else {
+            console.log("22")
             // this.props.action(this.props.props.preview)
-            // this.state.audio.pause()
+            // this.state.audio.pause()c
+            // console.log(this.props.action)
             this.props.action("pause", this.props.props.preview)
             this.setState({ 
                 playing: false,
                 playbackIcon: playIcon,
+                // playbackVisibility: 'hidden',
+                // indexVisibility: 'visible',
+            }, ()=>{
+                console.log(this.state.playing)
             })
         }
     }
@@ -98,18 +105,18 @@ class AlbumTrack extends React.Component {
     hoverBegan(){
         if (!this.state.playing){
             this.setState({
-                itemClass: style.albumTrackItemHover,
-                playbackIcon: playIcon,
-                playbackVisibility: 'visible',
-                indexVisibility: 'hidden',
+                // itemClass: style.albumTrackItemHover,
+                // playbackIcon: playIcon,
+                // playbackVisibility: 'visible',
+                // indexVisibility: 'hidden',
                 isHovered: true,
             })
         } else {
             this.setState({
-                itemClass: style.albumTrackItemHover,
-                playbackIcon: pauseIcon,
-                playbackVisibility: 'visible',
-                indexVisibility: 'hidden',
+                // itemClass: style.albumTrackItemHover,
+                // playbackIcon: pauseIcon,
+                // playbackVisibility: 'visible',
+                // indexVisibility: 'hidden',
                 isHovered: true,
             })
         }
@@ -118,38 +125,49 @@ class AlbumTrack extends React.Component {
     hoverEnded(){
         if (!this.state.playing){
             this.setState({
-                itemClass: style.albumTrackItem,
-                playbackVisibility: 'hidden',
-                indexVisibility: 'visible',
+                // itemClass: style.albumTrackItem,
+                // playbackVisibility: 'hidden',
+                // indexVisibility: 'visible',
                 isHovered: false,
             })
         } else {
             this.setState({
-                itemClass: style.albumTrackItem,
-                playbackVisibility: 'visible',
-                indexVisibility: 'hidden',
-                playbackIcon: playingIcon,
+                // itemClass: style.albumTrackItem,
+                // playbackVisibility: 'visible',
+                // indexVisibility: 'hidden',
+                // playbackIcon: playingIcon,
                 isHovered: false,
             })
         }
     }
 
     render(){
-        console.log('asadad')
-
-        var indexVisibility = this.state.indexVisibility
-        var playbackVisibility = this.state.playbackVisibility
-        var playbackIcon = this.state.playbackIcon
+        var indexVisibility = "visible"
+        var playbackVisibility = "hidden"
+        var playbackIcon = playIcon
         if (this.props.props.stop){
-            // console.log("stopeed")
             if(!this.state.isHovered){
                 indexVisibility = 'visible'
                 playbackVisibility = 'hidden'
+            } else {
+                indexVisibility = 'hidden'
+                playbackVisibility = 'visible'
             }
-            
             playbackIcon = playIcon
             this.stopPlayback()
         }else {
+            console.log('hm')
+            indexVisibility = 'hidden'
+            playbackVisibility = 'visible'
+            // if (this.state.playbackIcon == playingIcon){
+            //     indexVisibility = 'hidden'
+            //     playbackVisibility = 'visible'
+            // }
+            if(this.state.isHovered){
+                playbackIcon = pauseIcon
+            } else {
+                playbackIcon = playingIcon
+            }
             this.startPlayback()
             // indexVisibility = 'hidden'
             // playbackVisibility = 'visible'
