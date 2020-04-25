@@ -95,35 +95,22 @@ class AlbumPage extends React.Component {
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
     this.popupClose = this.popupClose.bind(this)
-    this.updateTracks = this.updateTracks.bind(this)
+    // this.updateTracks = this.updateTracks.bind(this)
 
     this.playbackEnded = this.playbackEnded.bind(this);
     this.state.audio.onended = this.playbackEnded
-
-    
-
-    // this.stopAllPlayback = this.stopAllPlayback.bind(this)
-    // this.changeAudio = this.changeAudio.bind(this)
   }
 
   playbackEnded(){
-    console.log("end")
-
     let tracks = this.state.tracks
     var listItems = tracks.map((track, index) => {
       track["index"] = index
       track["stop"] = true
       return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
     });
-    // tj
 
     this.setState({
       listItems: listItems
-      // playing: false,
-      // // playbackState: "stopped",
-      // playbackIcon: playIcon,
-      // playbackVisibility: 'hidden',
-      // indexVisibility: 'visible',
     })
   }
 
@@ -139,9 +126,6 @@ class AlbumPage extends React.Component {
 
   shareBtnTapped() {
     this.stopAllPlayback()
-    // this.setState({
-    //   popupDisplay: 'block'
-    // })
   }
 
   popupClose() {
@@ -150,55 +134,11 @@ class AlbumPage extends React.Component {
     })
   }
 
-  updateTracks() {
-    // // let albumData = props.location.state.object
-    // console.log(this.state.tracks)
-    // let tracks = this.state.tracks
-    // var listItems = tracks.map((track, index) => {
-    //   // track["index"] = index
-    //   // track["playbackState"] = "stopped"
-    //   return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
-    // });
-
-    // this.setState({
-    //   listItems: listItems,
-    // })
-  }
-
-  // stopAllPlayback(audioSource){
-  //   let a = new Audio(aa)
-  //   a.play()
-  //   // this.setState({
-  //   //   audio: new Audio(aa)
-  //   // }, () => {
-  //   //   this.state.audio.play()
-  //   // })
-  //   // console.log(thisaudio)
-
-  //   // for (var item of this.state.listItems){
-  //   //   console.log()
-  //   //   item.setState({
-  //   //     playbackState: "playling"
-  //   //   })
-  //   //   // item.test()
-  //   //   // var myChild = React.renderComponent(item);
-  //   //   // ite
-  //   // }
-  // }
-
   changeAudio = (playbackState, audioSource) => {
-    // if (this.state.audio) {
-    //   this.state.audio.pause()
-    //   this.state.audio.currentTime = 0
-    // }
-
     if (playbackState == "play") {
-      console.log("3")
       if (audioSource == this.state.audio){
-        console.log("2")
         this.state.audio.play()
       } else {
-        console.log("1")
         let tracks = this.state.tracks
         var listItems = tracks.map((track, index) => {
           track["index"] = index
@@ -209,13 +149,10 @@ class AlbumPage extends React.Component {
           }
           return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
         });
-    
         this.setState({
           listItems: listItems,
-          
         }, ()=>{
           this.state.audio.src = audioSource
-          console.log(this.state.listItems)
           setTimeout(()=>{ 
             this.state.audio.play()
           }, 50);
@@ -223,7 +160,6 @@ class AlbumPage extends React.Component {
       }
       
     } else if (playbackState == "pause") { 
-      // console.log("ok2")
         this.state.audio.pause()
         let tracks = this.state.tracks
         var listItems = tracks.map((track, index) => {
@@ -236,27 +172,7 @@ class AlbumPage extends React.Component {
           listItems: listItems
         })
     }
-    else {
-      console.log("bad5")
-    }
-
-
-
   }
-
-  // changeAudio (audioSource){
-  //   if (this.state.audio) {
-  //     this.state.audio.pause()
-  //     this.state.audio.currentTime = 0
-  //   }
-  //   this.setState({
-  //     audio: new Audio(audioSource)
-  //   }, ()=>{
-  //     this.state.audio.play()
-  //   })
-
-
-  // }
 
   render() {
     var imageStyle = style.imgHidden

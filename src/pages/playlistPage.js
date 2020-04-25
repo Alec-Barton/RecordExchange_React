@@ -24,7 +24,6 @@ class PlaylistPage extends React.Component {
     let serviceType = splitPath[1]
     let objectId = splitPath[2]
 
-    console.log(objectId)
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
       let tracks = playlistData.tracks
@@ -32,7 +31,6 @@ class PlaylistPage extends React.Component {
       let listItems = tracks.map((track) =>
         <PlaylistTrack key={track.spotifyId} props={track}></PlaylistTrack>
       );
-      console.log('playlistData')
       this.state = {
         imageState: 'show',
         imageUrl: playlistData.coverImage,
@@ -68,8 +66,6 @@ class PlaylistPage extends React.Component {
           let listItems = tracks.map((track) =>
             <PlaylistTrack key={track.spotifyId} props={track}></PlaylistTrack>
           );
-
-          console.log(objectId)
           this.setState({
             title: playlistData.name,
             subtitle: playlistData.description,
@@ -102,7 +98,6 @@ class PlaylistPage extends React.Component {
   spotifyBtnTapped() {
     const stateKey = 'playlistData';
     const state = JSON.stringify(this.state.playlistData);
-    console.log(state)
     localStorage.setItem(stateKey, state);
     axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
       .then((response) => {
