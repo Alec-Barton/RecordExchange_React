@@ -22,9 +22,8 @@ class AlbumPage extends React.Component {
       let tracks = albumData.tracks
       var listItems = tracks.map((track, index) => {
         track["index"] = index
-        track["playbackState"] = "stopped"
-        console.log("here")
-        return (<AlbumTrack key={index} props={track} playbackFunction = {this.stopAllPlayback}></AlbumTrack>)
+        track["stop"] = "true"
+        return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
 
       this.state = {
@@ -37,7 +36,8 @@ class AlbumPage extends React.Component {
         appleId: albumData.appleId,
         albumId: objectId,
         popupDisplay: 'none',
-        audio: undefined
+        audio: new Audio(''),
+        tracks: tracks
       }
 
 
@@ -63,7 +63,8 @@ class AlbumPage extends React.Component {
           let tracks = albumData.tracks
           let listItems = tracks.map((track, index) => {
             track["index"] = index
-            return (<AlbumTrack key={index} props={track} ></AlbumTrack>)
+            track["stop"] = "true"
+            return (<AlbumTrack key={index} props={track}></AlbumTrack>)
           });
 
           this.setState({
@@ -72,8 +73,8 @@ class AlbumPage extends React.Component {
             imageUrl: albumData.coverImage,
             album: albumData,
             imageState: 'show',
-            listItems: listItems
-
+            listItems: listItems,
+            tracks: tracks
           })
           history.push({
             state: {
@@ -94,59 +95,165 @@ class AlbumPage extends React.Component {
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
     this.popupClose = this.popupClose.bind(this)
-    this.stopAllPlayback = this.stopAllPlayback.bind(this)
+    this.updateTracks = this.updateTracks.bind(this)
+
+    this.playbackEnded = this.playbackEnded.bind(this);
+    this.state.audio.onended = this.playbackEnded
+
+    
+
+    // this.stopAllPlayback = this.stopAllPlayback.bind(this)
+    // this.changeAudio = this.changeAudio.bind(this)
   }
 
-  spotifyBtnTapped(){
+  playbackEnded(){
+    console.log("end")
+    // this.setState({
+    //   // playing: false,
+    //   // // playbackState: "stopped",
+    //   // playbackIcon: playIcon,
+    //   // playbackVisibility: 'hidden',
+    //   // indexVisibility: 'visible',
+    // })
+  }
+
+  spotifyBtnTapped() {
     const url = 'https://open.spotify.com/album/'.concat(this.state.spotifyId)
     window.open(url, '_blank');
   }
 
-  appleBtnTapped(){
+  appleBtnTapped() {
     const url = 'https://music.apple.com/us/album/'.concat(this.state.appleId)
     window.open(url, '_blank');
   }
 
-  shareBtnTapped(){
+  shareBtnTapped() {
     this.stopAllPlayback()
     // this.setState({
     //   popupDisplay: 'block'
     // })
   }
 
-  popupClose(){
+  popupClose() {
     this.setState({
       popupDisplay: 'none'
     })
   }
 
-  stopAllPlayback(aa){
-    let a = new Audio(aa)
-    a.play()
+  updateTracks() {
+    // console.log("aasa")
+    // // let albumData = props.location.state.object
+    // console.log(this.state.tracks)
+    // let tracks = this.state.tracks
+    // var listItems = tracks.map((track, index) => {
+    //   // track["index"] = index
+    //   // track["playbackState"] = "stopped"
+    //   return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
+    // });
+
     // this.setState({
-    //   audio: new Audio(aa)
-    // }, () => {
-    //   this.state.audio.play()
+    //   listItems: listItems,
     // })
-    // console.log(thisaudio)
-    
-    // for (var item of this.state.listItems){
-    //   console.log()
-    //   item.setState({
-    //     playbackState: "playling"
-    //   })
-    //   // item.test()
-    //   // var myChild = React.renderComponent(item);
-    //   // ite
-    // }
   }
 
+  // stopAllPlayback(audioSource){
+  //   let a = new Audio(aa)
+  //   a.play()
+  //   // this.setState({
+  //   //   audio: new Audio(aa)
+  //   // }, () => {
+  //   //   this.state.audio.play()
+  //   // })
+  //   // console.log(thisaudio)
+
+  //   // for (var item of this.state.listItems){
+  //   //   console.log()
+  //   //   item.setState({
+  //   //     playbackState: "playling"
+  //   //   })
+  //   //   // item.test()
+  //   //   // var myChild = React.renderComponent(item);
+  //   //   // ite
+  //   // }
+  // }
+
+  changeAudio = (playbackState, audioSource) => {
+    // if (this.state.audio) {
+    //   this.state.audio.pause()
+    //   this.state.audio.currentTime = 0
+    // }
+
+    if (playbackState == "play") {
+      // if (this.state.audio) {
+      // this.state.audio.pause()
+      // this.state.audio.currentTime = 0
+      // this.updateTracks()
+      // }
+      // console.log(audioSource)
+
+
+      let tracks = this.state.tracks
+      var listItems = tracks.map((track, index) => {
+        track["index"] = index
+        if (track["preview"] != audioSource){
+          track["stop"] = true
+        } else {
+          track["stop"] = false
+        }
+        return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
+      });
+  
+      this.setState({
+        listItems: listItems,
+        
+      }, ()=>{
+        this.state.audio.src = audioSource
+        console.log(this.state.listItems)
+        setTimeout(()=>{ 
+          this.state.audio.play()
+        }, 50);
+      })
+
+      // this.updateTracks()
+
+      
+      // console.log(this.state.audio.srcxx)
+      // this.state.audio.play()
+      // this.setState({
+
+      //   audio: new Audio(audioSource)
+      // }, () => {
+      //   this.state.audio.play()
+      // })
+    } else if (playbackState == "pause") {
+      this.state.audio.pause()
+    }
+
+
+
+  }
+
+  // changeAudio (audioSource){
+  //   if (this.state.audio) {
+  //     this.state.audio.pause()
+  //     this.state.audio.currentTime = 0
+  //   }
+  //   this.setState({
+  //     audio: new Audio(audioSource)
+  //   }, ()=>{
+  //     this.state.audio.play()
+  //   })
+
+
+  // }
+
   render() {
+    console.log("reender")
     var imageStyle = style.imgHidden
     var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
       imageStyle = style.loading
-      
+
     } else if (this.state.imageState == 'show') {
       imageStyle = style.visible
       containerStyle = style.btnContainer
@@ -157,11 +264,11 @@ class AlbumPage extends React.Component {
         <img src={this.state.imageUrl} className={imageStyle} />
         <h1 className={style.title}>{this.state.title}</h1>
         <h2 className={style.subtitle}>{this.state.subtitle}</h2>
-        <SharePopup url ={"www.recordexchange.app/album/".concat(this.state.albumId)} display = {this.state.popupDisplay} closeFunction = {this.popupClose}/>
+        <SharePopup url={"www.recordexchange.app/album/".concat(this.state.albumId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
         <div className={containerStyle}>
-          <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped}/>
-          <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped}/>
-          <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped}/>
+          <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
+          <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
+          <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped} />
         </div>
 
         <ul className={style.myUl} > {this.state.listItems} </ul>
