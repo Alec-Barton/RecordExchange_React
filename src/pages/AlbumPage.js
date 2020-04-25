@@ -23,6 +23,7 @@ class AlbumPage extends React.Component {
       var listItems = tracks.map((track, index) => {
         track["index"] = index
         track["playbackState"] = "stopped"
+        console.log("here")
         return (<AlbumTrack key={index} props={track} playbackFunction = {this.stopAllPlayback}></AlbumTrack>)
       });
 
