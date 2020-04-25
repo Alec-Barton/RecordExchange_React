@@ -1,32 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
-
-
 html {
     height: 100%;
-
 }
 
 body {
-    /* background-color: brown; */
     background: #fafafa;
-    /* overflow: hidden; */
-    /* background: rgb(234,234,234); */
-    /* background: linear-gradient(0deg, rgba(180,180,180,1) 0%, rgba(210,210,210,1) 30% rgba(255,255,255,1) 100%); */
-    /* background: linear-gradient(0deg, rgba(245, 149, 66, 0.4) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%); */
-
-    /* background: linear-gradient(0deg, rgba(245, 149, 66, 0.4) 0%,rgba(245, 149, 66, 0.1) 100%); */
-
-
-
-    /* animation: fadeInAnimation ease 3s; 
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards;  */
 }
 
 audio {
     display: none;
-    /* visibility: hidden; */
 }
 
 @keyframes fadeInAnimation { 
@@ -58,38 +41,28 @@ audio {
     border-bottom: 0.5px solid #AFAFAF;
     opacity: 1.0;
     color: #707070;
-    /* background-color: rebeccapurple; */
 }
 
 .headerContainer:hover {
-    /* color: red; */
     opacity: 0.80;
-    
-    /* -webkit-filter: drop-shadow(1px 2px 1.5px rgba(0,0,0,0.5)); */
 }
 
 .headerTitle{
-    /* width: 75%; */
     opacity: inherit;
     margin: auto;
     color: inherit;
     font-family:  "Arial-Narrow", Arial, sans-serif;
     text-align: center;
     margin-left: 35px;
-    /* font-weight: normal; */
     font-size: 30pt;
     vertical-align: top;
     display: inline-block;
     padding-top: 2px;
     font-weight: 500;
     letter-spacing: 3px;
-    
-    /* background-color: salmon; */
 }
 
 .headerLogo {
-    /* text-shadow: 2px 2px; */
-    /* -webkit-filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5)); */
     opacity: inherit;
     width: 40px;
     height: 40px;
@@ -98,21 +71,12 @@ audio {
     vertical-align: center;
     display: inline-block;
     margin: auto;
-    /* box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5); */
-    /* background-color: skyblue; */
 }
 
 .main{
     width: 40%;
     margin: auto;
-    /* background-color: royalblue; */
 }
-
-/* .contentContainer {
-    width: 40%;
-    margin:auto;
-    background-color: red;
-} */
 
 img {
     display: block;
@@ -127,16 +91,10 @@ img {
     visibility: hidden;
     width: 200px;
     height: 200px;
-    /* animation: fadeInAnimation ease 1000ms; 
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards;  */
 }
 
 .loading {
     box-shadow: none;
-    /* animation: fadeInAnimation ease 100ms; 
-    animation-iteration-count: 0.25; 
-    animation-fill-mode: forwards;  */
 }
 
 .visibleHome{
@@ -148,20 +106,15 @@ img {
 
 .visible{
     box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
-    /* animation: fadeInAnimation ease 250ms; 
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards;  */
 }
 
 .title{
     color: #878787;
     font-family:  Lato;
     text-align: center;
-    /* font-weight: lighter; */
     font-weight: 500;
     letter-spacing: 0px;
     font-size: 30pt;
-    /* background-color: tomato; */
     margin-bottom: 10px;
 }
 
@@ -172,8 +125,6 @@ img {
     font-weight:lighter;
     font-size: 18pt;
     min-height: 1em;
-    
-    /* padding-bottom: 50px; */
     margin:auto;
     margin-bottom: 15px;
     max-height: 120px;
@@ -192,11 +143,9 @@ img {
     margin:auto;
     margin-bottom: 10px;
     max-height: 120px;
-    /* background-color: lightcoral; */
 }
 
 .homeForm {
-    /* padding-top: 50px; */
     display: block;
 }
 
@@ -213,7 +162,6 @@ img {
 }
 
 .hidden {
-    /* visibility: hidden; */
     display: none;
 }
 
@@ -248,10 +196,8 @@ img {
     text-align:center;
     opacity: 0;
     animation: fadeInAnimation ease 750ms; 
-    /* animation-delay: 250ms; */
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
-    /* background-color: sandybrown; */
 }
 
 .spotifyButton {
@@ -260,9 +206,7 @@ img {
     height: 60px;
     width: 60px;
     border-radius: 30px;
-    /* background-color: salmon; */
     color: black;
-    /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
     font-family: Lato;
@@ -282,9 +226,7 @@ img {
     height: 60px;
     width: 60px;
     border-radius: 30px;
-    /* background-color: #1db954; */
     color: black;
-    /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
     font-family: Lato;
@@ -308,44 +250,18 @@ img {
     height: 60px;
     width: 60px;
     border-radius: 30px;
-    /* background-color:#707070; */
     color: black;
-    /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
     font-family: Lato;
     color:#A2A0A0;
     margin:0 auto;
     margin-bottom: 10px;
-
 }
 
 .shrButton:hover{
     -webkit-filter: brightness(80%);
 }
-
-/* #container {
-    width:100%;
-    text-align:center;
-} */
-
-/* #left {
-    float:left;
-    width:100px;
-} */
-
-/* #center {
-    display: inline-block;
-    margin:0 auto;
-    width:100px;
-} */
-
-/* #right {
-    float:right;
-    width:100px;
-} */
-
-
 
 .trackName {
     padding-top: 0px;
@@ -357,11 +273,9 @@ img {
     font-size: 14pt;
     padding-bottom: 0px;
     margin-bottom: 0px;
-    /* background-color: darkseagreen; */
 }
 
 .trackAttributes {
-    /* background-color: red; */
     margin-top: 0px;
     padding-top: 0px;
     color: #A2A0A0;
@@ -369,18 +283,15 @@ img {
     text-align: left;
     font-weight: lighter;
     font-size: 10pt;
-    /* background-color: darkorchid; */
 }
 
 .trackItem {
-    /* background-color: blueviolet; */
     border-bottom: 0.5px solid #E4E4E4;
     list-style: none;
     padding-top: 7.5px;
     padding-bottom: 7.5px;
     margin-top: 0px;
     margin-bottom: 0px;
-    /* background-color: dodgerblue; */
 }
 
 .trackImage {
@@ -393,12 +304,6 @@ img {
     width: 40px;
     display: inline-block;
 }
-
-/* .trackImage:hover {
-    -webkit-filter: blur(2px);
-    filter: blur(2px);
-    opacity: 0.75;
-} */
 
 .trackInfo {
     padding-top: -5px;
@@ -479,18 +384,6 @@ img {
     text-overflow: "...";
     display: inline-block;
 }
-
-/* .playbackIcon {
-    padding-top: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-    box-sizing: border-box;
-    height: 40px;
-    width: 40px;
-    display: inline-block;
-    opacity: 0.75;
-} */
 
 .playbackContainer {
     position: relative;
@@ -612,11 +505,9 @@ img {
     margin-top: 60px;
     -webkit-filter: blur(1px);
     filter: blur(1px);
-
     position: absolute;
     top:0;  
     left:0;
-
 }
 
 .trackCoverIcon {
@@ -634,27 +525,11 @@ img {
     left:0;
     background-color: lightgray;
 }
-/* 
-.popupBackground {
-    width: inherit;
-    height: inh;
-    background-color: #e6e6e6;
-    opacity: 0.7;
-    box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
-    backdrop-filter: blur(5px);
-    animation: fadeInAnimationWithOpacity ease 250ms; 
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards; 
-    border-radius: 20px;
-
-} */
 
 .popup{
     background-color: #f3f3f3;
-    /* background-color: clear; */
     height: 200px;
     width: inherit;
-    /* width: 40%; */
     position: absolute;  
     opacity: 0.8;
     left: 1%;  
@@ -669,18 +544,12 @@ img {
     padding-right: -20%;
     box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
     backdrop-filter: blur(5px);
-    /* animation: fadeInAnimationWithOpacity ease 250ms; 
-    animation-iteration-count: 1; 
-    animation-fill-mode: forwards;  */
-
 }
 
 .popupFadeOut{
     background-color: #f3f3f3;
-    /* background-color: clear; */
     height: 200px;
     width: inherit;
-    /* width: 40%; */
     position: absolute;  
     opacity: 0.8;
     left: 1%;  
@@ -696,10 +565,8 @@ img {
     box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
     backdrop-filter: blur(5px);
     animation: fadeOutAnimation ease 2000ms; 
-    /* animation-delay: 1000ms; */
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
-
 }
 
 .popup:hover{
@@ -708,7 +575,6 @@ img {
 
 .popupTitle {
     color: #595959;
-    /* color:black; */
     font-family:  Lato;
     text-align: center;
     font-weight: 500;
@@ -717,8 +583,6 @@ img {
     padding-top: 0px;
     margin-top: 20px;
     margin-bottom: 20px;
-    
-    
 }
 
 .popupTextArea{
@@ -780,7 +644,6 @@ img {
     font-family: Lato;
     color:#A2A0A0;
     margin-top: 15px;
-    /* float: right; */
     left: 90%;  
     right: 1%;  
     top: 1%;  
@@ -794,7 +657,6 @@ img {
 
 .popupCopied{
     color: #595959;
-    /* color:black; */
     font-family:  Lato;
     text-align: center;
     font-weight: 500;
@@ -866,7 +728,6 @@ ul {
     }
     .main{
         width: 75%;
-        /* margin: auto; */
     }
 }
 
