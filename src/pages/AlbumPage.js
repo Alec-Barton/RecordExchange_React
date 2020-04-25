@@ -20,9 +20,10 @@ class AlbumPage extends React.Component {
     if (props.location.state != undefined) {
       let albumData = props.location.state.object
       let tracks = albumData.tracks
-      let listItems = tracks.map((track, index) => {
+      var listItems = tracks.map((track, index) => {
         track["index"] = index
-        return (<AlbumTrack key={index} props={track} ></AlbumTrack>)
+        track["playbackState"] = "stopped"
+        return (<AlbumTrack key={index} props={track} playbackFunction = {this.stopAllPlayback}></AlbumTrack>)
       });
 
       this.state = {
@@ -35,6 +36,7 @@ class AlbumPage extends React.Component {
         appleId: albumData.appleId,
         albumId: objectId,
         popupDisplay: 'none',
+        audio: undefined
       }
 
 
@@ -91,6 +93,7 @@ class AlbumPage extends React.Component {
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
     this.popupClose = this.popupClose.bind(this)
+    this.stopAllPlayback = this.stopAllPlayback.bind(this)
   }
 
   spotifyBtnTapped(){
@@ -104,15 +107,38 @@ class AlbumPage extends React.Component {
   }
 
   shareBtnTapped(){
-    this.setState({
-      popupDisplay: 'block'
-    })
+    this.stopAllPlayback()
+    // this.setState({
+    //   popupDisplay: 'block'
+    // })
   }
 
   popupClose(){
     this.setState({
       popupDisplay: 'none'
     })
+  }
+
+  stopAllPlayback(aa){
+    console.log(aa)
+    let a = new Audio(aa)
+    a.play()
+    // this.setState({
+    //   audio: new Audio(aa)
+    // }, () => {
+    //   this.state.audio.play()
+    // })
+    // console.log(thisaudio)
+    
+    // for (var item of this.state.listItems){
+    //   console.log()
+    //   item.setState({
+    //     playbackState: "playling"
+    //   })
+    //   // item.test()
+    //   // var myChild = React.renderComponent(item);
+    //   // ite
+    // }
   }
 
   render() {

@@ -26,6 +26,7 @@ class AlbumTrack extends React.Component {
         this.hoverEnded = this.hoverEnded.bind(this);
         this.playbackEnded = this.playbackEnded.bind(this);
         this.state.audio.onended = this.playbackEnded
+        this.test = this.test.bind(this)
     }
 
     playbackEnded (){
@@ -37,23 +38,29 @@ class AlbumTrack extends React.Component {
         })
     }
 
+    test(){
+        console.log(this.state.name)
+    }
+
     tapped(){
-        if (this.state.audio.paused){
-            this.state.audio.play()
-            this.setState({ 
-                playing: true,
-                playbackIcon: pauseIcon,
-                playbackVisibility: 'visible',
-                indexVisibility: 'hidden',
-            })
+        // console.log(aa)
+        this.props.playbackFunction(this.props.props.preview)
+        // if (this.state.audio.paused){
+        //     this.state.audio.play()
+        //     this.setState({ 
+        //         playing: true,
+        //         playbackIcon: pauseIcon,
+        //         playbackVisibility: 'visible',
+        //         indexVisibility: 'hidden',
+        //     })
             
-        } else {
-            this.state.audio.pause()
-            this.setState({ 
-                playing: false,
-                playbackIcon: playIcon,
-            })
-        }
+        // } else {
+        //     this.state.audio.pause()
+        //     this.setState({ 
+        //         playing: false,
+        //         playbackIcon: playIcon,
+        //     })
+        // }
     }
 
     hoverBegan(){
