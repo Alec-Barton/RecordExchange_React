@@ -50,67 +50,24 @@ class PlaylistTrack extends React.Component {
             this.setState({ 
                 playing: true,
             })
-            
         } else {
             this.props.action("pause", this.props.props.preview)
             this.setState({ 
                 playing: false,
             })
         }
-
-        // if (!this.state.playing){
-        //     this.state.audio.play()
-        //     this.setState({ 
-        //         playing: true,
-        //         playbackIcon: pauseIcon,
-        //         playbackVisibility: 'visible',
-        //         playbackStyle: style.plPlaybackImageHover,
-        //     })
-        // } else {
-        //     this.state.audio.pause()
-        //     this.setState({ 
-        //         playing: false,
-        //         playbackIcon: playIcon,
-        //         playbackStyle: style.plPlaybackImage,
-        //     })
-        // }
     }
 
     hoverBegan(){
         this.setState({
             isHovered: true,
         })
-        // this.setState({
-        //     isHovered: true,
-        //     playbackStyle: style.plPlaybackImageHover,
-        //     playbackVisibility: 'visible',
-        // })
-        // if (!this.state.audio.paused){
-        //     this.setState({
-        //         playbackIcon: pauseIcon,
-        //     })
-        // }
     }
 
     hoverEnded(){
         this.setState({
             isHovered: false,
         })
-        // this.setState({
-        //     isHovered: false,
-        //     playbackStyle: style.plPlaybackImage,
-        // })
-        // if (this.state.audio.paused){
-        //     this.setState({
-        //         itemClass: style.albumTrackItem,
-        //         playbackVisibility: 'hidden',
-                
-        //     })
-        // } else {
-        //     this.setState({
-        //         playbackIcon: playingIcon,
-        //     })
-        // }
     }
 
     render(){
