@@ -95,7 +95,6 @@ class AlbumPage extends React.Component {
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
     this.popupClose = this.popupClose.bind(this)
-    // this.updateTracks = this.updateTracks.bind(this)
 
     this.playbackEnded = this.playbackEnded.bind(this);
     this.state.audio.onended = this.playbackEnded

@@ -15,11 +15,6 @@ class PlaylistPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
-    this.appleBtnTapped = this.appleBtnTapped.bind(this);
-    this.shareBtnTapped = this.shareBtnTapped.bind(this);
-    this.popupClose = this.popupClose.bind(this)
-
     let splitPath = window.location.pathname.split('/')
     let serviceType = splitPath[1]
     let objectId = splitPath[2]
@@ -28,9 +23,10 @@ class PlaylistPage extends React.Component {
       let playlistData = props.location.state.object
       let tracks = playlistData.tracks
 
-      let listItems = tracks.map((track) =>
-        <PlaylistTrack key={track.spotifyId} props={track}></PlaylistTrack>
-      );
+      let listItems = tracks.map((track) =>{
+        track["stop"] = "true"
+        return (<PlaylistTrack key={track.spotifyId} props={track} action={this.changeAudio}></PlaylistTrack>)
+      });
       this.state = {
         imageState: 'show',
         imageUrl: playlistData.coverImage,
@@ -39,7 +35,9 @@ class PlaylistPage extends React.Component {
         listItems: listItems,
         playlistData: playlistData,
         popupDisplay: 'none',
-        playlistId: objectId
+        playlistId: objectId,
+        audio: new Audio(),
+        tracks: tracks
       }
 
     } else {
@@ -49,7 +47,8 @@ class PlaylistPage extends React.Component {
         title: 'Loading',
         subtitle: '',
         popupDisplay: 'none',
-        playlistId: objectId
+        playlistId: objectId,
+        audio: new Audio(),
       }
 
       let headerData = {
@@ -63,9 +62,10 @@ class PlaylistPage extends React.Component {
           let playlistData = response.data
           let tracks = playlistData.tracks
 
-          let listItems = tracks.map((track) =>
-            <PlaylistTrack key={track.spotifyId} props={track}></PlaylistTrack>
-          );
+          let listItems = tracks.map((track) =>{
+            track["stop"] = "true"
+            return (<PlaylistTrack key={track.spotifyId} props={track} action={this.changeAudio}></PlaylistTrack>)
+          });
           this.setState({
             title: playlistData.name,
             subtitle: playlistData.description,
@@ -75,8 +75,8 @@ class PlaylistPage extends React.Component {
             imageState: 'show',
             listItems: listItems,
             popupDisplay: 'none',
-            playlistId: objectId
-
+            playlistId: objectId,
+            tracks: tracks
           })
           history.push({
             state: {
@@ -93,7 +93,29 @@ class PlaylistPage extends React.Component {
           })
         })
     }
+    this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
+    this.appleBtnTapped = this.appleBtnTapped.bind(this);
+    this.shareBtnTapped = this.shareBtnTapped.bind(this);
+    this.popupClose = this.popupClose.bind(this)
+
+    this.playbackEnded = this.playbackEnded.bind(this);
+    this.state.audio.onended = this.playbackEnded
+
   }
+
+  playbackEnded(){
+    let tracks = this.state.tracks
+    var listItems = tracks.map((track, index) => {
+      track["index"] = index
+      track["stop"] = true
+      return (<PlaylistTrack key={index} props={track} action={this.changeAudio}></PlaylistTrack>)
+    });
+
+    this.setState({
+      listItems: listItems
+    })
+  }
+
 
   spotifyBtnTapped() {
     const stateKey = 'playlistData';
@@ -139,7 +161,48 @@ class PlaylistPage extends React.Component {
     })
   }
 
+  changeAudio = (playbackState, audioSource) => {
+    if (playbackState == "play") {
+      if (audioSource == this.state.audio){
+        this.state.audio.play()
+      } else {
+        let tracks = this.state.tracks
+        var listItems = tracks.map((track, index) => {
+          track["index"] = index
+          if (track["preview"] != audioSource){
+            track["stop"] = true
+          } else {
+            track["stop"] = false
+          }
+          return (<PlaylistTrack key={index} props={track} action={this.changeAudio}></PlaylistTrack>)
+        });
+        this.setState({
+          listItems: listItems,
+        }, ()=>{
+          this.state.audio.src = audioSource
+          setTimeout(()=>{ 
+            this.state.audio.play()
+          }, 50);
+        })
+      }
+      
+    } else if (playbackState == "pause") { 
+        this.state.audio.pause()
+        let tracks = this.state.tracks
+        var listItems = tracks.map((track, index) => {
+          track["index"] = index
+          track["stop"] = true
+          return (<PlaylistTrack key={index} props={track} action={this.changeAudio}></PlaylistTrack>)
+        });
+    
+        this.setState({
+          listItems: listItems
+        })
+    }
+  }
+
   render() {
+
     var imageStyle = style.imgHidden
     var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {

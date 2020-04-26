@@ -21,6 +21,7 @@ class PlaylistTrack extends React.Component {
         this.tapped = this.tapped.bind(this);
         this.hoverBegan = this.hoverBegan.bind(this);
         this.hoverEnded = this.hoverEnded.bind(this);
+        this.stopPlayback = this.stopPlayback.bind(this);
         this.playbackEnded = this.playbackEnded.bind(this);
         this.state.audio.onended = this.playbackEnded
     }
@@ -33,63 +34,116 @@ class PlaylistTrack extends React.Component {
         })
     }
 
+    stopPlayback(){
+        if (this.state.playing) {
+            setTimeout(()=>{ 
+                this.setState({
+                    playing:false
+                })
+            }, 50);
+        }
+    }
+
     tapped(){
         if (!this.state.playing){
-            this.state.audio.play()
+            this.props.action("play", this.props.props.preview)
             this.setState({ 
                 playing: true,
-                playbackIcon: pauseIcon,
-                playbackVisibility: 'visible',
-                playbackStyle: style.plPlaybackImageHover,
             })
+            
         } else {
-            this.state.audio.pause()
+            this.props.action("pause", this.props.props.preview)
             this.setState({ 
                 playing: false,
-                playbackIcon: playIcon,
-                playbackStyle: style.plPlaybackImage,
             })
         }
+
+        // if (!this.state.playing){
+        //     this.state.audio.play()
+        //     this.setState({ 
+        //         playing: true,
+        //         playbackIcon: pauseIcon,
+        //         playbackVisibility: 'visible',
+        //         playbackStyle: style.plPlaybackImageHover,
+        //     })
+        // } else {
+        //     this.state.audio.pause()
+        //     this.setState({ 
+        //         playing: false,
+        //         playbackIcon: playIcon,
+        //         playbackStyle: style.plPlaybackImage,
+        //     })
+        // }
     }
 
     hoverBegan(){
         this.setState({
             isHovered: true,
-            playbackStyle: style.plPlaybackImageHover,
-            playbackVisibility: 'visible',
         })
-        if (!this.state.audio.paused){
-            this.setState({
-                playbackIcon: pauseIcon,
-            })
-        }
+        // this.setState({
+        //     isHovered: true,
+        //     playbackStyle: style.plPlaybackImageHover,
+        //     playbackVisibility: 'visible',
+        // })
+        // if (!this.state.audio.paused){
+        //     this.setState({
+        //         playbackIcon: pauseIcon,
+        //     })
+        // }
     }
 
     hoverEnded(){
         this.setState({
             isHovered: false,
-            playbackStyle: style.plPlaybackImage,
         })
-        if (this.state.audio.paused){
-            this.setState({
-                itemClass: style.albumTrackItem,
-                playbackVisibility: 'hidden',
+        // this.setState({
+        //     isHovered: false,
+        //     playbackStyle: style.plPlaybackImage,
+        // })
+        // if (this.state.audio.paused){
+        //     this.setState({
+        //         itemClass: style.albumTrackItem,
+        //         playbackVisibility: 'hidden',
                 
-            })
-        } else {
-            this.setState({
-                playbackIcon: playingIcon,
-            })
-        }
+        //     })
+        // } else {
+        //     this.setState({
+        //         playbackIcon: playingIcon,
+        //     })
+        // }
     }
 
     render(){
+        var indexVisibility = "visible"
+        var playbackVisibility = "hidden"
+        var playbackIcon = playIcon
+
+        if (this.props.props.stop){
+            if(!this.state.isHovered){
+                indexVisibility = 'visible'
+                playbackVisibility = 'hidden'
+            } else {
+                indexVisibility = 'hidden'
+                playbackVisibility = 'visible'
+            }
+            playbackIcon = playIcon
+            this.stopPlayback()
+        }else {
+            indexVisibility = 'hidden'
+            playbackVisibility = 'visible'
+            if(this.state.isHovered){
+                playbackIcon = pauseIcon
+            } else {
+                playbackIcon = playingIcon
+            }
+        }
+
         return (
             <div>
                 <li className = {style.trackItem} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
                     <span className ={style.playbackContainer} >
                         <img src = {this.state.coverImage} className ={this.state.playbackStyle} ></img>
-                        <img src = {this.state.playbackIcon} className ={style.playbackIcon} style = {{visibility: this.state.playbackVisibility}} ></img>
+                        <img src = {playbackIcon} className ={style.playbackIcon} style = {{visibility: playbackVisibility}} ></img>
                     </span>
                     <span className = {style.trackInfo}>
                         <h3 className={style.trackName}>{this.state.name}</h3>
