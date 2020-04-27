@@ -98,6 +98,12 @@ class AlbumPage extends React.Component {
 
     this.playbackEnded = this.playbackEnded.bind(this);
     this.state.audio.onended = this.playbackEnded
+
+    this.componentWillUnmount = this.componentWillUnmount.bind(this)
+  }
+
+  componentWillUnmount(){
+    this.state.audio.pause()
   }
 
   playbackEnded(){

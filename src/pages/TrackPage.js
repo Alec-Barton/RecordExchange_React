@@ -93,6 +93,12 @@ class TrackPage extends React.Component {
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
     this.popupClose = this.popupClose.bind(this)
+    this.componentWillUnmount = this.componentWillUnmount.bind(this)
+
+  }
+
+  componentWillUnmount(){
+    this.state.audio.pause()
   }
 
   playbackEnded() {
