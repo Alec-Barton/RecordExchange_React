@@ -74,6 +74,7 @@ class AlbumPage extends React.Component {
             album: albumData,
             imageState: 'show',
             listItems: listItems,
+            audio: new Audio(''),
             tracks: tracks
           })
           history.push({
