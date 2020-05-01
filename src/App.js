@@ -11,7 +11,7 @@ import SpotifyCallbackPage from './pages/spotifyCallbackPage.js';
 import style from './pages/css/style.module.css'
 import history from './managers/historyManager.js';
 
-import SoundBar from './soundBar.js'
+import SoundBarsContainer from './soundBarsContainer.js'
 
 class App extends React.Component { 
 
@@ -24,7 +24,7 @@ class App extends React.Component {
     
       <div >
         <Header/>
-        <SoundBar/>
+        <SoundBarsContainer/>
         <Router history = {history}>
           <Switch>
     

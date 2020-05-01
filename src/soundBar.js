@@ -5,6 +5,11 @@ class SoundBar extends React.Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            color: props.props.color,
+            height: props.props.height
+        }
+        console.log(this.state)
     }
 
     render() {
@@ -12,9 +17,9 @@ class SoundBar extends React.Component {
     
         return (
     
-          <div className ={soundBar.barFrame} style ={{height:'400px'}}>
-              <div className ={soundBar.barFill} style = {{backgroundColor: 'red'}}/>
-          </div>
+          <span className ={soundBar.barFrame} style ={{height:this.state.height}}>
+              <span className ={soundBar.barFill} style = {{backgroundColor:this.state.color}}/>
+          </span>
         )
       }
 }

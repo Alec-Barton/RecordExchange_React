@@ -7,20 +7,23 @@ class SoundBarsContainer extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            color: props.props.color,
-            height: props.props.height
-        }
+        
     }
 
     render() {
 
     
         return (
-    
-          <div className ={soundBar.barFrame} style ={{height:'400px'}}>
-              <div className ={soundBar.barFill} style = {{backgroundColor: 'red'}}/>
-          </div>
+            <span className={soundBar.barsContainer}>
+                {/* <soundBar/> */}
+                <SoundBar props = {{'color':'red', 'height': '100px'}}/>
+                <SoundBar props = {{'color':'red', 'height': '400px'}}/>
+                <SoundBar props = {{'color':'red', 'height': '500px'}}/>
+                <SoundBar props = {{'color':'red', 'height': '200px'}}/>
+                <SoundBar props = {{'color':'blue', 'height': '50px'}}/>
+                <SoundBar props = {{'color':'red', 'height': '500px'}}/>
+            </span>
+           
         )
       }
 }

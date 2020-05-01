@@ -1,25 +1,51 @@
 
 @keyframes barAnimation { 
+
     0% { 
+        padding-top: 100%;
         height: 0%;
     } 
     100% { 
+        padding-top: 0%;
         height: 100%;
      } 
 } 
 
+.barsContainer {
+    position: absolute; 
+    bottom: 0;
+    left: 30px; 
+    top: 70px; 
+    width: 500px; 
+}
+
 .barFrame {
     padding-left: 10px;
     padding-right: 10px;
-    /* height: 100px;
-    width: 50px;
-    background-color: aquamarine;
-    animation: barAnimation ease 2000ms;  */
+    
+    display: inline-block;
+    position: relative;
+    left: 5;
+    /* position:absolute;
+    bottom: 0; */
 }
 
 .barFill {
+    /* position:absolute; */
+    position:absolute;
+    left: 5;
+    bottom: 0;
     height: 100%;
     box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
     width: 20px;
     animation: barAnimation ease 2000ms; 
+    display: inline-block;
+}
+
+@media (max-width: 800px) {
+
+    .barFill{
+        background-color: blue;
+        width: 50;
+    }
 }
