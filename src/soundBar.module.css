@@ -12,11 +12,19 @@
 } 
 
 .barsContainer {
-    position: absolute; 
-    bottom: 0;
+    position: fixed;
+    background-color: aquamarine;
+    bottom: 0px;
     left: 30px; 
     top: 70px; 
     width: 500px; 
+}
+
+.barFrameContainer {
+    display: inline-block;
+    position: absolute;
+
+    bottom: 0px;
 }
 
 .barFrame {
@@ -25,15 +33,11 @@
     
     display: inline-block;
     position: relative;
-    left: 5;
-    /* position:absolute;
-    bottom: 0; */
+    bottom: 0px;
 }
 
 .barFill {
-    /* position:absolute; */
     position:absolute;
-    left: 5;
     bottom: 0;
     height: 100%;
     box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
