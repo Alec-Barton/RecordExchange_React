@@ -17,14 +17,30 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    
+    this.state = {
+      color: 'red'
+    }
+    // this.updateColor = this.updateColor.bind(this)
   }
 
+  // updateColor(color) {
+  //   console.log("ok")
+  //   console.log(this.state)
+  //   this.setState({
+  //     color: 'blue'
+  //   })
+  //   console.log(this.state)
+
+  // }
+
   render(){
+    // console.log("reneder")
     return (
     
       <div >
         <Header/>
-        <SoundBarsContainer/>
+        {/* <SoundBarsContainer props = {{color: this.state.color}}/> */}
         <Router history = {history}>
           <Switch>
     
@@ -34,6 +50,8 @@ class App extends React.Component {
     
             <Route path="/spotifyCallback" component = {SpotifyCallbackPage}/>
             <Route path="/" component = {HomePage}/>
+
+            {/* <Route path="/" component = {() => <HomePage colorFunction={this.updateColor} />}/> */}
 
           </Switch>
         </Router>

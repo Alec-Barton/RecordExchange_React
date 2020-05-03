@@ -5,6 +5,9 @@ import { parseUrl } from '../managers/UrlManager.js'
 import history from '../managers/historyManager.js'
 import ProgressBarItem from './components/ProgessBar.js'
 
+import SoundBarsContainer from '../soundBarsContainer.js'
+
+
 const firebase = require("firebase");
 require("firebase/functions");
 
@@ -12,7 +15,7 @@ require("firebase/functions");
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-
+    // console.log(props.colorFunction)
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
@@ -44,6 +47,7 @@ class HomePage extends React.Component {
 
       progress: 0,
 
+      color: "green"
     };
   }
 
@@ -121,7 +125,7 @@ class HomePage extends React.Component {
         loadingBarState: 'Unable to convert Music',
         inputBarState: 'something went wrong and your music could not be converted',
         shareButtonState: 'hidden'
-  
+
       })
       this.stop()
       console.log(error)
@@ -175,8 +179,8 @@ class HomePage extends React.Component {
                 imageUrl: response.data.coverImage,
                 track: response.data,
                 imageState: 'visibleHome',
-                shareButtonState: 'visible'
-
+                shareButtonState: 'visible',
+                color: response.data.color
               })
             }
             else if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'album') {
@@ -282,19 +286,23 @@ class HomePage extends React.Component {
     }
 
     return (
+      <span>
+        <SoundBarsContainer props={{"color":this.state.color}}/>
 
-      <div className={style.main}>
-        <img src={this.state.imageUrl} className={imageStyle} />
-        <pre><h1 className={style.title}>{this.state.title}</h1></pre>
-        <h2 className={style.subtitlePadded}>{this.state.subtitle}</h2>
+        <div className={style.main}>
+          <img src={this.state.imageUrl} className={imageStyle} />
+          <pre><h1 className={style.title}>{this.state.title}</h1></pre>
+          <h2 className={style.subtitlePadded}>{this.state.subtitle}</h2>
 
-        <form className={inputBarStyle} onSubmit={this.handleSubmit}>
-          <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange}/>
-        </form>
+          <form className={inputBarStyle} onSubmit={this.handleSubmit}>
+            <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />
+          </form>
 
-        <button className={shareButtonStyle} onClick={this.shareBtnTapped}>Share</button>
-        <ProgressBarItem percentage={this.state.progress} color={'#fc0330'} visibility={this.state.loadingBarState} />
-      </div>
+          <button className={shareButtonStyle} onClick={this.shareBtnTapped}>Share</button>
+          <ProgressBarItem percentage={this.state.progress} color={'#fc0330'} visibility={this.state.loadingBarState} />
+        </div>
+      </span>
+
     )
   }
 }
