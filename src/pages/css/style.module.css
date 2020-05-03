@@ -6,6 +6,7 @@ html {
 
 body {
     background: #fafafa;
+    overflow-x: hidden;
 }
 
 audio {
@@ -76,6 +77,22 @@ audio {
 .main{
     width: 40%;
     margin: auto;
+    max-width:750px;
+    position: relative;
+}
+
+.mainBackground {
+    background-color: #fafafa;
+    display: inline-block;
+    position: absolute;
+    top: 10;
+    left: 0; 
+    opacity: 0.85;
+    z-index:-1; 
+    width: 100%;
+    height: 750px;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
 }
 
 img {
@@ -698,6 +715,7 @@ ul {
     }
     .main{
         width: 45%;
+        max-width: 750px;
     }
 }
 
@@ -708,6 +726,7 @@ ul {
     }
     .main{
         width: 55%;
+        max-width: 750px;
     }
 }
 
@@ -718,6 +737,7 @@ ul {
     }
     .main{
         width: 60%;
+        max-width: 750px;
     }
 }
 
@@ -728,6 +748,7 @@ ul {
     }
     .main{
         width: 75%;
+        max-width: 750px;
     }
 }
 
@@ -738,6 +759,7 @@ ul {
     }
     .main{
         width: 90%;
+        max-width: 750px;
     }
 }
 

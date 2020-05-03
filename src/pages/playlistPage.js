@@ -219,6 +219,8 @@ class PlaylistPage extends React.Component {
     return (
       <div>
         <div className={style.main}>
+          <span className = {style.mainBackground}/>
+
           <img src={this.state.imageUrl} className={imageStyle} />
           <h1 className={style.title}>{this.state.title}</h1>
           <h2 className={style.subtitle}>{this.state.subtitle}</h2>
@@ -229,6 +231,8 @@ class PlaylistPage extends React.Component {
             <input type="image" onClick={this.shareBtnTapped} src={shareLogo} className={style.shrButton}/>    
           </div>
           <ul className={style.myUl}> {this.state.listItems} </ul>
+          {/* </span> */}
+
         </div>
       </div>
     );
