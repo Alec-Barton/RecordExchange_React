@@ -22,7 +22,6 @@
     overflow: hidden;
     width: 50%;
     z-index: -1;
-    /* background-color: crimson; */
 }
 .rightBarsContainer {
     bottom: 0;
@@ -34,7 +33,6 @@
     overflow: hidden;
     width: 50%;
     z-index: -2;
-    /* background-color: darkmagenta; */
 }
 
 .barFrameContainer {
@@ -58,14 +56,24 @@
     position:absolute;
     bottom: 0;
     height: 100%;
-    /* //(95,158,160) */
     box-shadow: 10px 10px 5px 5px rgba(155, 218, 220, 0.8);
-    /* clip-path: inset(-20px -20px 0px -20px); */
     overflow-y: hidden;
     width: 20px;
     animation: barAnimation ease 2000ms; 
     display: inline-block;
     background-color: rgba(95, 158, 160, 1.0);
+}
+
+.barEmpty {
+    position:absolute;
+    bottom: 0;
+    height: 0%;
+    /* box-shadow: 10px 10px 5px 5px rgba(155, 218, 220, 0.8); */
+    /* overflow-y: hidden; */
+    width: 20px;
+    /* animation: barAnimation ease 2000ms;  */
+    display: inline-block;
+    /* background-color: rgba(95, 158, 160, 1.0); */
 }
 
 /* @media (max-width: 800px) {

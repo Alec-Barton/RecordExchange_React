@@ -15,7 +15,7 @@ require("firebase/functions");
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-    // console.log(props.colorFunction)
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
@@ -47,7 +47,8 @@ class HomePage extends React.Component {
 
       progress: 0,
 
-      color: "green"
+      color: "green", 
+      barVisibility: "hidden"
     };
   }
 
@@ -180,7 +181,8 @@ class HomePage extends React.Component {
                 track: response.data,
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
-                color: response.data.color
+                color: response.data.color,
+                barVisibility: 'visible'
               })
             }
             else if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'album') {
@@ -190,8 +192,8 @@ class HomePage extends React.Component {
                 imageUrl: response.data.coverImage,
                 playlist: response.data,
                 imageState: 'visibleHome',
-                shareButtonState: 'visible'
-
+                shareButtonState: 'visible',
+                color: response.data.color
               })
             }
             else if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'playlist') {
@@ -201,7 +203,8 @@ class HomePage extends React.Component {
                 imageUrl: response.data.coverImage,
                 playlist: response.data,
                 imageState: 'visibleHome',
-                shareButtonState: 'visible'
+                shareButtonState: 'visible',
+                color: response.data.color
 
               })
             }
@@ -215,8 +218,8 @@ class HomePage extends React.Component {
                 imageUrl: response.data.coverImage,
                 track: response.data,
                 imageState: 'visibleHome',
-                shareButtonState: 'visible'
-
+                shareButtonState: 'visible',
+                color: response.data.color
               })
             }
             else if (parsedUrl.serviceType == 'apple' && parsedUrl.objectType == 'album') {
@@ -226,8 +229,8 @@ class HomePage extends React.Component {
                 imageUrl: response.data.coverImage,
                 playlist: response.data,
                 imageState: 'visibleHome',
-                shareButtonState: 'visible'
-
+                shareButtonState: 'visible',
+                color: response.data.color
               })
             }
             else if (parsedUrl.serviceType == 'apple' && (parsedUrl.objectType == 'playlist' || parsedUrl.objectType == 'catalogPlaylist')) {
@@ -237,7 +240,8 @@ class HomePage extends React.Component {
                 imageUrl: response.data.coverImage,
                 playlist: response.data,
                 imageState: 'visibleHome',
-                shareButtonState: 'visible'
+                shareButtonState: 'visible',
+                color: response.data.color
               })
             }
           })
@@ -285,9 +289,11 @@ class HomePage extends React.Component {
       inputBarStyle = style.hidden
     }
 
+    // console.log(this.state.barVisibility)
+
     return (
       <span>
-        <SoundBarsContainer props={{"color":this.state.color}}/>
+        <SoundBarsContainer props={{"color":this.state.color, "visibility":this.state.barVisibility}}/>
 
         <div className={style.main}>
           <img src={this.state.imageUrl} className={imageStyle} />

@@ -71,7 +71,7 @@ class SoundBarsContainer extends React.Component {
         var rightbarArray = []
         for (let i = 0; i < 30; i++) {
             let data = {
-                'color': 'cadetBlue',
+                'color': this.props.props.color,
                 'height': String(this.state.rightHeights[i]).concat('px'),
                 'x': String((i * 35)-10).concat('px'),
                 'side':'right'
@@ -83,9 +83,10 @@ class SoundBarsContainer extends React.Component {
             return (<SoundBar key={index} props={data}></SoundBar>)
         });
 
+        console.log(this.props.visibility)
         return (
             <span>
-                <span className={soundBar.leftBarsContainer}>
+                <span className={soundBar.leftBarsContainer} style={{"visibility": this.props.props.visibility}}>
                     {leftBars}
                 </span>
                 <span className={soundBar.rightBarsContainer}>
