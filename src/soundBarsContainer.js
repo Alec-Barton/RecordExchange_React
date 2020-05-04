@@ -57,9 +57,11 @@ class SoundBarsContainer extends React.Component {
         for (let i = 0; i < 30; i++) {
             let data = {
                 'color': this.props.props.color,
+                'shadowColor': this.props.props.shadowColor,
                 'height': String(this.state.rightHeights[i]).concat('px'),
                 'x': String((i * 35)).concat('px'),
-                'side':'left'
+                'side':'left',
+                'visibility': this.props.props.visibility,
             }
             leftbarArray.push(data)
         }
@@ -72,9 +74,11 @@ class SoundBarsContainer extends React.Component {
         for (let i = 0; i < 30; i++) {
             let data = {
                 'color': this.props.props.color,
+                'shadowColor': this.props.props.shadowColor,
                 'height': String(this.state.rightHeights[i]).concat('px'),
                 'x': String((i * 35)-10).concat('px'),
-                'side':'right'
+                'side':'right', 
+                'visibility': this.props.props.visibility,
             }
             rightbarArray.push(data)
         }

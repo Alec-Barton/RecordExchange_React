@@ -6,6 +6,7 @@ import history from '../managers/historyManager.js'
 import ProgressBarItem from './components/ProgessBar.js'
 
 import SoundBarsContainer from '../soundBarsContainer.js'
+import darkenHex from '../managers/colorManager.js'
 
 
 const firebase = require("firebase");
@@ -146,7 +147,8 @@ class HomePage extends React.Component {
         imageUrl: '',
         inputValue: '',
         imageState: 'hidden',
-        shareButtonState: 'hidden'
+        shareButtonState: 'hidden',
+        barVisibility: 'hide'
       })
     }
     else {
@@ -174,6 +176,7 @@ class HomePage extends React.Component {
           .then((response) => {
             if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'track') {
               let subtitle = response.data.artist.concat('  ●  ', response.data.album)
+              let shadow = darkenHex(response.data.color, 50)
               this.setState({
                 title: response.data.name,
                 subtitle: subtitle,
@@ -182,7 +185,8 @@ class HomePage extends React.Component {
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
                 color: response.data.color,
-                barVisibility: 'visible'
+                shadowColor: shadow,
+                barVisibility: 'visible',
               })
             }
             else if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'album') {
@@ -293,7 +297,7 @@ class HomePage extends React.Component {
 
     return (
       <span>
-        <SoundBarsContainer props={{"color":this.state.color, "visibility":this.state.barVisibility}}/>
+        <SoundBarsContainer props={{"color":this.state.color, "shadowColor":this.state.shadowColor, "visibility":this.state.barVisibility}}/>
 
         <div className={style.main}>
           <img src={this.state.imageUrl} className={imageStyle} />
