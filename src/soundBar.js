@@ -12,7 +12,6 @@ class SoundBar extends React.Component {
             x: props.props.x, 
             side: props.props.side
         }
-        // console.log(this.state)
     }
 
     render() {
@@ -22,9 +21,13 @@ class SoundBar extends React.Component {
         } else if (this.props.props.visibility == 'hide'){
             fillClass = soundBar.barHide
         }
+
+        var zIndex = (this.props.props.index * -1)
+
         var containerStyle = {
             height: this.state.height, 
-            left: this.state.x 
+            left: this.state.x,
+            zIndex : zIndex
         }
         if (this.state.side == 'left'){
             containerStyle = {
@@ -34,12 +37,12 @@ class SoundBar extends React.Component {
         }
 
         console.log(this.props.props.shadowColor)
-        let shadowStyle = '10px 11px 5px 5px '.concat(this.props.props.shadowColor).concat('CC')
+        let shadowStyle = '14px 10px 5px 5px '.concat(this.props.props.shadowColor).concat('AA')
 
         return (
             <span className = {soundBar.barFrameContainer} style={containerStyle}>
                 <span className={soundBar.barFrame} style={{ height: this.state.height}}>
-                    <span className={fillClass} style={{ backgroundColor: this.props.props.color, boxShadow: shadowStyle}} />
+                    <span className={fillClass} style={{ backgroundColor: this.props.props.color, boxShadow: shadowStyle, zIndex: zIndex}} />
                 </span>
             </span>
 

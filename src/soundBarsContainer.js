@@ -15,40 +15,6 @@ class SoundBarsContainer extends React.Component {
             leftHeights: leftHeightArray,
             rightHeights: rightHeightArray
         }
-        // var leftbarArray = []
-        // for (let i = 0; i < 30; i++) {
-        //     let data = {
-        //         'color': 'cadetBlue',
-        //         'height': String(rightHeightArray[i]).concat('px'),
-        //         'x': String((i * 35)).concat('px'),
-        //         'side':'left'
-        //     }
-        //     leftbarArray.push(data)
-        // }
-
-        // let leftBars = leftbarArray.map((data, index) => {
-        //     return (<SoundBar key={index} props={data}></SoundBar>)
-        // });
-
-        // var rightbarArray = []
-        // for (let i = 0; i < 30; i++) {
-        //     let data = {
-        //         'color': 'cadetBlue',
-        //         'height': String(rightHeightArray[i]).concat('px'),
-        //         'x': String((i * 35)-10).concat('px'),
-        //         'side':'right'
-        //     }
-        //     rightbarArray.push(data)
-        // }
-
-        // let rightBars = rightbarArray.map((data, index) => {
-        //     return (<SoundBar key={index} props={data}></SoundBar>)
-        // });
-
-        // this.state = {
-        //     leftBars: leftBars,
-        //     rightBars: rightBars
-        // }
 
     }
 
@@ -62,6 +28,7 @@ class SoundBarsContainer extends React.Component {
                 'x': String((i * 35)).concat('px'),
                 'side':'left',
                 'visibility': this.props.props.visibility,
+                'index': (i+1)
             }
             leftbarArray.push(data)
         }
@@ -79,6 +46,7 @@ class SoundBarsContainer extends React.Component {
                 'x': String((i * 35)-10).concat('px'),
                 'side':'right', 
                 'visibility': this.props.props.visibility,
+                'index': 1
             }
             rightbarArray.push(data)
         }
@@ -87,13 +55,12 @@ class SoundBarsContainer extends React.Component {
             return (<SoundBar key={index} props={data}></SoundBar>)
         });
 
-        console.log(this.props.visibility)
         return (
             <span>
                 <span className={soundBar.leftBarsContainer} style={{"visibility": this.props.props.visibility}}>
                     {leftBars}
                 </span>
-                <span className={soundBar.rightBarsContainer}>
+                <span className={soundBar.rightBarsContainer} style={{"visibility": this.props.props.visibility}}>
                     {rightBars}
                 </span>
             </span>

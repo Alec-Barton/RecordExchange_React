@@ -6,7 +6,7 @@ import history from '../managers/historyManager.js'
 import ProgressBarItem from './components/ProgessBar.js'
 
 import SoundBarsContainer from '../soundBarsContainer.js'
-import darkenHex from '../managers/colorManager.js'
+import hexBrightnessPercentage from '../managers/colorManager.js'
 
 
 const firebase = require("firebase");
@@ -48,7 +48,7 @@ class HomePage extends React.Component {
 
       progress: 0,
 
-      color: "green", 
+      color: "white", 
       barVisibility: "hidden"
     };
   }
@@ -174,9 +174,11 @@ class HomePage extends React.Component {
         }
         axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getPreview', headerData)
           .then((response) => {
+            let shadow = hexBrightnessPercentage(response.data.color, 0.25)
+            console.log(shadow)
+
             if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'track') {
               let subtitle = response.data.artist.concat('  ●  ', response.data.album)
-              let shadow = darkenHex(response.data.color, 50)
               this.setState({
                 title: response.data.name,
                 subtitle: subtitle,
@@ -197,7 +199,9 @@ class HomePage extends React.Component {
                 playlist: response.data,
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
-                color: response.data.color
+                color: response.data.color,
+                shadowColor: shadow,
+                barVisibility: 'visible',
               })
             }
             else if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'playlist') {
@@ -208,7 +212,9 @@ class HomePage extends React.Component {
                 playlist: response.data,
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
-                color: response.data.color
+                color: response.data.color,
+                shadowColor: shadow,
+                barVisibility: 'visible',
 
               })
             }
@@ -223,7 +229,9 @@ class HomePage extends React.Component {
                 track: response.data,
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
-                color: response.data.color
+                color: response.data.color,
+                shadowColor: shadow,
+                barVisibility: 'visible',
               })
             }
             else if (parsedUrl.serviceType == 'apple' && parsedUrl.objectType == 'album') {
@@ -234,7 +242,9 @@ class HomePage extends React.Component {
                 playlist: response.data,
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
-                color: response.data.color
+                color: response.data.color,
+                shadowColor: shadow,
+                barVisibility: 'visible',
               })
             }
             else if (parsedUrl.serviceType == 'apple' && (parsedUrl.objectType == 'playlist' || parsedUrl.objectType == 'catalogPlaylist')) {
@@ -245,7 +255,9 @@ class HomePage extends React.Component {
                 playlist: response.data,
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
-                color: response.data.color
+                color: response.data.color,
+                shadowColor: shadow,
+                barVisibility: 'visible',
               })
             }
           })
