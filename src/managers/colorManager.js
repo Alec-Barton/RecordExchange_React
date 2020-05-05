@@ -4,6 +4,10 @@ function hexBrightnessPercentage (hex, percent){
     var num = parseInt(hex,16);
     var baseLine = 0 
 
+    //get highest of R, G, B
+    //calc increment to add based on highest
+    //apply equal amount to all three
+
     if (percent > 0) {
         baseLine = 255
     } else if (percent < 0){
@@ -14,6 +18,7 @@ function hexBrightnessPercentage (hex, percent){
 
     console.log(percent)
     var r = (num >> 16) + (Math.abs(baseLine - (num >> 16)) * percent)
+    
     if (r > 255) {
         r = 255
     }
@@ -34,7 +39,8 @@ function hexBrightnessPercentage (hex, percent){
     else if (g < 0) {
         g = 0
     }
- 
+    console.log((num >> 16), ((num >> 8) & 0x00FF), (num & 0x0000FF))
+    console.log(r, g, b)
     return ('#') + (g | (b << 8) | (r << 16)).toString(16);
 }
 

@@ -26,9 +26,10 @@ class TrackPage extends React.Component {
 
     if (props.location.state != undefined) {
       let trackData = props.location.state.object
+      console.log(trackData)
+
       let shadow = hexBrightnessPercentage(trackData.color, 0.25)
 
-      console.log(trackData)
       this.state = {
         imageState: 'show',
         imageUrl: trackData.coverImage,
@@ -67,7 +68,7 @@ class TrackPage extends React.Component {
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchTrack', headerData)
         .then((response) => {
           let trackData = response.data
-
+          console.log(trackData)
           let shadow = hexBrightnessPercentage(trackData.color, 0.25)
 
           this.setState({
@@ -100,7 +101,7 @@ class TrackPage extends React.Component {
             subtitle: '',
             imageState: 'hidden',
           })
-          
+
           if (this.state.barVisibility == 'visible'){
             this.setState({
               barVisibility: "hide"

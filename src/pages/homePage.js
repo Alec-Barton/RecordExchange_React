@@ -110,6 +110,7 @@ class HomePage extends React.Component {
         path = '/album/'.concat(response.data.id)
       }
 
+      console.log(response.data)
 
       this.stop()
       setTimeout(() => {
@@ -178,7 +179,7 @@ class HomePage extends React.Component {
         axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getPreview', headerData)
           .then((response) => {
             let shadow = hexBrightnessPercentage(response.data.color, 0.25)
-            console.log(shadow)
+            // console.log("ssss", response.data.color, shadow)
 
             if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'track') {
               let subtitle = response.data.artist.concat('  ●  ', response.data.album)
