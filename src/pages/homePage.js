@@ -126,7 +126,9 @@ class HomePage extends React.Component {
       this.setState({
         loadingBarState: 'Unable to convert Music',
         inputBarState: 'something went wrong and your music could not be converted',
-        shareButtonState: 'hidden'
+        shareButtonState: 'hidden',
+
+        barVisibility: "hide"
 
       })
       this.stop()
@@ -164,7 +166,8 @@ class HomePage extends React.Component {
           serviceType: parsedUrl.serviceType,
           objectType: parsedUrl.objectType,
           objectId: parsedUrl.id,
-          shareButtonState: 'hidden'
+          shareButtonState: 'hidden',
+          barVisibility: 'hide',
         })
 
         let headerData = {
@@ -268,6 +271,16 @@ class HomePage extends React.Component {
               imageState: 'hidden',
               shareButtonState: 'hidden'
             })
+
+            if (this.state.barVisibility == 'visible'){
+              this.setState({
+                barVisibility: "hide"
+              })
+            } else {
+              this.setState({
+                barVisibility: "hidden"
+              })
+            }
           })
 
       } else {
@@ -277,6 +290,15 @@ class HomePage extends React.Component {
           imageState: 'hidden',
           shareButtonState: 'hidden'
         })
+        if (this.state.barVisibility == 'visible'){
+          this.setState({
+            barVisibility: "hide"
+          })
+        } else {
+          this.setState({
+            barVisibility: "hidden"
+          })
+        }
       }
 
     }

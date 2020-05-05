@@ -11,6 +11,9 @@ import loadingGif from './assets/loading.gif'
 import SharePopup from './components/sharePopup'
 import history from '../managers/historyManager.js'
 
+import SoundBarsContainer from '../soundBarsContainer.js'
+import hexBrightnessPercentage from '../managers/colorManager.js'
+
 
 class TrackPage extends React.Component {
   constructor(props) {
@@ -97,7 +100,7 @@ class TrackPage extends React.Component {
 
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.state.audio.pause()
   }
 
@@ -202,22 +205,24 @@ class TrackPage extends React.Component {
     }
 
     return (
-      <div className={style.main}>
+      <span>
+        <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
+        <div className={style.main}>
 
-        <span className={style.trackCoverContainer} onClick={this.playbackTapped} onMouseEnter={this.hoverBegan} onMouseLeave={this.hoverEnded}>
-          <img src={this.state.imageUrl} className={imageStyle} ></img>
-          <img src={this.state.playbackIcon} className={style.trackCoverIcon} style={{ visibility: this.state.playbackVisibility }} ></img>
-        </span>
-        <h1 className={style.title}>{this.state.title}</h1>
-        <pre><h2 className={style.subtitlePadded}>{this.state.subtitle}</h2></pre>
-        <SharePopup url={"www.recordexchange.app/track/".concat(this.state.trackId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
-        <div className={containerStyle}>
-          <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
-          <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
-          <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped}/>
+          <span className={style.trackCoverContainer} onClick={this.playbackTapped} onMouseEnter={this.hoverBegan} onMouseLeave={this.hoverEnded}>
+            <img src={this.state.imageUrl} className={imageStyle} ></img>
+            <img src={this.state.playbackIcon} className={style.trackCoverIcon} style={{ visibility: this.state.playbackVisibility }} ></img>
+          </span>
+          <h1 className={style.title}>{this.state.title}</h1>
+          <pre><h2 className={style.subtitlePadded}>{this.state.subtitle}</h2></pre>
+          <SharePopup url={"www.recordexchange.app/track/".concat(this.state.trackId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
+          <div className={containerStyle}>
+            <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
+            <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
+            <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped} />
+          </div>
         </div>
-
-      </div>
+      </span>
     );
   }
 }

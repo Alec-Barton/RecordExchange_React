@@ -100,8 +100,18 @@
     height: 0%;
     width: 20px;
     display: inline-block;
-    /* box-shadow: 10px 10px 5px 5px rgba(155, 218, 220, 0.8); */
     animation: barHideAnimation ease 2000ms; 
+}
+
+.barShown {
+    position:absolute;
+    bottom: 0;
+    height: 100%;
+    overflow-y: hidden;
+    width: 20px;
+    /* animation: barAnimation ease 2000ms;  */
+    display: inline-block;
+    background-color: rgba(95, 158, 160, 1.0);
 }
 
 /* @media (max-width: 800px) {
