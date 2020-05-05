@@ -26,7 +26,7 @@ class TrackPage extends React.Component {
 
     if (props.location.state != undefined) {
       let trackData = props.location.state.object
-
+      console.log(trackData)
       this.state = {
         imageState: 'show',
         imageUrl: trackData.coverImage,
@@ -39,6 +39,8 @@ class TrackPage extends React.Component {
         appleLink: trackData.appleLink,
         trackId: objectId,
         popupDisplay: 'none',
+        color: trackData.color, 
+        barVisibility: 'shown'
       }
 
     } else {
