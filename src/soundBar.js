@@ -18,7 +18,9 @@ class SoundBar extends React.Component {
         var fillClass = soundBar.barEmpty
         if (this.props.props.visibility == 'visible'){
             fillClass = soundBar.barFill
-        } else if (this.props.props.visibility == 'hide'){
+        } else if (this.props.props.visibility == 'shown'){
+            fillClass = soundBar.barShown
+        }else if (this.props.props.visibility == 'hide'){
             fillClass = soundBar.barHide
         }
 

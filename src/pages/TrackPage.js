@@ -26,6 +26,8 @@ class TrackPage extends React.Component {
 
     if (props.location.state != undefined) {
       let trackData = props.location.state.object
+      let shadow = hexBrightnessPercentage(trackData.color, 0.25)
+
       console.log(trackData)
       this.state = {
         imageState: 'show',
@@ -40,6 +42,7 @@ class TrackPage extends React.Component {
         trackId: objectId,
         popupDisplay: 'none',
         color: trackData.color, 
+        shadowColor: shadow,
         barVisibility: 'shown'
       }
 
