@@ -56,6 +56,8 @@ class TrackPage extends React.Component {
         playbackVisibility: "hidden",
         trackId: objectId,
         popupDisplay: 'none',
+        color: 'white', 
+        barVisibility: 'hidden'
       }
 
       let headerData = {
@@ -65,6 +67,8 @@ class TrackPage extends React.Component {
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchTrack', headerData)
         .then((response) => {
           let trackData = response.data
+
+          let shadow = hexBrightnessPercentage(trackData.color, 0.25)
 
           this.setState({
             title: trackData.name,
@@ -76,7 +80,12 @@ class TrackPage extends React.Component {
             playbackIcon: playIcon,
             audio: new Audio(trackData.preview),
             spotifyId: trackData.spotifyId,
-            appleLink: trackData.appleLink
+            appleLink: trackData.appleLink,
+
+            color: trackData.color, 
+            shadowColor: shadow,
+            barVisibility: 'visible'
+
           })
           history.push({
             state: {
@@ -91,6 +100,16 @@ class TrackPage extends React.Component {
             subtitle: '',
             imageState: 'hidden',
           })
+          
+          if (this.state.barVisibility == 'visible'){
+            this.setState({
+              barVisibility: "hide"
+            })
+          } else {
+            this.setState({
+              barVisibility: "hidden"
+            })
+          }
         })
     }
     this.playbackTapped = this.playbackTapped.bind(this);
