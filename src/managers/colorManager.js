@@ -4,10 +4,12 @@ function hexBrightnessPercentage (hex, percent){
     var num = parseInt(hex,16);
     var baseLine = 0 
 
-    //get highest of R, G, B
-    //calc increment to add based on highest
-    //apply equal amount to all three
-
+    let rHex = (num >> 16)
+    let bHex = ((num >> 8) & 0x00FF)
+    let gHex = (num & 0x0000FF)
+    console.log(rHex)
+    let highestColor = Math.max(rHex, bHex, gHex)
+    console.log(highestColor)
     if (percent > 0) {
         baseLine = 255
     } else if (percent < 0){
@@ -16,30 +18,32 @@ function hexBrightnessPercentage (hex, percent){
         return hex
     }
 
+    let changeAmount = (Math.abs(baseLine - highestColor) * percent)
+    console.log(changeAmount)
     console.log(percent)
-    var r = (num >> 16) + (Math.abs(baseLine - (num >> 16)) * percent)
-    
+
+    var r = rHex + changeAmount
     if (r > 255) {
         r = 255
     }
     else if  (r < 0) {
         r = 0
     }
-    var b = ((num >> 8) & 0x00FF) + (Math.abs(baseLine - ((num >> 8) & 0x00FF)) * percent)
+    var b = bHex + changeAmount
     if (b > 255) {
         b = 255
     }
     else if  (b < 0) {
         b = 0
     }
-    var g = (num & 0x0000FF) + (Math.abs(baseLine - (num & 0x0000FF) * percent))
+    var g = gHex + changeAmount
     if (g > 255) {
         g = 255
     }
     else if (g < 0) {
         g = 0
     }
-    console.log((num >> 16), ((num >> 8) & 0x00FF), (num & 0x0000FF))
+    console.log(rHex, gHex, bHex)
     console.log(r, g, b)
     return ('#') + (g | (b << 8) | (r << 16)).toString(16);
 }
