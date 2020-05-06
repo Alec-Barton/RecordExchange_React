@@ -9,6 +9,8 @@ import spotifyLogo from './assets/spotify.png'
 import shareLogo from './assets/shareLogo.png'
 import loadingGif from './assets/loading.gif'
 import history from '../managers/historyManager.js'
+import SoundBarsContainer from '../soundBarsContainer.js'
+import hexBrightnessPercentage from '../managers/colorManager.js'
 
 class PlaylistPage extends React.Component {
 
@@ -18,9 +20,11 @@ class PlaylistPage extends React.Component {
     let splitPath = window.location.pathname.split('/')
     let serviceType = splitPath[1]
     let objectId = splitPath[2]
+    
 
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
+      let shadow = hexBrightnessPercentage(playlistData.color, 0.25)
       let tracks = playlistData.tracks
 
       let listItems = tracks.map((track) =>{
@@ -37,7 +41,10 @@ class PlaylistPage extends React.Component {
         popupDisplay: 'none',
         playlistId: objectId,
         audio: new Audio(),
-        tracks: tracks
+        tracks: tracks,
+        color: playlistData.color, 
+        shadowColor: shadow,
+        barVisibility: 'shown'
       }
 
     } else {
@@ -49,6 +56,8 @@ class PlaylistPage extends React.Component {
         popupDisplay: 'none',
         playlistId: objectId,
         audio: new Audio(),
+        color: 'white', 
+        barVisibility: 'hidden',
       }
 
       let headerData = {
@@ -61,6 +70,7 @@ class PlaylistPage extends React.Component {
 
           let playlistData = response.data
           let tracks = playlistData.tracks
+          let shadow = hexBrightnessPercentage(playlistData.color, 0.25)
 
           let listItems = tracks.map((track) =>{
             track["stop"] = "true"
@@ -76,7 +86,10 @@ class PlaylistPage extends React.Component {
             listItems: listItems,
             popupDisplay: 'none',
             playlistId: objectId,
-            tracks: tracks
+            tracks: tracks,
+            color: playlistData.color, 
+            shadowColor: shadow,
+            barVisibility: 'visible'
           })
           history.push({
             state: {
@@ -91,6 +104,15 @@ class PlaylistPage extends React.Component {
             subtitle: '',
             imageState: 'hidden',
           })
+          if (this.state.barVisibility == 'visible'){
+            this.setState({
+              barVisibility: "hide"
+            })
+          } else {
+            this.setState({
+              barVisibility: "hidden"
+            })
+          }
         })
     }
     this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);

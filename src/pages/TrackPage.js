@@ -10,7 +10,6 @@ import playingIcon from './assets/playing.png'
 import loadingGif from './assets/loading.gif'
 import SharePopup from './components/sharePopup'
 import history from '../managers/historyManager.js'
-
 import SoundBarsContainer from '../soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
 
@@ -26,7 +25,6 @@ class TrackPage extends React.Component {
 
     if (props.location.state != undefined) {
       let trackData = props.location.state.object
-      console.log(trackData)
 
       let shadow = hexBrightnessPercentage(trackData.color, 0.25)
 

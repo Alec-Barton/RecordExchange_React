@@ -4,10 +4,8 @@ import style from './css/style.module.css'
 import { parseUrl } from '../managers/UrlManager.js'
 import history from '../managers/historyManager.js'
 import ProgressBarItem from './components/ProgessBar.js'
-
 import SoundBarsContainer from '../soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
-
 
 const firebase = require("firebase");
 require("firebase/functions");
