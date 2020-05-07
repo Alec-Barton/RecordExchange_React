@@ -89,7 +89,8 @@ class PlaylistPage extends React.Component {
             tracks: tracks,
             color: playlistData.color, 
             shadowColor: shadow,
-            barVisibility: 'visible'
+            barVisibility: 'visible',
+            
           })
           history.push({
             state: {
@@ -239,6 +240,8 @@ class PlaylistPage extends React.Component {
       containerStyle = style.btnContainer
     }
     return (
+      <span>
+        <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
       <div>
         <div className={style.main}>
           <span className = {style.mainBackground}/>
@@ -257,6 +260,8 @@ class PlaylistPage extends React.Component {
 
         </div>
       </div>
+      </span>
+      
     );
   }
 }

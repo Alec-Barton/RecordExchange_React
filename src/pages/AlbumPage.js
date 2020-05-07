@@ -8,6 +8,8 @@ import shareLogo from './assets/shareLogo.png'
 import SharePopup from './components/sharePopup'
 import loadingGif from './assets/loading.gif'
 import history from '../managers/historyManager.js'
+import SoundBarsContainer from '../soundBarsContainer.js'
+import hexBrightnessPercentage from '../managers/colorManager.js'
 
 class AlbumPage extends React.Component {
   constructor(props) {
@@ -19,13 +21,14 @@ class AlbumPage extends React.Component {
 
     if (props.location.state != undefined) {
       let albumData = props.location.state.object
+      let shadow = hexBrightnessPercentage(albumData.color, 0.25)
       let tracks = albumData.tracks
       var listItems = tracks.map((track, index) => {
         track["index"] = index
         track["stop"] = "true"
         return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
-
+      console.log(albumData.color)
       this.state = {
         imageState: 'show',
         imageUrl: albumData.coverImage,
@@ -37,7 +40,10 @@ class AlbumPage extends React.Component {
         albumId: objectId,
         popupDisplay: 'none',
         audio: new Audio(''),
-        tracks: tracks
+        tracks: tracks,
+        color: albumData.color,
+        shadowColor: shadow,
+        barVisibility: 'shown'
       }
 
 
@@ -61,6 +67,7 @@ class AlbumPage extends React.Component {
         .then((response) => {
           let albumData = response.data
           let tracks = albumData.tracks
+          let shadow = hexBrightnessPercentage(albumData.color, 0.25)
           let listItems = tracks.map((track, index) => {
             track["index"] = index
             track["stop"] = "true"
@@ -75,7 +82,10 @@ class AlbumPage extends React.Component {
             imageState: 'show',
             listItems: listItems,
             audio: new Audio(''),
-            tracks: tracks
+            tracks: tracks,
+            color: albumData.color,
+            shadowColor: shadow,
+            barVisibility: 'visible'
           })
           history.push({
             state: {
@@ -90,6 +100,15 @@ class AlbumPage extends React.Component {
             subtitle: '',
             imageState: 'hidden',
           })
+          if (this.state.barVisibility == 'visible') {
+            this.setState({
+              barVisibility: "hide"
+            })
+          } else {
+            this.setState({
+              barVisibility: "hidden"
+            })
+          }
         })
     }
     this.spotifyBtnTapped = this.spotifyBtnTapped.bind(this);
@@ -103,11 +122,11 @@ class AlbumPage extends React.Component {
     this.componentWillUnmount = this.componentWillUnmount.bind(this)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.state.audio.pause()
   }
 
-  playbackEnded(){
+  playbackEnded() {
     let tracks = this.state.tracks
     var listItems = tracks.map((track, index) => {
       track["index"] = index
@@ -142,13 +161,13 @@ class AlbumPage extends React.Component {
 
   changeAudio = (playbackState, audioSource) => {
     if (playbackState == "play") {
-      if (audioSource == this.state.audio){
+      if (audioSource == this.state.audio) {
         this.state.audio.play()
       } else {
         let tracks = this.state.tracks
         var listItems = tracks.map((track, index) => {
           track["index"] = index
-          if (track["preview"] != audioSource){
+          if (track["preview"] != audioSource) {
             track["stop"] = true
           } else {
             track["stop"] = false
@@ -157,26 +176,26 @@ class AlbumPage extends React.Component {
         });
         this.setState({
           listItems: listItems,
-        }, ()=>{
+        }, () => {
           this.state.audio.src = audioSource
-          setTimeout(()=>{ 
+          setTimeout(() => {
             this.state.audio.play()
           }, 50);
         })
       }
-      
-    } else if (playbackState == "pause") { 
-        this.state.audio.pause()
-        let tracks = this.state.tracks
-        var listItems = tracks.map((track, index) => {
-          track["index"] = index
-          track["stop"] = true
-          return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
-        });
-    
-        this.setState({
-          listItems: listItems
-        })
+
+    } else if (playbackState == "pause") {
+      this.state.audio.pause()
+      let tracks = this.state.tracks
+      var listItems = tracks.map((track, index) => {
+        track["index"] = index
+        track["stop"] = true
+        return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
+      });
+
+      this.setState({
+        listItems: listItems
+      })
     }
   }
 
@@ -192,19 +211,23 @@ class AlbumPage extends React.Component {
     }
 
     return (
-      <div className={style.main}>
-        <img src={this.state.imageUrl} className={imageStyle} />
-        <h1 className={style.title}>{this.state.title}</h1>
-        <h2 className={style.subtitle}>{this.state.subtitle}</h2>
-        <SharePopup url={"www.recordexchange.app/album/".concat(this.state.albumId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
-        <div className={containerStyle}>
-          <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
-          <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
-          <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped} />
-        </div>
+      <span>
+        <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
+        <div className={style.main}>
+          <img src={this.state.imageUrl} className={imageStyle} />
+          <h1 className={style.title}>{this.state.title}</h1>
+          <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+          <SharePopup url={"www.recordexchange.app/album/".concat(this.state.albumId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
+          <div className={containerStyle}>
+            <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
+            <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
+            <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped} />
+          </div>
 
-        <ul className={style.myUl} > {this.state.listItems} </ul>
-      </div>
+          <ul className={style.myUl} > {this.state.listItems} </ul>
+        </div>
+      </span>
+
     );
   }
 }

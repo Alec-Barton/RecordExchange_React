@@ -28,7 +28,7 @@
     border-color: #aaa #bbb rgb(202, 202, 202) #bbb;    
     box-shadow:inset 0px 2px 3px #bbb;  
     
-    border-radius:4px;
+    border-radius:2px;
 
     visibility: inherit;
     /* -moz-border-radius:10px;
@@ -39,7 +39,7 @@
 
 .filler {
     visibility: inherit;
-    border-radius:4px;
+    border-radius:2px;
     /* -moz-border-radius:10px;
     -webkit-border-radius:10px;
     -o-border-radius:10px; */
