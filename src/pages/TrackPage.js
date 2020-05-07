@@ -10,7 +10,7 @@ import playingIcon from './assets/playing.png'
 import loadingGif from './assets/loading.gif'
 import SharePopup from './components/sharePopup'
 import history from '../managers/historyManager.js'
-import SoundBarsContainer from '../soundBarsContainer.js'
+import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
 
 

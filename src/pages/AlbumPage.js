@@ -8,7 +8,7 @@ import shareLogo from './assets/shareLogo.png'
 import SharePopup from './components/sharePopup'
 import loadingGif from './assets/loading.gif'
 import history from '../managers/historyManager.js'
-import SoundBarsContainer from '../soundBarsContainer.js'
+import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
 
 class AlbumPage extends React.Component {

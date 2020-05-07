@@ -1,5 +1,5 @@
 import React from 'react';
-import soundBar from './soundBar.module.css'
+import soundBar from '../css/soundBar.module.css'
 import SoundBar from './soundBar.js'
 
 

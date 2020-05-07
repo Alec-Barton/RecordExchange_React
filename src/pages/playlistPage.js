@@ -9,7 +9,7 @@ import spotifyLogo from './assets/spotify.png'
 import shareLogo from './assets/shareLogo.png'
 import loadingGif from './assets/loading.gif'
 import history from '../managers/historyManager.js'
-import SoundBarsContainer from '../soundBarsContainer.js'
+import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
 
 class PlaylistPage extends React.Component {

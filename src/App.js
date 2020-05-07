@@ -11,8 +11,6 @@ import SpotifyCallbackPage from './pages/spotifyCallbackPage.js';
 import style from './pages/css/style.module.css'
 import history from './managers/historyManager.js';
 
-import SoundBarsContainer from './soundBarsContainer.js'
-
 class App extends React.Component { 
 
   constructor(props) {
