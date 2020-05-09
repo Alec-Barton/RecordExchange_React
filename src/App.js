@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
     
       <div >
-        <Header/>
+        {/* <Header/> */}
         <Router history = {history}>
           <Switch>
     

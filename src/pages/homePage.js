@@ -6,6 +6,7 @@ import history from '../managers/historyManager.js'
 import ProgressBarItem from './components/ProgessBar.js'
 import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
+import Header from './components/header.js'
 
 const firebase = require("firebase");
 require("firebase/functions");
@@ -309,6 +310,11 @@ class HomePage extends React.Component {
 
 
   render() {
+    let lightColor = hexBrightnessPercentage(this.state.color,  0.85)
+
+    let semidarkColor =  hexBrightnessPercentage(this.state.color, -0.15)
+    let darkColor = hexBrightnessPercentage(this.state.color, -0.3)
+
     var imageStyle = style.imgHidden
     if (this.state.imageState == 'loading') {
       imageStyle = style.loading
@@ -328,8 +334,11 @@ class HomePage extends React.Component {
 
     // console.log(this.state.barVisibility)
 
+
     return (
+      
       <span>
+        <Header color = {semidarkColor}/>
         <SoundBarsContainer props={{"color":this.state.color, "shadowColor":this.state.shadowColor, "visibility":this.state.barVisibility}}/>
 
         <div className={style.main}>
@@ -341,7 +350,7 @@ class HomePage extends React.Component {
             <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />
           </form>
 
-          <button className={shareButtonStyle} onClick={this.shareBtnTapped}>Share</button>
+          <button className={shareButtonStyle} onClick={this.shareBtnTapped} style={{backgroundColor: lightColor, color: darkColor}}>Share</button>
           <ProgressBarItem percentage={this.state.progress} color={this.state.color} visibility={this.state.loadingBarState} />
         </div>
       </span>

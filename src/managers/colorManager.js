@@ -7,10 +7,9 @@ function hexBrightnessPercentage (hex, percent){
     let rHex = (num >> 16)
     let bHex = ((num >> 8) & 0x00FF)
     let gHex = (num & 0x0000FF)
-    console.log(rHex)
     let highestColor = Math.max(rHex, bHex, gHex)
-    console.log(highestColor)
     if (percent > 0) {
+        // percent = 1 -percent
         baseLine = 255
     } else if (percent < 0){
         baseLine = 0
@@ -19,8 +18,7 @@ function hexBrightnessPercentage (hex, percent){
     }
 
     let changeAmount = (Math.abs(baseLine - highestColor) * percent)
-    console.log(changeAmount)
-    console.log(percent)
+
 
     var r = rHex + changeAmount
     if (r > 255) {
@@ -43,8 +41,6 @@ function hexBrightnessPercentage (hex, percent){
     else if (g < 0) {
         g = 0
     }
-    console.log(rHex, gHex, bHex)
-    console.log(r, g, b)
     return ('#') + (g | (b << 8) | (r << 16)).toString(16);
 }
 

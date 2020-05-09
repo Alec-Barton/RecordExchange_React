@@ -18,14 +18,19 @@ class Header extends React.Component {
     }
 
     render() {
+        var fontColor = "#707070";
+        if (this.props.color != undefined){
+            fontColor = this.props.color
+            console.log("piss")
+        }
         return (
             <div className ={style.headerContainer} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
                 <img src ={Logo} className = {style.headerLogo}/>
-                <span className={style.headerTitle}>
-                    <span style = {{fontSize:"30pt"}}>R</span>
-                    <span style = {{fontSize:"25pt"}}>ECORD</span>
-                    <span style = {{fontSize:"30pt", paddingLeft: "25px"}}>E</span>
-                    <span style = {{fontSize:"25pt"}}>XCHANGE</span>
+                <span className={style.headerTitle} style = {{color: fontColor}}>
+                    <span style = {{fontSize:"30pt", color: fontColor}}>R</span>
+                    <span style = {{fontSize:"25pt", color: fontColor}}>ECORD</span>
+                    <span style = {{fontSize:"30pt", paddingLeft: "25px", color: fontColor}}>E</span>
+                    <span style = {{fontSize:"25pt", color: fontColor}}>XCHANGE</span>
                 </span>
             </div>
         )
