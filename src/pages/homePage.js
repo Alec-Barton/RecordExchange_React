@@ -47,7 +47,8 @@ class HomePage extends React.Component {
 
       progress: 0,
 
-      color: "white", 
+      color: '#707070', 
+      logoColor: '#bababa',
       barVisibility: "hidden"
     };
   }
@@ -109,8 +110,6 @@ class HomePage extends React.Component {
         path = '/album/'.concat(response.data.id)
       }
 
-      console.log(response.data)
-
       this.stop()
       setTimeout(() => {
         history.push({
@@ -132,11 +131,11 @@ class HomePage extends React.Component {
 
       })
       this.stop()
-      console.log(error)
     })
   }
 
   handleChange(event) {
+    console.log("ok")
     let url = event.target.value
     this.setState({
       inputValue: url,
@@ -150,6 +149,7 @@ class HomePage extends React.Component {
         inputValue: '',
         imageState: 'hidden',
         shareButtonState: 'hidden',
+        logoColor: '#bababa',
         barVisibility: 'hide'
       })
     }
@@ -168,6 +168,7 @@ class HomePage extends React.Component {
           objectId: parsedUrl.id,
           shareButtonState: 'hidden',
           barVisibility: 'hide',
+          logoColor: '#bababa',
         })
 
         let headerData = {
@@ -178,8 +179,6 @@ class HomePage extends React.Component {
         axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getPreview', headerData)
           .then((response) => {
             let shadow = hexBrightnessPercentage(response.data.color, 0.25)
-            // console.log("ssss", response.data.color, shadow)
-
             if (parsedUrl.serviceType == 'spotify' && parsedUrl.objectType == 'track') {
               let subtitle = response.data.artist.concat('  ●  ', response.data.album)
               this.setState({
@@ -190,6 +189,7 @@ class HomePage extends React.Component {
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
                 color: response.data.color,
+                logoColor: response.data.color,
                 shadowColor: shadow,
                 barVisibility: 'visible',
               })
@@ -203,6 +203,7 @@ class HomePage extends React.Component {
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
                 color: response.data.color,
+                logoColor: response.data.color,
                 shadowColor: shadow,
                 barVisibility: 'visible',
               })
@@ -216,6 +217,7 @@ class HomePage extends React.Component {
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
                 color: response.data.color,
+                logoColor: response.data.color,
                 shadowColor: shadow,
                 barVisibility: 'visible',
 
@@ -233,6 +235,7 @@ class HomePage extends React.Component {
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
                 color: response.data.color,
+                logoColor: response.data.color,
                 shadowColor: shadow,
                 barVisibility: 'visible',
               })
@@ -246,6 +249,7 @@ class HomePage extends React.Component {
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
                 color: response.data.color,
+                logoColor: response.data.color,
                 shadowColor: shadow,
                 barVisibility: 'visible',
               })
@@ -259,6 +263,7 @@ class HomePage extends React.Component {
                 imageState: 'visibleHome',
                 shareButtonState: 'visible',
                 color: response.data.color,
+                logoColor: response.data.color,
                 shadowColor: shadow,
                 barVisibility: 'visible',
               })
@@ -269,6 +274,8 @@ class HomePage extends React.Component {
               title: 'Could not find Music',
               subtitle: 'your music could not be found',
               imageState: 'hidden',
+              color: '#707070',
+              logoColor: '#bababa',
               shareButtonState: 'hidden'
             })
 
@@ -288,7 +295,9 @@ class HomePage extends React.Component {
           title: 'Invalid Link',
           subtitle: 'something is wrong with this url - try again',
           imageState: 'hidden',
-          shareButtonState: 'hidden'
+          shareButtonState: 'hidden',
+          color: '#707070',
+          logoColor: '#bababa',
         })
         if (this.state.barVisibility == 'visible'){
           this.setState({
@@ -312,7 +321,8 @@ class HomePage extends React.Component {
   render() {
     let lightColor = hexBrightnessPercentage(this.state.color,  0.85)
 
-    let semidarkColor =  hexBrightnessPercentage(this.state.color, -0.15)
+    // let semidarkColor =  hexBrightnessPercentage(this.state.color, -0.15)
+    let headerColor = hexBrightnessPercentage(this.state.logoColor, -0.15)
     let darkColor = hexBrightnessPercentage(this.state.color, -0.3)
 
     var imageStyle = style.imgHidden
@@ -332,13 +342,10 @@ class HomePage extends React.Component {
       inputBarStyle = style.hidden
     }
 
-    // console.log(this.state.barVisibility)
-
-
     return (
       
       <span>
-        <Header color = {semidarkColor}/>
+        <Header color = {headerColor} logoColor = {headerColor}/>
         <SoundBarsContainer props={{"color":this.state.color, "shadowColor":this.state.shadowColor, "visibility":this.state.barVisibility}}/>
 
         <div className={style.main}>

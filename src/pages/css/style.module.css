@@ -67,7 +67,6 @@ audio {
 }
 
 .headerLogo {
-    
     opacity: inherit;
     width: 40px;
     height: 40px;
@@ -100,6 +99,44 @@ audio {
     -webkit-filter: blur(20px);
     filter: blur(20px);
 }
+
+.recordLogoContainer{
+    position: relative;
+    /* top: 0;
+    left: 0; */
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    /* margin-top: 15px; */
+    /* padding-top: 2px; */
+    border-radius: 25px;
+    vertical-align: center;
+    /* margin: auto; */
+}
+
+.recordLogoBackground{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* width: 40px;
+    height: 40px; */
+    border-radius: inherit;
+    display: inline-block;
+}
+.recordLogoFilter{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* width: 20px;
+    height: 20px; */
+    /* border-radius: 20px; */
+    /* display: inline-block; */
+}
+
 
 img {
     display: block;
@@ -202,7 +239,7 @@ img {
     background-color: white;
     color: black;
     border: 0px solid  #707070;
-    /* outline: none; */
+    outline: none;
     font-size: 16pt;
     font-family: Lato;
     color:#A2A0A0;
@@ -556,7 +593,7 @@ img {
 .popup{
     background-color: #f3f3f3;
     height: 200px;
-    width: inherit;
+    width: 400px;
     position: absolute;  
     opacity: 0.8;
     left: 1%;  
@@ -671,8 +708,8 @@ img {
     font-family: Lato;
     color:#A2A0A0;
     margin-top: 15px;
-    left: 90%;  
-    right: 1%;  
+    left: 85%;  
+    right: 10%;  
     top: 1%;  
     bottom: 1%;  
 }

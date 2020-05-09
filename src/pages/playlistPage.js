@@ -11,6 +11,7 @@ import loadingGif from './assets/loading.gif'
 import history from '../managers/historyManager.js'
 import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
+import Header from './components/header.js'
 
 class PlaylistPage extends React.Component {
 
@@ -20,14 +21,15 @@ class PlaylistPage extends React.Component {
     let splitPath = window.location.pathname.split('/')
     let serviceType = splitPath[1]
     let objectId = splitPath[2]
-    
+
 
     if (props.location.state != undefined) {
       let playlistData = props.location.state.object
       let shadow = hexBrightnessPercentage(playlistData.color, 0.25)
+      let header = hexBrightnessPercentage(playlistData.color, -0.15)
       let tracks = playlistData.tracks
 
-      let listItems = tracks.map((track) =>{
+      let listItems = tracks.map((track) => {
         track["stop"] = "true"
         return (<PlaylistTrack key={track.spotifyId} props={track} action={this.changeAudio}></PlaylistTrack>)
       });
@@ -42,10 +44,12 @@ class PlaylistPage extends React.Component {
         playlistId: objectId,
         audio: new Audio(),
         tracks: tracks,
-        color: playlistData.color, 
+        color: playlistData.color,
+        headerColor: header,
         shadowColor: shadow,
         barVisibility: 'shown'
       }
+      this.state.audio.onended = this.playbackEnded.bind(this)
 
     } else {
       this.state = {
@@ -56,13 +60,15 @@ class PlaylistPage extends React.Component {
         popupDisplay: 'none',
         playlistId: objectId,
         audio: new Audio(),
-        color: 'white', 
+        color: 'white',
+        headerColor: '#707070',
         barVisibility: 'hidden',
       }
+      this.state.audio.onended = this.playbackEnded.bind(this)
 
       let headerData = {
         id: objectId
-        
+
       }
 
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchPlaylist', headerData)
@@ -71,8 +77,9 @@ class PlaylistPage extends React.Component {
           let playlistData = response.data
           let tracks = playlistData.tracks
           let shadow = hexBrightnessPercentage(playlistData.color, 0.25)
+          let header = hexBrightnessPercentage(playlistData.color, -0.15)
 
-          let listItems = tracks.map((track) =>{
+          let listItems = tracks.map((track) => {
             track["stop"] = "true"
             return (<PlaylistTrack key={track.spotifyId} props={track} action={this.changeAudio}></PlaylistTrack>)
           });
@@ -87,10 +94,11 @@ class PlaylistPage extends React.Component {
             popupDisplay: 'none',
             playlistId: objectId,
             tracks: tracks,
-            color: playlistData.color, 
+            color: playlistData.color,
+            headerColor: header,
             shadowColor: shadow,
             barVisibility: 'visible',
-            
+
           })
           history.push({
             state: {
@@ -105,7 +113,7 @@ class PlaylistPage extends React.Component {
             subtitle: '',
             imageState: 'hidden',
           })
-          if (this.state.barVisibility == 'visible'){
+          if (this.state.barVisibility == 'visible') {
             this.setState({
               barVisibility: "hide"
             })
@@ -122,16 +130,16 @@ class PlaylistPage extends React.Component {
     this.popupClose = this.popupClose.bind(this)
 
     this.playbackEnded = this.playbackEnded.bind(this);
-    this.state.audio.onended = this.playbackEnded
+
 
     this.componentWillUnmount = this.componentWillUnmount.bind(this)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.state.audio.pause()
   }
 
-  playbackEnded(){
+  playbackEnded() {
     let tracks = this.state.tracks
     var listItems = tracks.map((track, index) => {
       track["index"] = index
@@ -177,13 +185,13 @@ class PlaylistPage extends React.Component {
       });
   }
 
-  shareBtnTapped(){
+  shareBtnTapped() {
     this.setState({
       popupDisplay: 'block'
     })
   }
 
-  popupClose(){
+  popupClose() {
     this.setState({
       popupDisplay: 'none'
     })
@@ -191,13 +199,13 @@ class PlaylistPage extends React.Component {
 
   changeAudio = (playbackState, audioSource) => {
     if (playbackState == "play") {
-      if (audioSource == this.state.audio){
+      if (audioSource == this.state.audio) {
         this.state.audio.play()
       } else {
         let tracks = this.state.tracks
         var listItems = tracks.map((track, index) => {
           track["index"] = index
-          if (track["preview"] != audioSource){
+          if (track["preview"] != audioSource) {
             track["stop"] = true
           } else {
             track["stop"] = false
@@ -206,26 +214,26 @@ class PlaylistPage extends React.Component {
         });
         this.setState({
           listItems: listItems,
-        }, ()=>{
+        }, () => {
           this.state.audio.src = audioSource
-          setTimeout(()=>{ 
+          setTimeout(() => {
             this.state.audio.play()
           }, 50);
         })
       }
-      
-    } else if (playbackState == "pause") { 
-        this.state.audio.pause()
-        let tracks = this.state.tracks
-        var listItems = tracks.map((track, index) => {
-          track["index"] = index
-          track["stop"] = true
-          return (<PlaylistTrack key={index} props={track} action={this.changeAudio}></PlaylistTrack>)
-        });
-    
-        this.setState({
-          listItems: listItems
-        })
+
+    } else if (playbackState == "pause") {
+      this.state.audio.pause()
+      let tracks = this.state.tracks
+      var listItems = tracks.map((track, index) => {
+        track["index"] = index
+        track["stop"] = true
+        return (<PlaylistTrack key={index} props={track} action={this.changeAudio}></PlaylistTrack>)
+      });
+
+      this.setState({
+        listItems: listItems
+      })
     }
   }
 
@@ -241,27 +249,28 @@ class PlaylistPage extends React.Component {
     }
     return (
       <span>
+        <Header color={this.state.headerColor} logoColor={this.state.headerColor} />
         <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
-      <div>
-        <div className={style.main}>
-          <span className = {style.mainBackground}/>
+        <div>
+          <div className={style.main}>
+            <span className={style.mainBackground} />
 
-          <img src={this.state.imageUrl} className={imageStyle} />
-          <h1 className={style.title}>{this.state.title}</h1>
-          <h2 className={style.subtitle}>{this.state.subtitle}</h2>
-            <SharePopup url ={"www.recordexchange.app/playlist/".concat(this.state.playlistId)} display = {this.state.popupDisplay} closeFunction = {this.popupClose}/>
-          <div className={containerStyle}>
-            <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
-            <input type="image" onClick={this.appleBtnTapped} src={appleLogo} className={style.appleButton} />
-            <input type="image" onClick={this.shareBtnTapped} src={shareLogo} className={style.shrButton}/>    
+            <img src={this.state.imageUrl} className={imageStyle} />
+            <h1 className={style.title}>{this.state.title}</h1>
+            <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+            <SharePopup url={"www.recordexchange.app/playlist/".concat(this.state.playlistId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
+            <div className={containerStyle}>
+              <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
+              <input type="image" onClick={this.appleBtnTapped} src={appleLogo} className={style.appleButton} />
+              <input type="image" onClick={this.shareBtnTapped} src={shareLogo} className={style.shrButton} />
+            </div>
+            <ul className={style.myUl}> {this.state.listItems} </ul>
+            {/* </span> */}
+
           </div>
-          <ul className={style.myUl}> {this.state.listItems} </ul>
-          {/* </span> */}
-
         </div>
-      </div>
       </span>
-      
+
     );
   }
 }

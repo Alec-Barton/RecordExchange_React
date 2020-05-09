@@ -37,8 +37,6 @@ class SoundBar extends React.Component {
                 right: this.state.x 
             }
         }
-
-        console.log(this.props.props.shadowColor)
         let shadowStyle = '14px 10px 5px 5px '.concat(this.props.props.shadowColor).concat('AA')
 
         return (

@@ -12,7 +12,7 @@ import SharePopup from './components/sharePopup'
 import history from '../managers/historyManager.js'
 import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
-
+import Header from './components/header.js'
 
 class TrackPage extends React.Component {
   constructor(props) {
@@ -22,11 +22,11 @@ class TrackPage extends React.Component {
     let serviceType = splitPath[1]
     let objectId = splitPath[2]
 
-
     if (props.location.state != undefined) {
       let trackData = props.location.state.object
 
       let shadow = hexBrightnessPercentage(trackData.color, 0.25)
+      let header = hexBrightnessPercentage(trackData.color, -0.15)
 
       this.state = {
         imageState: 'show',
@@ -41,9 +41,11 @@ class TrackPage extends React.Component {
         trackId: objectId,
         popupDisplay: 'none',
         color: trackData.color, 
+        headerColor: header,
         shadowColor: shadow,
         barVisibility: 'shown'
       }
+      this.state.audio.onended = this.playbackEnded.bind(this)
 
     } else {
 
@@ -56,6 +58,7 @@ class TrackPage extends React.Component {
         trackId: objectId,
         popupDisplay: 'none',
         color: 'white', 
+        headerColor: '#707070',
         barVisibility: 'hidden'
       }
 
@@ -66,8 +69,8 @@ class TrackPage extends React.Component {
       axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/fetchTrack', headerData)
         .then((response) => {
           let trackData = response.data
-          console.log(trackData)
           let shadow = hexBrightnessPercentage(trackData.color, 0.25)
+          let header = hexBrightnessPercentage(trackData.color, -0.15)
 
           this.setState({
             title: trackData.name,
@@ -80,12 +83,14 @@ class TrackPage extends React.Component {
             audio: new Audio(trackData.preview),
             spotifyId: trackData.spotifyId,
             appleLink: trackData.appleLink,
-
+            headerColor: header,
             color: trackData.color, 
             shadowColor: shadow,
             barVisibility: 'visible'
 
-          })
+          },
+          this.state.audio.onended = this.playbackEnded.bind(this)
+          )
           history.push({
             state: {
               object: response.data
@@ -201,7 +206,6 @@ class TrackPage extends React.Component {
   }
 
   appleBtnTapped() {
-    console.log(this.state.appleLink)
     window.open(this.state.appleLink, '_blank');
   }
 
@@ -229,6 +233,7 @@ class TrackPage extends React.Component {
 
     return (
       <span>
+        <Header color = {this.state.headerColor} logoColor = {this.state.headerColor}/>
         <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
         <div className={style.main}>
 

@@ -10,6 +10,7 @@ import loadingGif from './assets/loading.gif'
 import history from '../managers/historyManager.js'
 import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
+import Header from './components/header.js'
 
 class AlbumPage extends React.Component {
   constructor(props) {
@@ -22,13 +23,13 @@ class AlbumPage extends React.Component {
     if (props.location.state != undefined) {
       let albumData = props.location.state.object
       let shadow = hexBrightnessPercentage(albumData.color, 0.25)
+      let logo = hexBrightnessPercentage(albumData.color, -0.15)
       let tracks = albumData.tracks
       var listItems = tracks.map((track, index) => {
         track["index"] = index
         track["stop"] = "true"
         return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
-      console.log(albumData.color)
       this.state = {
         imageState: 'show',
         imageUrl: albumData.coverImage,
@@ -39,13 +40,15 @@ class AlbumPage extends React.Component {
         appleId: albumData.appleId,
         albumId: objectId,
         popupDisplay: 'none',
-        audio: new Audio(''),
+        audio: new Audio(),
         tracks: tracks,
         color: albumData.color,
+        headerColor: logo,
         shadowColor: shadow,
         barVisibility: 'shown'
       }
 
+      this.state.audio.onended = this.playbackEnded.bind(this)
 
 
     } else {
@@ -57,7 +60,11 @@ class AlbumPage extends React.Component {
         subtitle: '',
         albumId: objectId,
         popupDisplay: 'none',
+        headerColor: '#707070',
+        audio: new Audio(),
       }
+
+      this.state.audio.onended = this.playbackEnded.bind(this)
 
       let headerData = {
         id: objectId
@@ -68,6 +75,7 @@ class AlbumPage extends React.Component {
           let albumData = response.data
           let tracks = albumData.tracks
           let shadow = hexBrightnessPercentage(albumData.color, 0.25)
+          let logo = hexBrightnessPercentage(albumData.color, -0.15)
           let listItems = tracks.map((track, index) => {
             track["index"] = index
             track["stop"] = "true"
@@ -81,9 +89,9 @@ class AlbumPage extends React.Component {
             album: albumData,
             imageState: 'show',
             listItems: listItems,
-            audio: new Audio(''),
             tracks: tracks,
             color: albumData.color,
+            headerColor: logo,
             shadowColor: shadow,
             barVisibility: 'visible'
           })
@@ -212,6 +220,7 @@ class AlbumPage extends React.Component {
 
     return (
       <span>
+        <Header color = {this.state.headerColor} logoColor = {this.state.headerColor}/>
         <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
         <div className={style.main}>
           <img src={this.state.imageUrl} className={imageStyle} />
