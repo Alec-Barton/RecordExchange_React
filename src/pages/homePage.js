@@ -135,7 +135,6 @@ class HomePage extends React.Component {
   }
 
   handleChange(event) {
-    console.log("ok")
     let url = event.target.value
     this.setState({
       inputValue: url,

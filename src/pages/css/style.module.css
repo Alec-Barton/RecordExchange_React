@@ -120,10 +120,9 @@ audio {
     left: 0;
     width: 100%;
     height: 100%;
-    /* width: 40px;
-    height: 40px; */
     border-radius: inherit;
     display: inline-block;
+    box-shadow: 1.5px 1.5px 1.5px 1px rgba(0, 0, 0, .25);
 }
 .recordLogoFilter{
     position: absolute;
@@ -131,12 +130,7 @@ audio {
     left: 0;
     width: 100%;
     height: 100%;
-    /* width: 20px;
-    height: 20px; */
-    /* border-radius: 20px; */
-    /* display: inline-block; */
 }
-
 
 img {
     display: block;
@@ -170,15 +164,12 @@ img {
 
 .title{
     color: #878787;
-    /* color: cadetblue; */
     font-family:  Lato;
     text-align: center;
     font-weight: 500;
     letter-spacing: 0px;
     font-size: 30pt;
     margin-bottom: 10px;
-    /* -webkit-text-stroke-width: 1.5px; */
-    /* -webkit-text-stroke-color: cadetblue; */
 }
 
 .subtitle {
