@@ -122,9 +122,12 @@ class HomePage extends React.Component {
       }, 1000)
 
     }).catch((error) => {
+      console.log("ERROR HERE")
       this.setState({
-        loadingBarState: 'Unable to convert Music',
-        inputBarState: 'something went wrong and your music could not be converted',
+        title: 'Unable to convert Music',
+        subtitle: 'something went wrong and your music could not be converted',
+        loadingBarState: 'hidden',
+        inputBarState: 'visible',
         shareButtonState: 'hidden',
 
         barVisibility: "hide"

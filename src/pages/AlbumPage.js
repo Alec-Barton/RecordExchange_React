@@ -223,6 +223,7 @@ class AlbumPage extends React.Component {
         <Header color = {this.state.headerColor} logoColor = {this.state.headerColor}/>
         <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
         <div className={style.main}>
+          <span className={style.mainBackground} />
           <img src={this.state.imageUrl} className={imageStyle} />
           <h1 className={style.title}>{this.state.title}</h1>
           <h2 className={style.subtitle}>{this.state.subtitle}</h2>
