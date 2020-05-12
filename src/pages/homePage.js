@@ -129,8 +129,8 @@ class HomePage extends React.Component {
         loadingBarState: 'hidden',
         inputBarState: 'visible',
         shareButtonState: 'hidden',
-
-        barVisibility: "hide"
+        progress: 0,
+        barVisibility: "hide",
 
       })
       this.stop()
@@ -278,7 +278,8 @@ class HomePage extends React.Component {
               imageState: 'hidden',
               color: '#707070',
               logoColor: '#bababa',
-              shareButtonState: 'hidden'
+              shareButtonState: 'hidden',
+              progress: 0,
             })
 
             if (this.state.barVisibility == 'visible'){
@@ -295,11 +296,12 @@ class HomePage extends React.Component {
       } else {
         this.setState({
           title: 'Invalid Link',
-          subtitle: 'something is wrong with this url - try again',
+          subtitle: 'this link is not properly formatted',
           imageState: 'hidden',
           shareButtonState: 'hidden',
           color: '#707070',
           logoColor: '#bababa',
+          
         })
         if (this.state.barVisibility == 'visible'){
           this.setState({
