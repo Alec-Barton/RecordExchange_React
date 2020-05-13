@@ -606,7 +606,7 @@ img {
     height: 200px;
     width: inherit;
     position: absolute;  
-    opacity: 0.8;
+    opacity: 0.9;
     left: 1%;  
     right: 1%;  
     top: 20%;  
@@ -624,9 +624,9 @@ img {
     animation-fill-mode: forwards; 
 }
 
-.popup:hover{
+/* .popup:hover{
     opacity: 0.9;
-}
+} */
 
 .popupTitle {
     color: #595959;
@@ -637,6 +637,18 @@ img {
     font-size: 22pt;
     padding-top: 0px;
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.popupsubTitle {
+    color: #595959;
+    font-family:  Lato;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0px;
+    font-size: 16pt;
+    padding-top: 0px;
+    margin-top: 28px;
     margin-bottom: 20px;
 }
 
@@ -661,6 +673,34 @@ img {
     display: none;
   }
 
+.popupActionButton {
+    display: inline-block;
+    margin: auto;
+    text-align: center;
+    height: 35px;
+    /* width: 10px; */
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 40%;
+    border-radius: 15px;
+    /* background-color: salmon; */
+    margin-bottom: 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid #707070;
+    outline: none;
+    font-size: 16pt;
+    font-family: Lato;
+    color: #878787;
+    margin-top: 7px;
+}
+
+.popupActionButton:hover{
+    -webkit-filter: brightness(80%);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, .25);
+}
+ 
+  
 .popupCopyButton {
     display: block;
     margin: auto;
@@ -680,7 +720,7 @@ img {
 
 .popupCopyButton:hover{
     -webkit-filter: brightness(80%);
-    box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .25);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, .25);
 }
 
 .popupCloseButton{
@@ -707,7 +747,7 @@ img {
 
 .popupCloseButton:hover{
     -webkit-filter: brightness(80%);
-    box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .25);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, .25);
 }
 
 .popupCopied{

@@ -3,6 +3,7 @@ import MusicKitManager from '../managers/musickitManager.js'
 import style from './css/style.module.css'
 import PlaylistTrack from './components/playlistTrack'
 import SharePopup from './components/sharePopup'
+import Popup from './components/popup'
 import axios from 'axios';
 import appleLogo from './assets/apple.png'
 import spotifyLogo from './assets/spotify.png'
@@ -41,6 +42,8 @@ class PlaylistPage extends React.Component {
         listItems: listItems,
         playlistData: playlistData,
         popupDisplay: 'none',
+        spotifyPopupDisplay: 'none',
+        applePopupDisplay: 'none',
         playlistId: objectId,
         audio: new Audio(),
         tracks: tracks,
@@ -58,6 +61,8 @@ class PlaylistPage extends React.Component {
         title: 'Loading',
         subtitle: '',
         popupDisplay: 'none',
+        spotifyPopupDisplay: 'none',
+        applePopupDisplay: 'none',
         playlistId: objectId,
         audio: new Audio(),
         color: 'white',
@@ -92,6 +97,8 @@ class PlaylistPage extends React.Component {
             imageState: 'show',
             listItems: listItems,
             popupDisplay: 'none',
+            spotifyPopupDisplay: 'none',
+            applePopupDisplay: 'none',
             playlistId: objectId,
             tracks: tracks,
             color: playlistData.color,
@@ -128,6 +135,8 @@ class PlaylistPage extends React.Component {
     this.appleBtnTapped = this.appleBtnTapped.bind(this);
     this.shareBtnTapped = this.shareBtnTapped.bind(this);
     this.popupClose = this.popupClose.bind(this)
+    this.spotifyPopupClose = this.spotifyPopupClose.bind(this)
+    this.applePopupClose = this.applePopupClose.bind(this)
 
     this.playbackEnded = this.playbackEnded.bind(this);
 
@@ -154,35 +163,41 @@ class PlaylistPage extends React.Component {
 
 
   spotifyBtnTapped() {
-    const stateKey = 'playlistData';
-    const state = JSON.stringify(this.state.playlistData);
-    localStorage.setItem(stateKey, state);
-    axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
-      .then((response) => {
-        window.location = response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    this.setState({
+      spotifyPopupDisplay: 'block'
+    })
+    // const stateKey = 'playlistData';
+    // const state = JSON.stringify(this.state.playlistData);
+    // localStorage.setItem(stateKey, state);
+    // axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
+    // .then((response) => {
+    //   window.location = response.data
+    // })
+    // .catch((error) => {
+    //   console.log(error)
+    // })
   }
 
   appleBtnTapped() {
-    let musicProvider = MusicKitManager.provider();
-    musicProvider.configure();
-    let musicInstance = musicProvider.getMusicInstance();
-    musicInstance.authorize()
-      .then(musicUserToken => {
-        let headerData = {
-          userToken: musicUserToken,
-          playlistData: this.state.playlistData
-        }
-        axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/addPlaylistToApple', headerData)
-          .then((response) => {
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      });
+    this.setState({
+      applePopupDisplay: 'block'
+    })
+    // let musicProvider = MusicKitManager.provider();
+    // musicProvider.configure();
+    // let musicInstance = musicProvider.getMusicInstance();
+    // musicInstance.authorize()
+    //   .then(musicUserToken => {
+    //     let headerData = {
+    //       userToken: musicUserToken,
+    //       playlistData: this.state.playlistData
+    //     }
+    //     axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/addPlaylistToApple', headerData)
+    //       .then((response) => {
+    //       })
+    //       .catch((error) => {
+    //         console.log(error)
+    //       })
+    //   });
   }
 
   shareBtnTapped() {
@@ -194,6 +209,18 @@ class PlaylistPage extends React.Component {
   popupClose() {
     this.setState({
       popupDisplay: 'none'
+    })
+  }
+
+  spotifyPopupClose() {
+    this.setState({
+      spotifyPopupDisplay: 'none'
+    })
+  }
+
+  applePopupClose() {
+    this.setState({
+      applePopupDisplay: 'none'
     })
   }
 
@@ -258,6 +285,8 @@ class PlaylistPage extends React.Component {
             <img src={this.state.imageUrl} className={imageStyle} />
             <h1 className={style.title}>{this.state.title}</h1>
             <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+            <Popup display={this.state.applePopupDisplay} closeFunction={this.applePopupClose}/>
+            <Popup display={this.state.spotifyPopupDisplay} closeFunction={this.spotifyPopupClose}/>
             <SharePopup url={"www.recordexchange.app/playlist/".concat(this.state.playlistId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
             <div className={containerStyle}>
               <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
