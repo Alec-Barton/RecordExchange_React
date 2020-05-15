@@ -59,8 +59,8 @@ class HomePage extends React.Component {
     });
   }
 
-  begin(itemCount, itemDelay, delay) {
-    let totalTime = itemCount * itemDelay + delay
+  begin(totalTime) {
+    // let totalTime = itemCount * itemDelay + delay
     let percentageTime = totalTime / 100
     var progress = 0
     for (let i = 1; i < 100; i++) {
@@ -97,7 +97,16 @@ class HomePage extends React.Component {
       shareButtonState: 'hidden'
 
     })
-    this.begin(10, 1000, 5000)
+    var totalTime = 10 
+    if (this.state.objectType == 'playlist'){
+      if (this.state.playlist){
+        if (this.state.playlist.tracks){
+          totalTime = this.state.playlist.tracks/4
+        }
+      }
+      console.log(this.state.playlist.tracks.length)
+    }
+    this.begin(totalTime)
     axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/convertObject', headerData).then((response) => {
       var path = ''
       if (this.state.objectType == 'playlist') {
