@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Lato&display=swap'); */
+
+@font-face {
+    font-family: "Lato";
+    src: url('./fonts/lato.ttf');
+}
 
 html {
     height: 100%;
@@ -164,7 +169,7 @@ img {
 
 .title{
     color: #878787;
-    font-family:  Lato;
+    font-family:  Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight: 500;
     letter-spacing: 0px;
@@ -174,7 +179,7 @@ img {
 
 .subtitle {
     color: #A2A0A0;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight:lighter;
     font-size: 18pt;
@@ -186,7 +191,7 @@ img {
 
 .subtitlePadded {
     color: #A2A0A0;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight:lighter;
     font-size: 18pt;
@@ -211,7 +216,7 @@ img {
     margin-bottom: 20px;
     border: 1.5px solid #A2A0A0;
     outline: none;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     font-size: 16pt;
     padding: 8px 20px;
 }
@@ -232,7 +237,7 @@ img {
     border: 0px solid  #707070;
     outline: none;
     font-size: 16pt;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     color:#A2A0A0;
     margin-top: 25px;
 }
@@ -264,7 +269,7 @@ img {
     color: black;
     outline: none;
     font-size: 16pt;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     color:#A2A0A0;
     margin:0 auto;
     padding-right: 10px;
@@ -284,7 +289,7 @@ img {
     color: black;
     outline: none;
     font-size: 16pt;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     color:#A2A0A0;
     display: inline-block;
     margin:0 auto;
@@ -308,7 +313,7 @@ img {
     color: black;
     outline: none;
     font-size: 16pt;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     color:#A2A0A0;
     margin:0 auto;
     margin-bottom: 10px;
@@ -322,7 +327,7 @@ img {
     padding-top: 0px;
     margin-top: 0px;
     color: #A2A0A0;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: left;
     font-weight: lighter;
     font-size: 14pt;
@@ -334,7 +339,7 @@ img {
     margin-top: 0px;
     padding-top: 0px;
     color: #A2A0A0;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: left;
     font-weight: lighter;
     font-size: 10pt;
@@ -388,7 +393,7 @@ img {
     padding-top: 0px;
     margin-top: 0px;
     color: #A2A0A0;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: right;
     font-weight: lighter;
     font-size: 13pt;
@@ -400,7 +405,7 @@ img {
     padding-top: 8px;
     margin-top: 0px;
     color: #A2A0A0;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: left;
     font-weight: lighter;
     font-size: 16pt;
@@ -504,7 +509,7 @@ img {
     padding-top: 8px;
     margin-top: 0px;
     color: #A2A0A0;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: left;
     font-weight: lighter;
     font-size: 16pt;
@@ -653,7 +658,7 @@ img {
 
 .popupTitle {
     color: #595959;
-    font-family:  Lato;
+    font-family:  Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight: 500;
     letter-spacing: 0px;
@@ -665,7 +670,7 @@ img {
 
 .popupsubTitle {
     color: #595959;
-    font-family:  Lato;
+    font-family:  Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight: 500;
     letter-spacing: 0px;
@@ -680,7 +685,7 @@ img {
     height: 15%;
     resize: none;
     margin: auto;
-    font-family:  Lato;
+    font-family:  Lato, Arial, Helvetica, sans-serif;
     font-size: 16pt;
     opacity: 1.0;
     border-radius: 10px;
@@ -715,7 +720,7 @@ img {
     /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     color: #878787;
     margin-top: 7px;
 }
@@ -738,7 +743,7 @@ img {
     /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     color: #878787;
     margin-top: 20px;
 }
@@ -761,7 +766,7 @@ img {
     /* border: 1px solid #707070; */
     outline: none;
     font-size: 14pt;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
     color:#A2A0A0;
     margin-top: 15px;
     left: 85%;  
@@ -780,7 +785,7 @@ img {
 
 .popupCopied{
     color: #595959;
-    font-family:  Lato;
+    font-family:  Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight: 500;
     letter-spacing: 0px;

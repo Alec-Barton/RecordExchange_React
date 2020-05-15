@@ -1,5 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Lato&display=swap'); */
 
+@font-face {
+    font-family: "Lato";
+    src: url('./fonts/lato.ttf');
+}
 
 .progressBar {
     /* position: relative; */
@@ -89,6 +93,6 @@
     margin:auto;
     color:white;
     margin-left: 5px;
-    font-family: Lato;
+    font-family: Lato, Arial, Helvetica, sans-serif;
 }
 
