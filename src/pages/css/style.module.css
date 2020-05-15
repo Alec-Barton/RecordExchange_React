@@ -586,7 +586,7 @@ img {
     height: 200px;
     width: 400px;
     position: absolute;  
-    opacity: 0.8;
+    opacity: 0.9;
     left: 1%;  
     right: 1%;  
     top: 20%;  
@@ -620,6 +620,29 @@ img {
     box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
     backdrop-filter: blur(5px);
     animation: fadeOutAnimation ease 2000ms; 
+    animation-iteration-count: 1; 
+    animation-fill-mode: forwards; 
+}
+
+.popupCancelFadeOut{
+    background-color: #f3f3f3;
+    height: 200px;
+    width: 400px; 
+    position: absolute;  
+    opacity: 0.9;
+    left: 1%;  
+    right: 1%;  
+    top: 20%;  
+    bottom: 25%;  
+    margin: auto; 
+    z-index:99; 
+    text-align: center;
+    border-radius: 20px;
+    padding-left: -20%;
+    padding-right: -20%;
+    box-shadow: 0px 2px 7px 2px rgba(0, 0, 0, .5);
+    backdrop-filter: blur(5px);
+    animation: fadeOutAnimation ease 750ms; 
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
 }
@@ -661,6 +684,8 @@ img {
     font-size: 16pt;
     opacity: 1.0;
     border-radius: 10px;
+    border-color: #c0c0c0;
+    color: #a3a3a3;
     overflow-x: scroll;
     resize: none;
     white-space: nowrap;
@@ -687,7 +712,7 @@ img {
     margin-bottom: 10px;
     background-color: white;
     color: black;
-    border: 1px solid #707070;
+    /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
     font-family: Lato;
@@ -710,7 +735,7 @@ img {
     margin-bottom: 10px;
     background-color: white;
     color: black;
-    border: 1px solid #707070;
+    /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
     font-family: Lato;
@@ -733,7 +758,7 @@ img {
     margin-bottom: 20px;
     background-color: white;
     color: black;
-    border: 1px solid #707070;
+    /* border: 1px solid #707070; */
     outline: none;
     font-size: 14pt;
     font-family: Lato;
@@ -742,7 +767,10 @@ img {
     left: 85%;  
     right: 10%;  
     top: 1%;  
-    bottom: 1%;  
+    bottom: 1%;
+    padding-right: 7.5px;  
+    text-align: center;
+    font-weight: bold;
 }
 
 .popupCloseButton:hover{
@@ -760,6 +788,12 @@ img {
     padding-top: 40px;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.popupLoadingIndicator {
+    height: 150px;
+    width: 150px;
+    margin-top: -30px;
 }
 
 ul {

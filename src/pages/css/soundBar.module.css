@@ -34,10 +34,9 @@
     } 
 } 
 
-
 .leftBarsContainer {
     bottom: 0;
-    position: absolute;
+    position: fixed;
     left: auto;
     right: auto;
     text-align: left;
@@ -48,7 +47,7 @@
 }
 .rightBarsContainer {
     bottom: 0;
-    position: absolute;
+    position: fixed;
     left: 50%;
     right: 0;
     text-align: center;

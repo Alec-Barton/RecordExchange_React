@@ -140,8 +140,10 @@ class PlaylistPage extends React.Component {
 
     this.playbackEnded = this.playbackEnded.bind(this);
 
-
     this.componentWillUnmount = this.componentWillUnmount.bind(this)
+
+    this.spotifyPlaylistFunction = this.spotifyPlaylistFunction.bind(this)
+    this.applePlaylistFunction = this.applePlaylistFunction.bind(this)
   }
 
   componentWillUnmount() {
@@ -166,38 +168,57 @@ class PlaylistPage extends React.Component {
     this.setState({
       spotifyPopupDisplay: 'block'
     })
-    // const stateKey = 'playlistData';
-    // const state = JSON.stringify(this.state.playlistData);
-    // localStorage.setItem(stateKey, state);
-    // axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
-    // .then((response) => {
-    //   window.location = response.data
-    // })
-    // .catch((error) => {
-    //   console.log(error)
-    // })
   }
 
   appleBtnTapped() {
     this.setState({
       applePopupDisplay: 'block'
     })
-    // let musicProvider = MusicKitManager.provider();
-    // musicProvider.configure();
-    // let musicInstance = musicProvider.getMusicInstance();
-    // musicInstance.authorize()
-    //   .then(musicUserToken => {
-    //     let headerData = {
-    //       userToken: musicUserToken,
-    //       playlistData: this.state.playlistData
-    //     }
-    //     axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/addPlaylistToApple', headerData)
-    //       .then((response) => {
-    //       })
-    //       .catch((error) => {
-    //         console.log(error)
-    //       })
-    //   });
+  }
+
+  applePlaylistFunction(){
+    let musicProvider = MusicKitManager.provider();
+    musicProvider.configure();
+    let musicInstance = musicProvider.getMusicInstance();
+    musicInstance.authorize()
+      .then(musicUserToken => {
+        let headerData = {
+          userToken: musicUserToken,
+          playlistData: this.state.playlistData
+        }
+        axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/addPlaylistToApple', headerData)
+          .then((response) => {
+            if (response.status == 200){
+              this.setState({
+                applePopupState: "success"
+              })
+            } else {
+              this.setState({
+                applePopupState: "error"
+              })
+            }
+            this.applePopupClose()
+          })
+          .catch((error) => {
+            console.log(error)
+            this.setState({
+              applePopupState: "error"
+            })
+          })
+      });
+  }
+
+  spotifyPlaylistFunction (){
+    const stateKey = 'playlistData';
+    const state = JSON.stringify(this.state.playlistData);
+    localStorage.setItem(stateKey, state);
+    axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/getSpotifyAuthUrl')
+    .then((response) => {
+      window.location = response.data
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   shareBtnTapped() {
@@ -278,6 +299,7 @@ class PlaylistPage extends React.Component {
       <span>
         <Header color={this.state.headerColor} logoColor={this.state.headerColor} />
         <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
+
         <div>
           <div className={style.main}>
             <span className={style.mainBackground} />
@@ -285,8 +307,8 @@ class PlaylistPage extends React.Component {
             <img src={this.state.imageUrl} className={imageStyle} />
             <h1 className={style.title}>{this.state.title}</h1>
             <h2 className={style.subtitle}>{this.state.subtitle}</h2>
-            <Popup display={this.state.applePopupDisplay} closeFunction={this.applePopupClose}/>
-            <Popup display={this.state.spotifyPopupDisplay} closeFunction={this.spotifyPopupClose}/>
+            <Popup display={this.state.applePopupDisplay} closeFunction={this.applePopupClose} actionFunction ={this.applePlaylistFunction} serviceType={'Apple'} closeFunction={this.popupClose} popupState ={this.state.applePopupState}/>
+            <Popup display={this.state.spotifyPopupDisplay} closeFunction={this.spotifyPopupClose} actionFunction ={this.spotifyPlaylistFunction} serviceType={'Spotify'}  closeFunction={this.popupClose}/>
             <SharePopup url={"www.recordexchange.app/playlist/".concat(this.state.playlistId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
             <div className={containerStyle}>
               <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
@@ -298,6 +320,7 @@ class PlaylistPage extends React.Component {
 
           </div>
         </div>
+
       </span>
 
     );
