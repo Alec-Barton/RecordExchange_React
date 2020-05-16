@@ -28,6 +28,9 @@ class AlbumPage extends React.Component {
       var listItems = tracks.map((track, index) => {
         track["index"] = index
         track["stop"] = "true"
+        if (track["name"].length > 50){
+          track["name"] =  track["name"].slice(0, 50).concat('...')
+        }
         return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
       this.state = {
@@ -79,6 +82,9 @@ class AlbumPage extends React.Component {
           let listItems = tracks.map((track, index) => {
             track["index"] = index
             track["stop"] = "true"
+            if (track["name"].length > 50){
+              track["name"] =  track["name"].slice(0, 50).concat('...')
+            }
             return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
           });
 
@@ -139,6 +145,9 @@ class AlbumPage extends React.Component {
     var listItems = tracks.map((track, index) => {
       track["index"] = index
       track["stop"] = true
+      if (track["name"].length > 50){
+        track["name"] =  track["name"].slice(0, 50).concat('...')
+      }
       return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
     });
 
@@ -180,6 +189,9 @@ class AlbumPage extends React.Component {
           } else {
             track["stop"] = false
           }
+          if (track["name"].length > 50){
+            track["name"] =  track["name"].slice(0, 50).concat('...')
+          }
           return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
         });
         this.setState({
@@ -193,11 +205,15 @@ class AlbumPage extends React.Component {
       }
 
     } else if (playbackState == "pause") {
+      console.log("hmmm")
       this.state.audio.pause()
       let tracks = this.state.tracks
       var listItems = tracks.map((track, index) => {
         track["index"] = index
         track["stop"] = true
+        if (track["name"].length > 50){
+          track["name"] =  track["name"].slice(0, 50).concat('...')
+        }
         return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
 

@@ -35,6 +35,7 @@ class PlaylistTrack extends React.Component {
     }
 
     stopPlayback(){
+        console.log("Hm")
         if (this.state.playing) {
             setTimeout(()=>{ 
                 this.setState({
@@ -45,11 +46,15 @@ class PlaylistTrack extends React.Component {
     }
 
     tapped(){
+        console.log(this.state.playing)
         if (!this.state.playing){
-            this.props.action("play", this.props.props.preview)
             this.setState({ 
                 playing: true,
-            })
+            }, 
+                this.props.action("play", this.props.props.preview)
+            )
+            
+           
         } else {
             this.props.action("pause", this.props.props.preview)
             this.setState({ 

@@ -41,7 +41,14 @@ function hexBrightnessPercentage (hex, percent){
     else if (g < 0) {
         g = 0
     }
-    return ('#') + (g | (b << 8) | (r << 16)).toString(16);
+
+    var hexString = (g | (b << 8) | (r << 16)).toString(16)
+    // hexString = ('0' * 6-hexString.length) + hexString
+    if (hexString.length < 6){
+        let leadingZeros = '0' * (6-hexString.length)
+        hexString = leadingZeros + hexString
+    }
+    return ('#') + hexString;
 }
 
 function hexBrightnessAmount (hex, amount){  

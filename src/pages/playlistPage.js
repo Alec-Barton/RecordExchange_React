@@ -32,6 +32,9 @@ class PlaylistPage extends React.Component {
 
       let listItems = tracks.map((track) => {
         track["stop"] = "true"
+        if (track["name"].length > 50){
+          track["name"] =  track["name"].slice(0, 50).concat('...')
+        }
         return (<PlaylistTrack key={track.spotifyId} props={track} action={this.changeAudio}></PlaylistTrack>)
       });
       this.state = {
@@ -86,6 +89,10 @@ class PlaylistPage extends React.Component {
 
           let listItems = tracks.map((track) => {
             track["stop"] = "true"
+            if (track["name"].length > 50){
+              track["name"] =  track["name"].slice(0, 50).concat('...')
+            }
+            
             return (<PlaylistTrack key={track.spotifyId} props={track} action={this.changeAudio}></PlaylistTrack>)
           });
           this.setState({
@@ -155,6 +162,9 @@ class PlaylistPage extends React.Component {
     var listItems = tracks.map((track, index) => {
       track["index"] = index
       track["stop"] = true
+      if (track["name"].length > 50){
+        track["name"] =  track["name"].slice(0, 50).concat('...')
+      }
       return (<PlaylistTrack key={index} props={track} action={this.changeAudio}></PlaylistTrack>)
     });
 
@@ -246,6 +256,7 @@ class PlaylistPage extends React.Component {
   }
 
   changeAudio = (playbackState, audioSource) => {
+    console.log("HHHHHH")
     if (playbackState == "play") {
       if (audioSource == this.state.audio) {
         this.state.audio.play()
@@ -257,6 +268,9 @@ class PlaylistPage extends React.Component {
             track["stop"] = true
           } else {
             track["stop"] = false
+          }
+          if (track["name"].length > 50){
+            track["name"] =  track["name"].slice(0, 50).concat('...')
           }
           return (<PlaylistTrack key={index} props={track} action={this.changeAudio}></PlaylistTrack>)
         });
@@ -271,11 +285,15 @@ class PlaylistPage extends React.Component {
       }
 
     } else if (playbackState == "pause") {
+      console.log("whene")
       this.state.audio.pause()
       let tracks = this.state.tracks
       var listItems = tracks.map((track, index) => {
         track["index"] = index
         track["stop"] = true
+        if (track["name"].length > 50){
+          track["name"] =  track["name"].slice(0, 50).concat('...')
+        }
         return (<PlaylistTrack key={index} props={track} action={this.changeAudio}></PlaylistTrack>)
       });
 
@@ -316,8 +334,6 @@ class PlaylistPage extends React.Component {
               <input type="image" onClick={this.shareBtnTapped} src={shareLogo} className={style.shrButton} />
             </div>
             <ul className={style.myUl}> {this.state.listItems} </ul>
-            {/* </span> */}
-
           </div>
         </div>
 

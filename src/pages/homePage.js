@@ -60,8 +60,9 @@ class HomePage extends React.Component {
   }
 
   begin(totalTime) {
+    var msTime = totalTime * 1000
     // let totalTime = itemCount * itemDelay + delay
-    let percentageTime = totalTime / 100
+    let percentageTime = msTime/100
     var progress = 0
     for (let i = 1; i < 100; i++) {
 
@@ -101,10 +102,9 @@ class HomePage extends React.Component {
     if (this.state.objectType == 'playlist'){
       if (this.state.playlist){
         if (this.state.playlist.tracks){
-          totalTime = this.state.playlist.tracks/4
+          totalTime = this.state.playlist.tracks/4 + 3
         }
       }
-      console.log(this.state.playlist.tracks.length)
     }
     this.begin(totalTime)
     axios.post('https://us-central1-the-record-exchange.cloudfunctions.net/convertObject', headerData).then((response) => {
@@ -131,7 +131,6 @@ class HomePage extends React.Component {
       }, 1000)
 
     }).catch((error) => {
-      console.log("ERROR HERE")
       this.setState({
         title: 'Unable to convert Music',
         subtitle: 'something went wrong and your music could not be converted',
@@ -334,8 +333,8 @@ class HomePage extends React.Component {
   render() {
     let lightColor = hexBrightnessPercentage(this.state.color,  0.85)
 
-    // let semidarkColor =  hexBrightnessPercentage(this.state.color, -0.15)
     let headerColor = hexBrightnessPercentage(this.state.logoColor, -0.15)
+
     let darkColor = hexBrightnessPercentage(this.state.color, -0.3)
 
     var imageStyle = style.imgHidden
@@ -363,7 +362,7 @@ class HomePage extends React.Component {
 
         <div className={style.main}>
           <img src={this.state.imageUrl} className={imageStyle} />
-          <pre><h1 className={style.title}>{this.state.title}</h1></pre>
+          <h1 className={style.title}>{this.state.title}</h1>
           <h2 className={style.subtitlePadded}>{this.state.subtitle}</h2>
 
           <form className={inputBarStyle} onSubmit={this.handleSubmit}>

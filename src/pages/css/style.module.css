@@ -175,6 +175,10 @@ img {
     letter-spacing: 0px;
     font-size: 30pt;
     margin-bottom: 10px;
+    width: 100%;
+    /* background-color: sandybrown; */
+    /* overflow-wrap: break-word;
+    word-break: break-word; */
 }
 
 .subtitle {
