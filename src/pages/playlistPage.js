@@ -256,7 +256,8 @@ class PlaylistPage extends React.Component {
   }
 
   changeAudio = (playbackState, audioSource) => {
-    console.log("HHHHHH")
+    console.log(playbackState, audioSource, this.state.audio)
+
     if (playbackState == "play") {
       if (audioSource == this.state.audio) {
         this.state.audio.play()
@@ -285,7 +286,6 @@ class PlaylistPage extends React.Component {
       }
 
     } else if (playbackState == "pause") {
-      console.log("whene")
       this.state.audio.pause()
       let tracks = this.state.tracks
       var listItems = tracks.map((track, index) => {

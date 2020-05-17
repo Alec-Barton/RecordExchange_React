@@ -13,12 +13,13 @@ class AlbumTrack extends React.Component {
             artist: props.props.artist,
             coverImage: props.props.coverImage,
             duration: props.props.duration,
-            playing: false,
+            playing: !props.props.stop,
+            isHovered: !props.props.stop,
             playbackIcon: playIcon,
             playbackVisibility: 'hidden',
             indexVisibility: 'visible',
             itemClass: style.albumTrackItem,    
-            isHovered: false,        
+            // isHovered: false,        
         };
         this.tapped = this.tapped.bind(this);
         this.hoverBegan = this.hoverBegan.bind(this);

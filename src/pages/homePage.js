@@ -102,7 +102,7 @@ class HomePage extends React.Component {
     if (this.state.objectType == 'playlist'){
       if (this.state.playlist){
         if (this.state.playlist.tracks){
-          totalTime = this.state.playlist.tracks.length/4 + 2
+          totalTime = ((this.state.playlist.tracks.length+1)/4) + 2
         }
       }
     }

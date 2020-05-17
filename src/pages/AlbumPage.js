@@ -205,7 +205,6 @@ class AlbumPage extends React.Component {
       }
 
     } else if (playbackState == "pause") {
-      console.log("hmmm")
       this.state.audio.pause()
       let tracks = this.state.tracks
       var listItems = tracks.map((track, index) => {

@@ -12,9 +12,10 @@ class PlaylistTrack extends React.Component {
             artist: props.props.artist,
             coverImage: props.props.coverImage,
             duration: props.props.duration,
-            playing: false,
+            playing: !props.props.stop,
+            isHovered: !props.props.stop,
             playbackIcon: playIcon,
-            audio: new Audio(this.props.props.preview),
+            // audio: new Audio(this.props.props.preview),
             playbackVisibility: 'hidden',
             playbackStyle: style.plPlaybackImage,
         };
@@ -23,7 +24,11 @@ class PlaylistTrack extends React.Component {
         this.hoverEnded = this.hoverEnded.bind(this);
         this.stopPlayback = this.stopPlayback.bind(this);
         this.playbackEnded = this.playbackEnded.bind(this);
-        this.state.audio.onended = this.playbackEnded
+        // this.state.audio.onended = this.playbackEnded
+    }
+
+    componentWillUnmount(){
+        console.log("akfldfsdfskcsd, sbrsljbvrsjkbvrhvbewjkbwjcbwehveshkfvshjfsfscvkwnkjwbvjksbfskjbjkbsjkbsjkcbscvjksbfjkesbfeksjhfeshfs,jchskjfheskjfhesjkfhsfjkshjkfeshfjkshfksehfkjesbvbrkbjkrvdjkrbkvjdbkbjjksbjkfb")
     }
 
     playbackEnded (){
@@ -35,7 +40,7 @@ class PlaylistTrack extends React.Component {
     }
 
     stopPlayback(){
-        console.log("Hm")
+        console.log("stop:", this.state.name)
         if (this.state.playing) {
             setTimeout(()=>{ 
                 this.setState({
@@ -46,19 +51,16 @@ class PlaylistTrack extends React.Component {
     }
 
     tapped(){
-        console.log(this.state.playing)
-        if (!this.state.playing){
-            this.setState({ 
-                playing: true,
-            }, 
-                this.props.action("play", this.props.props.preview)
-            )
-            
-           
-        } else {
+        if (this.state.playing){
             this.props.action("pause", this.props.props.preview)
             this.setState({ 
                 playing: false,
+            })
+            
+        } else {
+            this.props.action("play", this.props.props.preview)
+            this.setState({ 
+                playing: true,
             })
         }
     }
