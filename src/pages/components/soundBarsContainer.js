@@ -8,7 +8,7 @@ class SoundBarsContainer extends React.Component {
     constructor(props) {
         super(props)
 
-        var leftHeightArray = [10, 15, 20, 25, 30, 35, 50, 75, 100, 150, 225, 350, 475, 630, 675, 600, 450, 275, 125, 60, 40, 30, 25, 20, 15, 25, 30, 25, 20, 15]
+        var leftHeightArray = [7.5, 10, 15, 20, 25, 30, 35, 50, 75, 100, 150, 225, 350, 475, 630, 675, 600, 450, 275, 175, 100, 65, 35, 27.5, 30, 37.5, 45, 35, 27.5, 22.5, ]
         var rightHeightArray = leftHeightArray.slice().reverse()
 
         this.state = {
