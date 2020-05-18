@@ -207,7 +207,9 @@ class PlaylistPage extends React.Component {
                 applePopupState: "error"
               })
             }
-            this.applePopupClose()
+            setTimeout(() => {
+              this.applePopupClose()
+            }, 2000);
           })
           .catch((error) => {
             console.log(error)
@@ -250,9 +252,16 @@ class PlaylistPage extends React.Component {
   }
 
   applePopupClose() {
+
     this.setState({
-      applePopupDisplay: 'none'
+      applePopupDisplay: 'none',
+      appleReset: true
     })
+    setTimeout(() => {
+      this.setState({
+        appleReset: false
+      })
+    }, 50);
   }
 
   changeAudio = (playbackState, audioSource) => {
@@ -325,8 +334,8 @@ class PlaylistPage extends React.Component {
             <img src={this.state.imageUrl} className={imageStyle} />
             <h1 className={style.title}>{this.state.title}</h1>
             <h2 className={style.subtitle}>{this.state.subtitle}</h2>
-            <Popup display={this.state.applePopupDisplay} closeFunction={this.applePopupClose} actionFunction ={this.applePlaylistFunction} serviceType={'Apple'} closeFunction={this.popupClose} popupState ={this.state.applePopupState}/>
-            <Popup display={this.state.spotifyPopupDisplay} closeFunction={this.spotifyPopupClose} actionFunction ={this.spotifyPlaylistFunction} serviceType={'Spotify'}  closeFunction={this.popupClose}/>
+            <Popup display={this.state.applePopupDisplay} closeFunction={this.applePopupClose} actionFunction ={this.applePlaylistFunction} serviceType={'Apple'}  popupState ={this.state.applePopupState} reset = {this.state.appleReset}/>
+            <Popup display={this.state.spotifyPopupDisplay} closeFunction={this.spotifyPopupClose} actionFunction ={this.spotifyPlaylistFunction} serviceType={'Spotify'} popupState ={this.state.spotifyPopupState} />
             <SharePopup url={"www.recordexchange.app/playlist/".concat(this.state.playlistId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
             <div className={containerStyle}>
               <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
