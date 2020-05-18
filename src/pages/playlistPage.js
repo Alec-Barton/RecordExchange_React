@@ -209,6 +209,9 @@ class PlaylistPage extends React.Component {
             }
             setTimeout(() => {
               this.applePopupClose()
+              this.setState({
+                applePopupState: "none"
+              })
             }, 2000);
           })
           .catch((error) => {
