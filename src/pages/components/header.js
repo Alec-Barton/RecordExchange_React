@@ -27,10 +27,10 @@ class Header extends React.Component {
             <div className ={style.headerContainer} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
                 <RecordLogo color = {this.props.logoColor}/>
                 <span className={style.headerTitle} style = {{color: fontColor}}>
-                    <span style = {{fontSize:"30pt", color: fontColor}}>R</span>
-                    <span style = {{fontSize:"25pt", color: fontColor}}>ECORD</span>
-                    <span style = {{fontSize:"30pt", paddingLeft: "25px", color: fontColor}}>E</span>
-                    <span style = {{fontSize:"25pt", color: fontColor}}>XCHANGE</span>
+                    <span style = {{fontSize:"25pt", color: fontColor}}>R</span>
+                    <span style = {{fontSize:"20pt", color: fontColor}}>ECORD</span>
+                    <span style = {{fontSize:"25pt", paddingLeft: "25px", color: fontColor}}>E</span>
+                    <span style = {{fontSize:"20pt", color: fontColor}}>XCHANGE</span>
                 </span>
             </div>
         )

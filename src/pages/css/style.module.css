@@ -877,11 +877,24 @@ ul {
 @media (max-width: 800px) {
 
     .headerContainer{
-        width: 90%;
+        width: 100%;
     }
     .main{
-        width: 90%;
+        width: 100%;
         max-width: 750px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .headerContainer{
+        width: 100%;
+    }
+    .main{
+        width: 100%;
+        /* max-width: 750px; */
+        background-color: red;
     }
 }
 
