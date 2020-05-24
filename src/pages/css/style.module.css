@@ -307,7 +307,7 @@ img {
 }
 
 .appleButton:hover{
- -webkit-filter: brightness(80%);
+    -webkit-filter: brightness(80%);
 }
 
 .shrButton {
@@ -337,7 +337,7 @@ img {
     font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: left;
     font-weight: lighter;
-    font-size: 14pt;
+    font-size: 12pt;
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
@@ -367,8 +367,8 @@ img {
     margin-bottom: 0px;
     padding-bottom: 0px;
     box-sizing: border-box;
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     display: inline-block;
 }
 
@@ -403,7 +403,7 @@ img {
     font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: right;
     font-weight: lighter;
-    font-size: 13pt;
+    font-size: 11pt;
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
