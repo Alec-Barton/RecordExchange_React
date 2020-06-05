@@ -37,7 +37,7 @@ class SoundBar extends React.Component {
                 right: this.state.x 
             }
         }
-        let shadowStyle = '14px 10px 5px 5px '.concat(this.props.props.shadowColor).concat('AA')
+        let shadowStyle = '10px 10px 5px 5px '.concat(this.props.props.shadowColor).concat('AA')
 
         return (
             <span className = {soundBar.barFrameContainer} style={containerStyle}>
