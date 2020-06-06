@@ -176,9 +176,10 @@ img {
     text-align: center;
     font-weight: 500;
     letter-spacing: 0px;
-    font-size: 30pt;
-    margin-bottom: 10px;
+    font-size: 23pt;
+    margin-bottom: 12px;
     width: 100%;
+    padding-top: 7px;
     /* background-color: sandybrown; */
     /* overflow-wrap: break-word;
     word-break: break-word; */
@@ -189,10 +190,10 @@ img {
     font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight:lighter;
-    font-size: 18pt;
+    font-size: 14.5pt;
     min-height: 1em;
     margin:auto;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     max-height: 120px;
 }
 
@@ -201,13 +202,13 @@ img {
     font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight:lighter;
-    font-size: 18pt;
+    font-size: 14.5pt;
     min-height: 1em;
     width: 100%;
     overflow-wrap: break-word;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
     margin:auto;
-    margin-bottom: 10px;
+    margin-bottom: 17px;
     max-height: 120px;
 }
 
@@ -218,13 +219,13 @@ img {
 .homeInput {
     color:#c2c0c0;
     width: 100%;
-    height: 40px;
-    border-radius: 15px;
+    height: 34px;
+    border-radius: 10px;
     margin-bottom: 20px;
     border: 1.5px solid #A2A0A0;
     outline: none;
     font-family: Lato, Arial, Helvetica, sans-serif;
-    font-size: 16pt;
+    font-size: 14pt;
     padding: 8px 20px;
 }
 
@@ -270,8 +271,8 @@ img {
 .spotifyButton {
     display: inline-block;
     margin: auto;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 30px;
     color: black;
     outline: none;
@@ -290,8 +291,8 @@ img {
 .appleButton {
     display: inline-block;
     margin: auto;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 30px;
     color: black;
     outline: none;
@@ -314,8 +315,8 @@ img {
     padding-left: 10px;
     display: inline-block;
     margin: auto;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 30px;
     color: black;
     outline: none;
@@ -337,7 +338,7 @@ img {
     font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: left;
     font-weight: lighter;
-    font-size: 12pt;
+    font-size: 11pt;
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
@@ -350,7 +351,7 @@ img {
     text-align: left;
     font-weight: lighter;
     font-size: 10pt;
-    background-color: royalblue;
+    /* background-color: royalblue; */
 }
 
 .trackItem {
@@ -368,8 +369,8 @@ img {
     margin-bottom: 0px;
     padding-bottom: 0px;
     box-sizing: border-box;
-    height: 35px;
-    width: 35px;
+    height: 25px;
+    width: 25px;
     display: inline-block;
 }
 
@@ -462,10 +463,11 @@ img {
     padding-bottom: 0px;
     margin-right: 10px;
     box-sizing: border-box;
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     display: inline-block;
     border-style: none;
+    background-color: turquoise;
 }
 
 .plPlaybackImage {
@@ -474,8 +476,8 @@ img {
     margin-bottom: 0px;
     padding-bottom: 0px;
     box-sizing: border-box;
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     display: inline-block;
     position: absolute;
     top:0;  
@@ -841,7 +843,7 @@ ul {
         width: 40%;
     }
     .main{
-        width: 45%;
+        width: 40%;
         max-width: 750px;
     }
 }
@@ -849,10 +851,10 @@ ul {
 @media (max-width: 1400px) {
 
     .headerContainer{
-        width: 55%;
+        width: 40%;
     }
     .main{
-        width: 55%;
+        width: 40%;
         max-width: 750px;
     }
 }
@@ -860,10 +862,10 @@ ul {
 @media (max-width: 1200px) {
 
     .headerContainer{
-        width: 60%;
+        width: 50%;
     }
     .main{
-        width: 60%;
+        width: 50%;
         max-width: 750px;
     }
 }
@@ -871,10 +873,11 @@ ul {
 @media (max-width: 1000px) {
 
     .headerContainer{
-        width: 75%;
+        width: 65%;
     }
     .main{
-        width: 75%;
+        
+        width: 65%;
         max-width: 750px;
     }
 }
@@ -882,10 +885,11 @@ ul {
 @media (max-width: 800px) {
 
     .headerContainer{
-        width: 90%;
+        width: 80%;
     }
     .main{
-        width: 90%;
+
+        width: 80%;
         max-width: 750px;
     }
 }
@@ -894,11 +898,10 @@ ul {
 @media (max-width: 600px) {
 
     .headerContainer{
-        width: 100%;
+        width: 95%;
     }
     .main{
-        width: 100%;
-        background-color: red;
+        width: 95%;
     }
 }
 
