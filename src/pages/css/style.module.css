@@ -193,7 +193,7 @@ img {
     font-size: 14.5pt;
     min-height: 1em;
     margin:auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     max-height: 120px;
 }
 
@@ -208,7 +208,7 @@ img {
     overflow-wrap: break-word;
     padding-bottom: 20px;
     margin:auto;
-    margin-bottom: 17px;
+    margin-bottom: 10px;
     max-height: 120px;
 }
 
@@ -259,13 +259,14 @@ img {
 }
 
 .btnContainer {
-    padding-top: 10px;
+    padding-top: 2px;
     width:100%;
     text-align:center;
     opacity: 0;
     animation: fadeInAnimation ease 750ms; 
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
+    /* background-color: violet; */
 }
 
 .spotifyButton {
@@ -281,7 +282,7 @@ img {
     color:#A2A0A0;
     margin:0 auto;
     padding-right: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
 }
 
 .spotifyButton:hover {
@@ -303,7 +304,7 @@ img {
     margin:0 auto;
     padding-right: 10px;
     padding-left: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
 
 }
 
@@ -324,7 +325,7 @@ img {
     font-family: Lato, Arial, Helvetica, sans-serif;
     color:#A2A0A0;
     margin:0 auto;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
 }
 
 .shrButton:hover{
@@ -357,10 +358,11 @@ img {
 .trackItem {
     border-bottom: 0.5px solid #E4E4E4;
     list-style: none;
-    padding-top: 7.5px;
-    padding-bottom: 7.5px;
+    padding-top: 5px;
+    padding-bottom: 2px;
     margin-top: 0px;
     margin-bottom: 0px;
+    /* background-color: teal; */
 }
 
 .trackImage {
@@ -406,7 +408,7 @@ img {
     font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: right;
     font-weight: lighter;
-    font-size: 11pt;
+    font-size: 10pt;
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
@@ -490,8 +492,8 @@ img {
     margin-bottom: 0px;
     padding-bottom: 0px;
     box-sizing: border-box;
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     display: inline-block;
     position: absolute;
     top:0;  
@@ -506,8 +508,8 @@ img {
     margin-bottom: 0px;
     padding-bottom: 0px;
     box-sizing: border-box;
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     display: inline-block;
     opacity: 0.75;
     position: absolute;
