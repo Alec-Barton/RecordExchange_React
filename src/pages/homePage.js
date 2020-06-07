@@ -370,7 +370,7 @@ class HomePage extends React.Component {
           </form>
 
           <button className={shareButtonStyle} onClick={this.shareBtnTapped} style={{backgroundColor: lightColor, color: darkColor}}>Share</button>
-          <ProgressBarItem percentage={this.state.progress} color={this.state.color} visibility={this.state.loadingBarState} />
+          <ProgressBarItem percentage={this.state.progress} color={this.state.color} visibility={this.state.loadingBarState}  />
         </div>
       </span>
 
