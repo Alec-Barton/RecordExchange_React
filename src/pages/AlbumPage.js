@@ -28,8 +28,8 @@ class AlbumPage extends React.Component {
       var listItems = tracks.map((track, index) => {
         track["index"] = index
         track["stop"] = "true"
-        if (track["name"].length > 50){
-          track["name"] =  track["name"].slice(0, 50).concat('...')
+        if (track["name"].length > 45){
+          track["name"] =  track["name"].slice(0, 45).concat('...')
         }
         return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
@@ -82,8 +82,8 @@ class AlbumPage extends React.Component {
           let listItems = tracks.map((track, index) => {
             track["index"] = index
             track["stop"] = "true"
-            if (track["name"].length > 50){
-              track["name"] =  track["name"].slice(0, 50).concat('...')
+            if (track["name"].length > 45){
+              track["name"] =  track["name"].slice(0, 45).concat('...')
             }
             return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
           });
@@ -145,8 +145,8 @@ class AlbumPage extends React.Component {
     var listItems = tracks.map((track, index) => {
       track["index"] = index
       track["stop"] = true
-      if (track["name"].length > 50){
-        track["name"] =  track["name"].slice(0, 50).concat('...')
+      if (track["name"].length > 45){
+        track["name"] =  track["name"].slice(0, 45).concat('...')
       }
       return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
     });
@@ -189,8 +189,8 @@ class AlbumPage extends React.Component {
           } else {
             track["stop"] = false
           }
-          if (track["name"].length > 50){
-            track["name"] =  track["name"].slice(0, 50).concat('...')
+          if (track["name"].length > 45){
+            track["name"] =  track["name"].slice(0, 45).concat('...')
           }
           return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
         });
@@ -210,8 +210,8 @@ class AlbumPage extends React.Component {
       var listItems = tracks.map((track, index) => {
         track["index"] = index
         track["stop"] = true
-        if (track["name"].length > 50){
-          track["name"] =  track["name"].slice(0, 50).concat('...')
+        if (track["name"].length > 45){
+          track["name"] =  track["name"].slice(0, 45).concat('...')
         }
         return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
@@ -236,7 +236,7 @@ class AlbumPage extends React.Component {
     return (
       <span>
         <Header color = {this.state.headerColor} logoColor = {this.state.headerColor}/>
-        <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
+        <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility, "screenSize":  window.innerWidth}} />
         <div className={style.main}>
           <span className={style.mainBackground} />
           <img src={this.state.imageUrl} className={imageStyle} />

@@ -358,7 +358,7 @@ class HomePage extends React.Component {
       
       <span>
         <Header color = {headerColor} logoColor = {headerColor}/>
-        <SoundBarsContainer props={{"color":this.state.color, "shadowColor":this.state.shadowColor, "visibility":this.state.barVisibility}}/>
+        <SoundBarsContainer props={{"color":this.state.color, "shadowColor":this.state.shadowColor, "visibility":this.state.barVisibility, "screenSize":  window.innerWidth}}/>
 
         <div className={style.main}>
           <img src={this.state.imageUrl} className={imageStyle} />

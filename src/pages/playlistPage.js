@@ -328,7 +328,7 @@ class PlaylistPage extends React.Component {
     return (
       <span>
         <Header color={this.state.headerColor} logoColor={this.state.headerColor} />
-        <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility }} />
+        <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility, "screenSize":  window.innerWidth }} />
 
         <div>
           <div className={style.main}>

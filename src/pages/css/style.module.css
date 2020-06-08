@@ -42,8 +42,8 @@ audio {
     margin: auto;
     height: 55;
     padding-top: 0px;
-    margin-top: 15px;
-    padding-bottom: 15px;
+    margin-top: 10px;
+    padding-bottom: 10px;
     border-bottom: 0.5px solid #AFAFAF;
     opacity: 1.0;
     color: #707070;
@@ -74,10 +74,18 @@ audio {
     /* -webkit-text-stroke-color: #707070; */
 }
 
+.headerBigText {
+    font-size: 23pt;
+}
+
+.headerText {
+    font-size: 18pt;
+}
+
 .headerLogo {
     opacity: inherit;
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     margin-top: 15px;
     padding-top: 2px;
     vertical-align: center;
@@ -110,16 +118,11 @@ audio {
 
 .recordLogoContainer{
     position: relative;
-    /* top: 0;
-    left: 0; */
-    width: 38px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
     display: inline-block;
-    /* margin-top: 15px; */
-    /* padding-top: 2px; */
     border-radius: 25px;
     vertical-align: center;
-    /* margin: auto; */
 }
 
 .recordLogoBackground{
@@ -394,6 +397,7 @@ img {
     padding-right: 20px;
     box-sizing: border-box;
     height: 35px;
+    width: 50px;
     float: right;
 }
 
@@ -422,6 +426,7 @@ img {
     font-size: 14pt;
     padding-bottom: 0px;
     margin-bottom: 0px;
+    width: 100%;
 }
 
 .albumTrackItem {
@@ -450,7 +455,7 @@ img {
     box-sizing: border-box;
     vertical-align: top;
     height: 35px;
-    max-width: 80%;
+    max-width: 65%;
     overflow: hidden;
     text-overflow: "...";
     display: inline-block;
@@ -897,6 +902,19 @@ ul {
 
 
 @media (max-width: 600px) {
+
+    .recordLogoContainer{
+        width: 30px;
+        height: 30px;
+    }
+
+    .headerBigText {
+        font-size: 18pt;
+    }
+    
+    .headerText {
+        font-size: 13pt;
+    }
 
     .headerContainer{
         width: 95%;
