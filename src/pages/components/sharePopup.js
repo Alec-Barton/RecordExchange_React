@@ -31,22 +31,23 @@ class SharePopup extends React.Component {
 
     render() {
         var popStyle = style.popup
-        var infoDipsplay = 'block'
+        var infoDipsplay = 'inline-block'
         var textDipsplay = 'none'
         if (this.state.copied) {
             popStyle = style.popupFadeOut
             var infoDipsplay = 'none'
-            var textDipsplay = 'block'
+            var textDipsplay = 'inline-block'
         }
         return (
             <div className={popStyle} style={{ display: this.props.display }}>
-                <button className={style.popupCloseButton} onClick={this.popupCloseButton} style ={{display:infoDipsplay}} >X</button>
+                {/* <button className={style.popupCloseButton} onClick={this.popupCloseButton} style ={{display:infoDipsplay}} >X</button> */}
                 <h1 className={style.popupTitle } style={{display:infoDipsplay}}> Copy & Share Link</h1>
 
                 <textarea disabled className={style.popupTextArea} rows="1" style ={{display:infoDipsplay}}>
                     {this.props.url}
                 </textarea>
-                <button className={style.popupCopyButton} onClick={this.popupCopyButton} style ={{display:infoDipsplay}}>Copy Link</button>
+                <button className={style.popupActionButton} onClick={this.popupCloseButton}  style={{display:infoDipsplay}} >Cancel</button>
+                <button className={style.popupActionButton} onClick={this.popupCopyButton} style ={{display:infoDipsplay}}>Copy Link</button>
                 <h1 className = {style.popupCopied} style ={{display:textDipsplay}}> Copied </h1>
             </div>
         )

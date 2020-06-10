@@ -51,7 +51,6 @@ class Popup extends React.Component {
     render() {
         if (this.props.reset && this.state.loading == 'loading'){
             this.reset()
-            console.log("pokoeoeoee")
         } else {
             
             var title = 'Save'
@@ -108,7 +107,7 @@ class Popup extends React.Component {
                 <h2 className={style.popupsubTitle } style={{display:subtitleDisplay}}> {subtitle} </h2>
                 <img src={loadingGif} className={style.popupLoadingIndicator} style={{display:loadingDisplay}} />
                 <button className={style.popupActionButton} onClick={this.popupCloseButton}  style={{display:buttonDisplay}} >Cancel</button>
-                <button className={style.popupActionButton} onClick={this.popupSaveButton}  style={{display:buttonDisplay}} >Save Playlist</button>
+                <button className={style.popupActionButton} onClick={this.popupSaveButton}  style={{display:buttonDisplay}} >Save</button>
             </div>
         )
     }
