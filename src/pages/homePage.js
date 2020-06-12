@@ -359,12 +359,18 @@ class HomePage extends React.Component {
       <span>
         <Header color = {headerColor} logoColor = {headerColor}/>
         <SoundBarsContainer props={{"color":this.state.color, "shadowColor":this.state.shadowColor, "visibility":this.state.barVisibility, "screenSize":  window.innerWidth}}/>
-
+        {/* <span className={style.homeBackground}></span> */}
         <div className={style.main}>
           <img src={this.state.imageUrl} className={imageStyle} />
+          {/* <span style={{height:"100%"}}> */}
+          <span className={style.homeBackground}/>
           <h1 className={style.title}>{this.state.title}</h1>
           <h2 className={style.subtitlePadded}>{this.state.subtitle}</h2>
+          {/* </span> */}
+         
 
+          
+          
           <form className={inputBarStyle} onSubmit={this.handleSubmit}>
             <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />
           </form>

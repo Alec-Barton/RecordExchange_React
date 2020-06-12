@@ -116,6 +116,23 @@ audio {
     filter: blur(20px);
 }
 
+.homeBackground {
+    background-color: #fafafa;
+    display: inline-block;
+    position: absolute;
+    top: 10;
+    left: 0; 
+    
+    z-index:-1; 
+    width: 100%;
+    margin-top: 200px;
+    height: 5px;
+    background-color: #fafafa;
+    opacity: 0.85;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+}
+
 .recordLogoContainer{
     position: relative;
     width: 35px;
@@ -183,6 +200,44 @@ img {
     margin-bottom: 12px;
     width: 100%;
     padding-top: 7px;
+}
+
+.homeTitle{
+    color: #878787;
+    font-family:  Lato, Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0px;
+    font-size: 23pt;
+    margin-bottom: 12px;
+    width: 100%;
+    padding-top: 7px;
+
+     background-color: tomato;
+}
+
+.homeBackground {
+    /* background-color: tomato; */
+    background-color: #fafafa;
+    opacity: 0.85;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+    width: 100%;
+    
+    height: 35%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* background-color:  teal;
+    color: #878787;
+    font-family:  Lato, Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0px;
+    font-size: 23pt;
+    margin-bottom: 12px;
+    width: 100%;
+    padding-top: 7px; */
     /* background-color: sandybrown; */
     /* overflow-wrap: break-word;
     word-break: break-word; */
@@ -214,6 +269,7 @@ img {
     margin-bottom: 10px;
     max-height: 120px;
 }
+
 
 .homeForm {
     display: block;
