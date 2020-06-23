@@ -332,11 +332,11 @@ class PlaylistPage extends React.Component {
 
         <div>
           <div className={style.main}>
-            <span className={style.mainBackground} />
+            {/* <span className={style.mainBackground} /> */}
 
             <img src={this.state.imageUrl} className={imageStyle} />
-            <h1 className={style.title}>{this.state.title}</h1>
-            <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+            <h1 className={style.homeTitle}>{this.state.title}</h1>
+            <h2 className={style.homeSubtitle}>{this.state.subtitle}</h2>
             <Popup display={this.state.applePopupDisplay} closeFunction={this.applePopupClose} actionFunction ={this.applePlaylistFunction} serviceType={'Apple'}  popupState ={this.state.applePopupState} reset = {this.state.appleReset}/>
             <Popup display={this.state.spotifyPopupDisplay} closeFunction={this.spotifyPopupClose} actionFunction ={this.spotifyPlaylistFunction} serviceType={'Spotify'} popupState ={this.state.spotifyPopupState} />
             <SharePopup url={"www.recordexchange.app/playlist/".concat(this.state.playlistId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
@@ -345,6 +345,8 @@ class PlaylistPage extends React.Component {
               <input type="image" onClick={this.appleBtnTapped} src={appleLogo} className={style.appleButton} />
               <input type="image" onClick={this.shareBtnTapped} src={shareLogo} className={style.shrButton} />
             </div>
+            <span className={style.mainBackground} />
+
             <ul className={style.myUl}> {this.state.listItems} </ul>
           </div>
         </div>

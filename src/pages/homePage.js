@@ -362,14 +362,9 @@ class HomePage extends React.Component {
         {/* <span className={style.homeBackground}></span> */}
         <div className={style.main}>
           <img src={this.state.imageUrl} className={imageStyle} />
-          {/* <span style={{height:"100%"}}> */}
-          <span className={style.homeBackground}/>
-          <h1 className={style.title}>{this.state.title}</h1>
-          <h2 className={style.subtitlePadded}>{this.state.subtitle}</h2>
-          {/* </span> */}
-         
-
-          
+          {/* <span className={style.homeBackground}/> */}
+          <h1 className={style.homeTitle}>{this.state.title}</h1>
+          <h2 className={style.homeSubtitlePadded}>{this.state.subtitle}</h2>         
           
           <form className={inputBarStyle} onSubmit={this.handleSubmit}>
             <input className={style.homeInput} type="search" value={this.state.inputValue} onChange={this.handleChange} />

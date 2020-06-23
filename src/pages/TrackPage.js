@@ -241,8 +241,8 @@ class TrackPage extends React.Component {
             <img src={this.state.imageUrl} className={imageStyle} ></img>
             <img src={this.state.playbackIcon} className={style.trackCoverIcon} style={{ visibility: this.state.playbackVisibility }} ></img>
           </span>
-          <h1 className={style.title}>{this.state.title}</h1>
-          <h2 className={style.subtitlePadded}>{this.state.subtitle}</h2>
+          <h1 className={style.homeTitle}>{this.state.title}</h1>
+          <h2 className={style.homeSubtitlePadded}>{this.state.subtitle}</h2>
           <SharePopup url={"www.recordexchange.app/track/".concat(this.state.trackId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
           <div className={containerStyle}>
             <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />

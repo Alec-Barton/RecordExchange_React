@@ -238,17 +238,17 @@ class AlbumPage extends React.Component {
         <Header color = {this.state.headerColor} logoColor = {this.state.headerColor}/>
         <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility, "screenSize":  window.innerWidth}} />
         <div className={style.main}>
-          <span className={style.mainBackground} />
+          {/* <span className={style.mainBackground} /> */}
           <img src={this.state.imageUrl} className={imageStyle} />
-          <h1 className={style.title}>{this.state.title}</h1>
-          <h2 className={style.subtitle}>{this.state.subtitle}</h2>
+          <h1 className={style.homeTitle}>{this.state.title}</h1>
+          <h2 className={style.homeSubtitle}>{this.state.subtitle}</h2>
           <SharePopup url={"www.recordexchange.app/album/".concat(this.state.albumId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
           <div className={containerStyle}>
             <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
             <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
             <input type="image" src={shareLogo} className={style.shrButton} onClick={this.shareBtnTapped} />
           </div>
-
+          <span className={style.mainBackground} />
           <ul className={style.myUl} > {this.state.listItems} </ul>
         </div>
       </span>
