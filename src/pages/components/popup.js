@@ -2,7 +2,6 @@ import React from 'react';
 import style from '../css/style.module.css'
 import loadingGif from '../assets/loading.gif'
 
-
 class Popup extends React.Component {
     constructor(props) {
         super(props);
@@ -10,27 +9,12 @@ class Popup extends React.Component {
            loading: 'none',
            serviceType: this.props.serviceType
         };
-        // this.popupCopyButton = this.popupCopyButton.bind(this)
         this.popupCloseButton = this.popupCloseButton.bind(this)
         this.popupSaveButton = this.popupSaveButton.bind(this)
         this.reset = this.reset.bind(this)
     }
 
-    // popupCopyButton() {
-    //     navigator.clipboard.writeText(this.props.url)
-    //     this.setState({
-    //         copied: true
-    //     })
-    //     setTimeout(() => {
-    //         this.props.closeFunction()
-    //         this.setState({
-    //             copied: false
-    //         })
-    //     }, 1000);
-    // }
-
     popupCloseButton() {
-        console.log( this.props.closeFunction)
         this.props.closeFunction()
     }
 
@@ -52,7 +36,6 @@ class Popup extends React.Component {
         if (this.props.reset && this.state.loading == 'loading'){
             this.reset()
         } else {
-            
             var title = 'Save'
             var subtitle = `Add this playlist to your ${this.state.serviceType} Library?`
             var popStyle = style.popup
@@ -64,7 +47,6 @@ class Popup extends React.Component {
                 var buttonDisplay = 'none'
                 var loadingDisplay = 'block'
                 var subtitleDisplay = 'none'
-
                 if (this.props.popupState) {
                     popStyle = style.popupFadeOut
                     if (this.props.popupState == 'success'){
@@ -73,7 +55,6 @@ class Popup extends React.Component {
                         subtitle = "Added to Library"
                         subtitleDisplay = 'block'
                         loadingDisplay = 'none'
-                        console.log('1')
                         setTimeout(() => {
                             this.props.closeFunction()
                         }, 3000);
@@ -97,9 +78,6 @@ class Popup extends React.Component {
                     }
                 }
             }
-
-           
-            console.log(this.props.display)
         }
         return (
             <div className={popStyle} style={{ display: this.props.display }}>

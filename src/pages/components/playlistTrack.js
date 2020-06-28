@@ -15,9 +15,8 @@ class PlaylistTrack extends React.Component {
             coverImage: props.props.coverImage,
             duration: props.props.duration,
             playing: !props.props.stop,
-            isHovered: false, //!props.props.stop,
+            isHovered: false,
             playbackIcon: playIcon,
-            // audio: new Audio(this.props.props.preview),
             playbackVisibility: 'hidden',
             playbackStyle: style.plPlaybackImage,
         };
@@ -26,7 +25,6 @@ class PlaylistTrack extends React.Component {
         this.hoverEnded = this.hoverEnded.bind(this);
         this.stopPlayback = this.stopPlayback.bind(this);
         this.playbackEnded = this.playbackEnded.bind(this);
-        // this.state.audio.onended = this.playbackEnded
     }
 
     playbackEnded (){
@@ -38,7 +36,6 @@ class PlaylistTrack extends React.Component {
     }
 
     stopPlayback(){
-        console.log("stop:", this.state.name)
         if (this.state.playing) {
             setTimeout(()=>{ 
                 this.setState({

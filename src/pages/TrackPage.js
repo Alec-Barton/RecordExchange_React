@@ -236,7 +236,6 @@ class TrackPage extends React.Component {
         <Header color = {this.state.headerColor} logoColor = {this.state.headerColor}/>
         <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility, "screenSize":  window.innerWidth }} />
         <div className={style.main}>
-
           <span className={style.trackCoverContainer} onClick={this.playbackTapped} onMouseEnter={this.hoverBegan} onMouseLeave={this.hoverEnded}>
             <img src={this.state.imageUrl} className={imageStyle} ></img>
             <img src={this.state.playbackIcon} className={style.trackCoverIcon} style={{ visibility: this.state.playbackVisibility }} ></img>

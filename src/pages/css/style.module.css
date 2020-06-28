@@ -270,7 +270,6 @@ img {
 
 .subtitlePadded {
     color: #A2A0A0;
-    /* text-shadow: -1px 0 5px white, 0 1px 5px white, 1px 0 5px white, 0 -1px 5px white; */
     font-family: Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight:lighter;
@@ -299,7 +298,6 @@ img {
     margin-bottom: 10px;
     max-height: 120px;
 }
-
 
 .homeForm {
     display: block;
@@ -355,7 +353,6 @@ img {
     animation: fadeInAnimation ease 750ms; 
     animation-iteration-count: 1; 
     animation-fill-mode: forwards; 
-    /* background-color: violet; */
 }
 
 .spotifyButton {

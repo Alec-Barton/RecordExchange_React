@@ -19,7 +19,6 @@ class SpotifyCallbackPage extends React.Component {
     let playlistData = localStorage.getItem('playlistData')
     let parsed = queryString.parse(window.location.hash)
     let playlistObj = JSON.parse(playlistData)
-    console.log(playlistObj.id)
     let tokenType = "Bearer "
     let accessToken = tokenType.concat(parsed.access_token)
     let headerData = {

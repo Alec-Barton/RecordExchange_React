@@ -40,9 +40,7 @@ class SharePopup extends React.Component {
         }
         return (
             <div className={popStyle} style={{ display: this.props.display }}>
-                {/* <button className={style.popupCloseButton} onClick={this.popupCloseButton} style ={{display:infoDipsplay}} >X</button> */}
                 <h1 className={style.popupTitle } style={{display:infoDipsplay}}> Copy & Share Link</h1>
-
                 <textarea disabled className={style.popupTextArea} rows="1" style ={{display:infoDipsplay}}>
                     {this.props.url}
                 </textarea>

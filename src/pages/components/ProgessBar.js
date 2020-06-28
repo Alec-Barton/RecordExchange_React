@@ -9,7 +9,6 @@ class ProgressBarItem extends React.Component {
     this.state = {
       percentage: 0
     }
-    
   }
   
   render() {
@@ -34,15 +33,9 @@ const Filler = (props) => {
         <div className={progressBar.filler} style={{ width: `${props.percentage}%`, backgroundColor: `${props.color}` }} >
             <h5 className={progressBar.progressLabel} style={{ width: `${props.percentage}%` }}>
                 {props.percentage}%
-
             </h5>
         </div>
     )
 }
-
-// ReactDOM.render(
-//   <ProgressBarExample />,
-//   document.querySelector('#app')
-// )
 
 export default ProgressBar

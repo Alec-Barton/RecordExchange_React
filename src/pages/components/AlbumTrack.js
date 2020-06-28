@@ -4,14 +4,14 @@ import playIcon from '../assets/play.png'
 import pauseIcon from '../assets/pause.png'
 import playingIcon from '../assets/playing.png'
 
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
 class AlbumTrack extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             index: props.props.index + 1,
-            name: props.props.name, 
+            name: props.props.name,
             artist: props.props.artist,
             coverImage: props.props.coverImage,
             duration: props.props.duration,
@@ -20,8 +20,7 @@ class AlbumTrack extends React.Component {
             playbackIcon: playIcon,
             playbackVisibility: 'hidden',
             indexVisibility: 'visible',
-            itemClass: style.albumTrackItem,    
-            // isHovered: false,        
+            itemClass: style.albumTrackItem,
         };
         this.tapped = this.tapped.bind(this);
         this.hoverBegan = this.hoverBegan.bind(this);
@@ -29,50 +28,48 @@ class AlbumTrack extends React.Component {
         this.stopPlayback = this.stopPlayback.bind(this)
     }
 
-    stopPlayback(){
+    stopPlayback() {
         if (this.state.playing) {
-            setTimeout(()=>{ 
+            setTimeout(() => {
                 this.setState({
-                    playing:false
+                    playing: false
                 })
             }, 50);
         }
     }
 
-    tapped(){
-        if (!this.state.playing){
+    tapped() {
+        if (!this.state.playing) {
             this.props.action("play", this.props.props.preview)
-            this.setState({ 
+            this.setState({
                 playing: true,
             })
-            
         } else {
             this.props.action("pause", this.props.props.preview)
-            this.setState({ 
+            this.setState({
                 playing: false,
             })
         }
     }
 
-    hoverBegan(){
+    hoverBegan() {
         this.setState({
             isHovered: true,
         })
     }
 
-    hoverEnded(){
+    hoverEnded() {
         this.setState({
             isHovered: false,
         })
     }
 
-    render(){
+    render() {
         var indexVisibility = "visible"
         var playbackVisibility = "hidden"
         var playbackIcon = playIcon
-
-        if (this.props.props.stop){
-            if(!this.state.isHovered){
+        if (this.props.props.stop) {
+            if (!this.state.isHovered) {
                 indexVisibility = 'visible'
                 playbackVisibility = 'hidden'
             } else {
@@ -81,27 +78,27 @@ class AlbumTrack extends React.Component {
             }
             playbackIcon = playIcon
             this.stopPlayback()
-        }else {
+        } else {
             indexVisibility = 'hidden'
             playbackVisibility = 'visible'
-            if(this.state.isHovered && !isMobile){
+            if (this.state.isHovered && !isMobile) {
                 playbackIcon = pauseIcon
             } else {
                 playbackIcon = playingIcon
             }
         }
-        
+
         return (
             <div>
-                <li className = {this.state.itemClass} onClick = {this.tapped} onMouseEnter= {this.hoverBegan} onMouseLeave = {this.hoverEnded}>
-                    <span className ={style.playbackContainer} >
-                        <h3 className={style.abPlaybackIndex} style = {{visibility: indexVisibility}} >{this.state.index}</h3>
-                        <img src = {playbackIcon} className ={style.abPlaybackIcon} style = {{visibility: playbackVisibility}} ></img>
+                <li className={this.state.itemClass} onClick={this.tapped} onMouseEnter={this.hoverBegan} onMouseLeave={this.hoverEnded}>
+                    <span className={style.playbackContainer} >
+                        <h3 className={style.abPlaybackIndex} style={{ visibility: indexVisibility }} >{this.state.index}</h3>
+                        <img src={playbackIcon} className={style.abPlaybackIcon} style={{ visibility: playbackVisibility }} ></img>
                     </span>
-                    <span className = {style.albumTrackInfo}>
+                    <span className={style.albumTrackInfo}>
                         <h3 className={style.albumTrackName}>{this.state.name}</h3>
                     </span>
-                    <span className = {style.trackDurationInfo}>
+                    <span className={style.trackDurationInfo}>
                         <h3 className={style.trackDuration}> {this.state.duration} </h3>
                     </span>
                 </li>

@@ -7,22 +7,16 @@ class SoundBarsContainer extends React.Component {
 
     constructor(props) {
         super(props)
-
-        console.log(this.props.props.screenSize)
         var leftHeightArray = [5.625, 7.5, 11.25, 15.0, 18.75, 22.5, 26.25, 37.5, 56.25, 75.0, 112.5, 168.75, 262.5, 356.25, 472.5, 506.25, 450.0, 337.5, 206.25, 131.25, 75.0, 48.75, 26.25, 20.625, 22.5, 28.125, 33.75, 26.25, 20.625, 16.875]
         if (this.props.props.screenSize < 700){
-            console.log("SMALL")
             leftHeightArray = [5.625, 7.5, 11.25, 15.0, 18.75, 22.5, 26.25, 37.5, 56.25, 75.0, 112.5, 168.75, 262.5, 356.25, 472.5, 506.25, 450.0, 337.5, 206.25, 131.25, 75.0, 48.75, 36.25]
         }
-
-        // var leftHeightArray = [7.5, 10, 15, 20, 25, 30, 35, 50, 75, 100, 150, 225, 350, 475, 630, 675, 600, 450, 275, 175, 100, 65, 35, 27.5, 30, 37.5, 45, 35, 27.5, 22.5, ]
         var rightHeightArray = leftHeightArray.slice().reverse()
 
         this.state = {
             leftHeights: leftHeightArray,
             rightHeights: rightHeightArray
         }
-
     }
 
     render() {

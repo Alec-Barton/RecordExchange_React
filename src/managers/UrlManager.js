@@ -10,7 +10,6 @@ const ObjectType = {
     playlist: 'playlist'
 };
 
-
 class ParsedUrl {
     constructor(serviceType, objectType, id) {
         this.serviceType = serviceType

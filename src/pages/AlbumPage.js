@@ -50,12 +50,8 @@ class AlbumPage extends React.Component {
         shadowColor: shadow,
         barVisibility: 'shown'
       }
-
       this.state.audio.onended = this.playbackEnded.bind(this)
-
-
     } else {
-
       this.state = {
         imageState: 'loading',
         imageUrl: loadingGif,
@@ -238,7 +234,6 @@ class AlbumPage extends React.Component {
         <Header color = {this.state.headerColor} logoColor = {this.state.headerColor}/>
         <SoundBarsContainer props={{ "color": this.state.color, "shadowColor": this.state.shadowColor, "visibility": this.state.barVisibility, "screenSize":  window.innerWidth}} />
         <div className={style.main}>
-          {/* <span className={style.mainBackground} /> */}
           <img src={this.state.imageUrl} className={imageStyle} />
           <h1 className={style.homeTitle}>{this.state.title}</h1>
           <h2 className={style.homeSubtitle}>{this.state.subtitle}</h2>
