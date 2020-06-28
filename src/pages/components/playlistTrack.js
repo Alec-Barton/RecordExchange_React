@@ -4,6 +4,8 @@ import playIcon from '../assets/play.png'
 import pauseIcon from '../assets/pause.png'
 import playingIcon from '../assets/playing.png'
 
+import {isMobile} from 'react-device-detect';
+
 class PlaylistTrack extends React.Component {
     constructor(props) {
         super(props);
@@ -13,7 +15,7 @@ class PlaylistTrack extends React.Component {
             coverImage: props.props.coverImage,
             duration: props.props.duration,
             playing: !props.props.stop,
-            isHovered: !props.props.stop,
+            isHovered: false, //!props.props.stop,
             playbackIcon: playIcon,
             // audio: new Audio(this.props.props.preview),
             playbackVisibility: 'hidden',
@@ -25,10 +27,6 @@ class PlaylistTrack extends React.Component {
         this.stopPlayback = this.stopPlayback.bind(this);
         this.playbackEnded = this.playbackEnded.bind(this);
         // this.state.audio.onended = this.playbackEnded
-    }
-
-    componentWillUnmount(){
-        console.log("akfldfsdfskcsd, sbrsljbvrsjkbvrhvbewjkbwjcbwehveshkfvshjfsfscvkwnkjwbvjksbfskjbjkbsjkbsjkcbscvjksbfjkesbfeksjhfeshfs,jchskjfheskjfhesjkfhsfjkshjkfeshfjkshfksehfkjesbvbrkbjkrvdjkrbkvjdbkbjjksbjkfb")
     }
 
     playbackEnded (){
@@ -95,7 +93,7 @@ class PlaylistTrack extends React.Component {
         }else {
             indexVisibility = 'hidden'
             playbackVisibility = 'visible'
-            if(this.state.isHovered){
+            if(this.state.isHovered && !isMobile){
                 playbackIcon = pauseIcon
             } else {
                 playbackIcon = playingIcon

@@ -430,6 +430,8 @@ img {
     font-weight: lighter;
     font-size: 11pt;
     padding-bottom: 0px;
+    width: 100%;
+    overflow: hidden;
     margin-bottom: 0px;
 }
 
@@ -511,6 +513,7 @@ img {
     padding-bottom: 0px;
     margin-bottom: 0px;
     width: 100%;
+    overflow: hidden;
     height: 26px;
 }
 

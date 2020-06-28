@@ -4,6 +4,8 @@ import playIcon from '../assets/play.png'
 import pauseIcon from '../assets/pause.png'
 import playingIcon from '../assets/playing.png'
 
+import {isMobile} from 'react-device-detect';
+
 class AlbumTrack extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +16,7 @@ class AlbumTrack extends React.Component {
             coverImage: props.props.coverImage,
             duration: props.props.duration,
             playing: !props.props.stop,
-            isHovered: !props.props.stop,
+            isHovered: false,
             playbackIcon: playIcon,
             playbackVisibility: 'hidden',
             indexVisibility: 'visible',
@@ -82,7 +84,7 @@ class AlbumTrack extends React.Component {
         }else {
             indexVisibility = 'hidden'
             playbackVisibility = 'visible'
-            if(this.state.isHovered){
+            if(this.state.isHovered && !isMobile){
                 playbackIcon = pauseIcon
             } else {
                 playbackIcon = playingIcon

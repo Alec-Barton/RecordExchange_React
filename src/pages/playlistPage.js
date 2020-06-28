@@ -317,6 +317,8 @@ class PlaylistPage extends React.Component {
 
   render() {
 
+    console.log(this.state.listItems)
+
     var imageStyle = style.imgHidden
     var containerStyle = style.btnContainerHidden
     if (this.state.imageState == 'loading') {
