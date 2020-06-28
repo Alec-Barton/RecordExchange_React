@@ -2,7 +2,6 @@ import * as firebase from 'firebase';
 import 'firebase/firestore';
 
 const firebaseApp = firebase.initializeApp({
-  // copy and paste your firebase credential here
   apiKey: "AIzaSyCZwb826H9ydShkXYWhyKLb492H8VsLPLM",
   authDomain: "alec-site-37512.firebaseapp.com",
   databaseURL: "https://alec-site-37512.firebaseio.com",

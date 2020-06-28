@@ -13,6 +13,7 @@ import history from '../managers/historyManager.js'
 import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
 import Header from './components/header.js'
+import {createDeeplink} from '../managers/deeplinkManager.js'
 
 class PlaylistPage extends React.Component {
 
@@ -37,6 +38,9 @@ class PlaylistPage extends React.Component {
         }
         return (<PlaylistTrack key={track.spotifyId} props={track} action={this.changeAudio}></PlaylistTrack>)
       });
+
+      let shareUrl = createDeeplink("www.recordexchange.app/playlist/".concat(objectId),playlistData.coverImage,playlistData.name)
+
       this.state = {
         imageState: 'show',
         imageUrl: playlistData.coverImage,
@@ -53,7 +57,8 @@ class PlaylistPage extends React.Component {
         color: playlistData.color,
         headerColor: header,
         shadowColor: shadow,
-        barVisibility: 'shown'
+        barVisibility: 'shown',
+        shareUrl: shareUrl
       }
       this.state.audio.onended = this.playbackEnded.bind(this)
 
@@ -336,7 +341,7 @@ class PlaylistPage extends React.Component {
             <h2 className={style.homeSubtitle}>{this.state.subtitle}</h2>
             <Popup display={this.state.applePopupDisplay} closeFunction={this.applePopupClose} actionFunction ={this.applePlaylistFunction} serviceType={'Apple'}  popupState ={this.state.applePopupState} reset = {this.state.appleReset}/>
             <Popup display={this.state.spotifyPopupDisplay} closeFunction={this.spotifyPopupClose} actionFunction ={this.spotifyPlaylistFunction} serviceType={'Spotify'} popupState ={this.state.spotifyPopupState} />
-            <SharePopup url={"www.recordexchange.app/playlist/".concat(this.state.playlistId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
+            <SharePopup url={this.state.shareUrl} display={this.state.popupDisplay} closeFunction={this.popupClose} />
             <div className={containerStyle}>
               <input type="image" onClick={this.spotifyBtnTapped} src={spotifyLogo} className={style.spotifyButton} />
               <input type="image" onClick={this.appleBtnTapped} src={appleLogo} className={style.appleButton} />

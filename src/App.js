@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import Header from './pages/components/header.js'
 import HomePage from './pages/homePage.js';
@@ -7,7 +6,6 @@ import TrackPage from './pages/TrackPage.js';
 import AlbumPage from './pages/AlbumPage.js';
 import PlaylistPage from './pages/playlistPage.js';
 import SpotifyCallbackPage from './pages/spotifyCallbackPage.js';
-
 import style from './pages/css/style.module.css'
 import history from './managers/historyManager.js';
 
@@ -15,15 +13,12 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    
-    // this.updateColor = this.updateColor.bind(this)
   }
 
   render(){
     return (
     
       <div >
-        {/* <Header/> */}
         <Router history = {history}>
           <Switch>
     
