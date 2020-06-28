@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css?family=Lato&display=swap'); */
-
 @font-face {
     font-family: "Lato";
     src: url('./fonts/lato.ttf');
@@ -56,7 +54,6 @@ audio {
     border-bottom: 0.5px solid #AFAFAF;
     opacity: 1.0;
     color: #707070;
-    /* color: cadetblue; */
 }
 
 .headerContainer:hover {
@@ -75,12 +72,8 @@ audio {
     display: inline-block;
     padding-top: 0px;
     margin-top: -4px;
-    /* background-color: rebeccapurple; */
-    /* padding-bottom: 5px; */
     font-weight: 500;
     letter-spacing: 3px;
-    /* -webkit-text-stroke-width: 1.5px; */
-    /* -webkit-text-stroke-color: #707070; */
 }
 
 .headerBigText {
@@ -100,8 +93,6 @@ audio {
     vertical-align: center;
     display: inline-block;
     margin: auto;
-    /* filter: sepia(100%);
-  -webkit-filter: sepia(100%); */
 }
 
 .main{
@@ -123,34 +114,11 @@ audio {
     height: 275px;
     -webkit-filter: blur(20px);
     filter: blur(20px);
-    
     animation: fadeInAnimation075 ease 750ms; 
     animation-delay: 500ms;
     animation-iteration-count: 1; 
     animation-fill-mode: forwards;
 }
-
-/* .homeBackground {
-    background-color: #fafafa;
-    display: inline-block;
-    position: absolute;
-    top: 10;
-    left: 0; 
-    
-    z-index:-1; 
-    width: 100%;
-    margin-top: 200px;
-    height: 5px;
-    background-color: #fafafa;
-    opacity: 0.85;
-    -webkit-filter: blur(20px);
-    filter: blur(20px);
-} */
-
-/* .tracksBackground {
-    background-color: #fafafa;
-    opacity: 0.5;
-} */
 
 .recordLogoContainer{
     position: relative;
@@ -211,7 +179,6 @@ img {
 
 .title{
     color: #878787;
-    /* text-shadow: -1px 0 5px white, 0 1px 5px white, 1px 0 5px white, 0 -1px 5px white; */
     font-family:  Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight: 500;
@@ -225,7 +192,6 @@ img {
  .homeTitle{
     color: #878787;
     text-shadow: -1px 0 5px white, 0 1px 5px white, 1px 0 5px white, 0 -1px 5px white;
-
     font-family:  Lato, Arial, Helvetica, sans-serif;
     text-align: center;
     font-weight: 500;
@@ -236,13 +202,9 @@ img {
     padding-top: 7px;
 }
 
-
-
 .subtitle {
     color: #A2A0A0;
     font-family: Lato, Arial, Helvetica, sans-serif;
-    /* text-shadow: -1px 0 5px white, 0 1px 5px white, 1px 0 5px white, 0 -1px 5px white; */
-
     text-align: center;
     font-weight:lighter;
     font-size: 14.5pt;
@@ -256,7 +218,6 @@ img {
     color: #A2A0A0;
     font-family: Lato, Arial, Helvetica, sans-serif;
     text-shadow: -1px 0 5px white, 0 1px 5px white, 1px 0 5px white, 0 -1px 5px white;
-
     text-align: center;
     font-weight:lighter;
     font-size: 14.5pt;
@@ -265,8 +226,6 @@ img {
     margin-bottom: 10px;
     max-height: 120px;
 }
-
-
 
 .subtitlePadded {
     color: #A2A0A0;
@@ -391,7 +350,6 @@ img {
     padding-right: 10px;
     padding-left: 10px;
     margin-bottom: 2px;
-
 }
 
 .appleButton:hover{
@@ -558,7 +516,6 @@ img {
     width: 35px;
     display: inline-block;
     border-style: none;
-    /* background-color: turquoise; */
 }
 
 .plPlaybackImage {
@@ -645,7 +602,6 @@ img {
     height: 200px;
     margin-top: 60px;
     position: relative;
-    
 }
 
 .trackCover {
@@ -755,10 +711,6 @@ img {
     animation-fill-mode: forwards; 
 }
 
-/* .popup:hover{
-    opacity: 0.9;
-} */
-
 .popupTitle {
     color: #595959;
     font-family:  Lato, Arial, Helvetica, sans-serif;
@@ -811,16 +763,13 @@ img {
     margin: auto;
     text-align: center;
     height: 35px;
-    /* width: 10px; */
     margin-left: 10px;
     margin-right: 10px;
     width: 40%;
     border-radius: 15px;
-    /* background-color: salmon; */
     margin-bottom: 10px;
     background-color: white;
     color: black;
-    /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
     font-family: Lato, Arial, Helvetica, sans-serif;
@@ -832,7 +781,6 @@ img {
     -webkit-filter: brightness(80%);
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, .25);
 }
- 
   
 .popupCopyButton {
     display: block;
@@ -843,7 +791,6 @@ img {
     margin-bottom: 10px;
     background-color: white;
     color: black;
-    /* border: 1px solid #707070; */
     outline: none;
     font-size: 16pt;
     font-family: Lato, Arial, Helvetica, sans-serif;
@@ -866,7 +813,6 @@ img {
     margin-bottom: 20px;
     background-color: white;
     color: black;
-    /* border: 1px solid #707070; */
     outline: none;
     font-size: 14pt;
     font-family: Lato, Arial, Helvetica, sans-serif;
@@ -929,7 +875,6 @@ ul {
 }
 
 @media (max-width: 1500px) {
-
     .headerContainer{
         width: 40%;
     }
@@ -940,7 +885,6 @@ ul {
 }
 
 @media (max-width: 1400px) {
-
     .headerContainer{
         width: 40%;
     }
@@ -951,7 +895,6 @@ ul {
 }
 
 @media (max-width: 1200px) {
-
     .headerContainer{
         width: 50%;
     }
@@ -962,24 +905,20 @@ ul {
 }
 
 @media (max-width: 1000px) {
-
     .headerContainer{
         width: 65%;
     }
     .main{
-        
         width: 65%;
         max-width: 750px;
     }
 }
 
 @media (max-width: 800px) {
-
     .headerContainer{
         width: 80%;
     }
     .main{
-
         width: 80%;
         max-width: 750px;
     }
@@ -987,7 +926,6 @@ ul {
 
 
 @media (max-width: 600px) {
-
     .recordLogoContainer{
         width: 30px;
         height: 30px;
@@ -1004,8 +942,8 @@ ul {
     .headerContainer{
         width: 95%;
     }
+    
     .main{
         width: 95%;
     }
 }
-
