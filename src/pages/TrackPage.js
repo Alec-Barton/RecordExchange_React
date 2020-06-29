@@ -13,6 +13,7 @@ import history from '../managers/historyManager.js'
 import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
 import Header from './components/header.js'
+import {createDeeplink} from '../managers/deeplinkManager.js'
 
 class TrackPage extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class TrackPage extends React.Component {
       let shadow = hexBrightnessPercentage(trackData.color, 0.25)
       let header = hexBrightnessPercentage(trackData.color, -0.15)
 
-      let shareUrl = createDeeplink("www.recordexchange.app/track/".concat(objectId),playlistData.coverImage,playlistData.name)
+      let shareUrl = createDeeplink("www.recordexchange.app/track/".concat(objectId),trackData.coverImage, trackData.name)
 
       this.state = {
         imageState: 'show',
@@ -245,7 +246,7 @@ class TrackPage extends React.Component {
           </span>
           <h1 className={style.homeTitle}>{this.state.title}</h1>
           <h2 className={style.homeSubtitlePadded}>{this.state.subtitle}</h2>
-          <SharePopup url={shareUrl} display={this.state.popupDisplay} closeFunction={this.popupClose} />
+          <SharePopup url={this.state.shareUrl} display={this.state.popupDisplay} closeFunction={this.popupClose} />
           <div className={containerStyle}>
             <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
             <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />

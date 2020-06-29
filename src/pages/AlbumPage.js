@@ -11,6 +11,7 @@ import history from '../managers/historyManager.js'
 import SoundBarsContainer from './components/soundBarsContainer.js'
 import hexBrightnessPercentage from '../managers/colorManager.js'
 import Header from './components/header.js'
+import {createDeeplink} from '../managers/deeplinkManager.js'
 
 class AlbumPage extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class AlbumPage extends React.Component {
         return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
 
-      let shareUrl = createDeeplink("www.recordexchange.app/album/".concat(objectId),playlistData.coverImage,playlistData.name)
+      let shareUrl = createDeeplink("www.recordexchange.app/album/".concat(objectId),albumData.coverImage,albumData.name)
 
       this.state = {
         imageState: 'show',
@@ -241,7 +242,7 @@ class AlbumPage extends React.Component {
           <img src={this.state.imageUrl} className={imageStyle} />
           <h1 className={style.homeTitle}>{this.state.title}</h1>
           <h2 className={style.homeSubtitle}>{this.state.subtitle}</h2>
-          <SharePopup url={shareUrl} display={this.state.popupDisplay} closeFunction={this.popupClose} />
+          <SharePopup url={this.state.shareUrl} display={this.state.popupDisplay} closeFunction={this.popupClose} />
           <div className={containerStyle}>
             <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
             <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />
