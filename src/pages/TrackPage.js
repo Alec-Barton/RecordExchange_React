@@ -28,6 +28,8 @@ class TrackPage extends React.Component {
       let shadow = hexBrightnessPercentage(trackData.color, 0.25)
       let header = hexBrightnessPercentage(trackData.color, -0.15)
 
+      let shareUrl = createDeeplink("www.recordexchange.app/track/".concat(objectId),playlistData.coverImage,playlistData.name)
+
       this.state = {
         imageState: 'show',
         imageUrl: trackData.coverImage,
@@ -43,7 +45,8 @@ class TrackPage extends React.Component {
         color: trackData.color, 
         headerColor: header,
         shadowColor: shadow,
-        barVisibility: 'shown'
+        barVisibility: 'shown',
+        shareUrl: shareUrl
       }
       this.state.audio.onended = this.playbackEnded.bind(this)
 
@@ -242,7 +245,7 @@ class TrackPage extends React.Component {
           </span>
           <h1 className={style.homeTitle}>{this.state.title}</h1>
           <h2 className={style.homeSubtitlePadded}>{this.state.subtitle}</h2>
-          <SharePopup url={"www.recordexchange.app/track/".concat(this.state.trackId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
+          <SharePopup url={shareUrl} display={this.state.popupDisplay} closeFunction={this.popupClose} />
           <div className={containerStyle}>
             <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
             <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />

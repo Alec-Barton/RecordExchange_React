@@ -33,6 +33,9 @@ class AlbumPage extends React.Component {
         }
         return (<AlbumTrack key={index} props={track} action={this.changeAudio}></AlbumTrack>)
       });
+
+      let shareUrl = createDeeplink("www.recordexchange.app/album/".concat(objectId),playlistData.coverImage,playlistData.name)
+
       this.state = {
         imageState: 'show',
         imageUrl: albumData.coverImage,
@@ -48,7 +51,8 @@ class AlbumPage extends React.Component {
         color: albumData.color,
         headerColor: logo,
         shadowColor: shadow,
-        barVisibility: 'shown'
+        barVisibility: 'shown',
+        shareUrl: shareUrl
       }
       this.state.audio.onended = this.playbackEnded.bind(this)
     } else {
@@ -237,7 +241,7 @@ class AlbumPage extends React.Component {
           <img src={this.state.imageUrl} className={imageStyle} />
           <h1 className={style.homeTitle}>{this.state.title}</h1>
           <h2 className={style.homeSubtitle}>{this.state.subtitle}</h2>
-          <SharePopup url={"www.recordexchange.app/album/".concat(this.state.albumId)} display={this.state.popupDisplay} closeFunction={this.popupClose} />
+          <SharePopup url={shareUrl} display={this.state.popupDisplay} closeFunction={this.popupClose} />
           <div className={containerStyle}>
             <input type="image" src={spotifyLogo} className={style.spotifyButton} onClick={this.spotifyBtnTapped} />
             <input type="image" src={appleLogo} className={style.appleButton} onClick={this.appleBtnTapped} />

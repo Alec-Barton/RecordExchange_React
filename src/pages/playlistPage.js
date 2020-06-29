@@ -76,6 +76,7 @@ class PlaylistPage extends React.Component {
         color: 'white',
         headerColor: '#707070',
         barVisibility: 'hidden',
+        shareUrl: "Error",
       }
       this.state.audio.onended = this.playbackEnded.bind(this)
 
@@ -100,6 +101,8 @@ class PlaylistPage extends React.Component {
             
             return (<PlaylistTrack key={track.spotifyId} props={track} action={this.changeAudio}></PlaylistTrack>)
           });
+          let shareUrl = createDeeplink("www.recordexchange.app/playlist/".concat(objectId),playlistData.coverImage,playlistData.name)
+          console.log(shareUrl)
           this.setState({
             title: playlistData.name,
             subtitle: playlistData.description,
@@ -117,7 +120,7 @@ class PlaylistPage extends React.Component {
             headerColor: header,
             shadowColor: shadow,
             barVisibility: 'visible',
-
+            shareUrl: shareUrl
           })
           history.push({
             state: {
@@ -334,8 +337,6 @@ class PlaylistPage extends React.Component {
 
         <div>
           <div className={style.main}>
-            {/* <span className={style.mainBackground} /> */}
-
             <img src={this.state.imageUrl} className={imageStyle} />
             <h1 className={style.homeTitle}>{this.state.title}</h1>
             <h2 className={style.homeSubtitle}>{this.state.subtitle}</h2>
