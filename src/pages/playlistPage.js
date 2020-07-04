@@ -76,7 +76,7 @@ class PlaylistPage extends React.Component {
         color: 'white',
         headerColor: '#707070',
         barVisibility: 'hidden',
-        shareUrl: "Error",
+        shareUrl: "Tap Copy Link",
       }
       this.state.audio.onended = this.playbackEnded.bind(this)
 

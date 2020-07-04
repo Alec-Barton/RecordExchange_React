@@ -63,7 +63,8 @@ class TrackPage extends React.Component {
         popupDisplay: 'none',
         color: 'white', 
         headerColor: '#707070',
-        barVisibility: 'hidden'
+        barVisibility: 'hidden',
+        shareUrl: "Tap Copy Link",
       }
 
       let headerData = {
@@ -92,9 +93,8 @@ class TrackPage extends React.Component {
             shadowColor: shadow,
             barVisibility: 'visible'
 
-          },
+          })
           this.state.audio.onended = this.playbackEnded.bind(this)
-          )
           history.push({
             state: {
               object: response.data

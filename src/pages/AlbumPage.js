@@ -66,6 +66,7 @@ class AlbumPage extends React.Component {
         popupDisplay: 'none',
         headerColor: '#707070',
         audio: new Audio(),
+        shareUrl: "Tap Copy Link",
       }
 
       this.state.audio.onended = this.playbackEnded.bind(this)
