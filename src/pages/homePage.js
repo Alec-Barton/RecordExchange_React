@@ -98,7 +98,7 @@ class HomePage extends React.Component {
       shareButtonState: 'hidden'
 
     })
-    var totalTime = 10 
+    var totalTime = 15 
     if (this.state.objectType == 'playlist'){
       if (this.state.playlist){
         if (this.state.playlist.tracks){

@@ -5,7 +5,7 @@ export default class MusicKitManager {
 
     configure() {
         window.MusicKit.configure({
-            developerToken: 'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IldWN1IyNEdVNkgifQ.eyJpYXQiOjE1Nzc2NTAwNzMsImV4cCI6MTU5MzIwMjA3MywiaXNzIjoiWk04UlZMRTQ5ViJ9.4P1-_Nqiy3huaTW9saNzrV5cGx41rbXvsuXSjwZ_h4WjqAomobIHNsrO0BtQjtxD3fsKP9eTPHjTc7_vypBVwA',
+            developerToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IldWN1IyNEdVNkgifQ.eyJpc3MiOiJaTThSVkxFNDlWIiwiZXhwIjoxNjA5MDc0Nzk2LCJpYXQiOjE1OTMzMDY3OTZ9.oWF90_BRLS1TLghtyAPbCj_pD9-WikUabDTotfJ2MIY4uvMbJm41lOVFzIC2UrKo6QTiQV1LpZksk8wtsBvsdQ',
             app: {
                 name: 'Record Exchange',
                 build: '0.1.0'
