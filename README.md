@@ -1,5 +1,5 @@
 # Record Exchange
-A WIP Web-App for sharing music & playlists between Spotify & Apple Music
+A Work-In-Progress Web-App for sharing music & playlists between Spotify & Apple Music
 
 ## Web App
 The frontend component is written in React with HTML, CSS & Javascript
